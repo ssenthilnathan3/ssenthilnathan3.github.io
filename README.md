@@ -1,7 +1,7 @@
 # Senthilnathan S
 
 
-## About Me
+### About Me
 
 - Curious about computers and amazed about how they work with just numbers. I just completed high school and just started programming
 
