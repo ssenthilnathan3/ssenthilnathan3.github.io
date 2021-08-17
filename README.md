@@ -1,4 +1,4 @@
-## *My name is Senthil Nathan *
+Senthilnathan S
 
 
 ## About Me
