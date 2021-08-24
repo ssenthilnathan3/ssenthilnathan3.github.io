@@ -7,7 +7,7 @@
 
 ### My projects
 
-- Actually, None.I can't find projects that impresses me or challenges me, I think that my projects should not be a resume-decorator or be a fill-in-the-blank type. I AM thinking of it every minute like, what project should I do? Should I do with a team or on my own? many questions that I don't know the answer YET 
+- Working on it the way through.
 
 ### Experience in Programming Languages
 
