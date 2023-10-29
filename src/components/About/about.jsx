@@ -1,27 +1,32 @@
 import React from "react";
+import Img from "../../assets/about-me.jpg";
 import "./about.css";
 
 const About = () => {
   return (
-    <section className="about container section" id="about">
-      <h2 className="section__title">About Me</h2>
-    <div className="about__container grid">
-
-      <div className="about__data grid">
-        <div className="about__info">
-          <p className="about__description">
-            Velit qui officia laboris mollit laboris sit nulla ipsum minim sint
-            ipsum mollit consectetur.Do elit ad amet quis Lorem adipisicing
-            nostrud irure laborum in.Irure est ullamco do nisi id eu id eu
-            veniam nisi mollit sunt eu.
-          </p>
-          <a href="" className="btn"></a>
-        </div>
+    <section id="about" className="about--section">
+      <div className="about--section--img">
+        <img src={Img} alt="About Me" />
       </div>
+      <div className="hero--section--content--box about--section--box">
+        <div className="hero--section--content">
+          <p className="section--title">About</p>
+          <h1 className="skills-section--heading">About Me</h1>
+          <p className="hero--section-description">
+            I am a dedicated Bachelor of Technology student with a strong
+            background in Artificial Intelligence and Data Science. My expertise
+            encompasses mobile app development and machine learning, supported
+            by practical experience in various tech-related roles.
+          </p>
+          <p className="hero--section-description">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
+            officiis sit debitis omnis harum sed veniam quasi dicta accusamus
+            recusandae?
+          </p>
+        </div>
       </div>
     </section>
   );
 };
 
 export default About;
-
