@@ -6,8 +6,10 @@
   --first-color: hsl(353, 100%, 65%);
   --tit1e-co1or: hsl(244, 24%, 26%);
   --text-co1or: hsl(244, 16%, 43%);
-  --body-co1or: hsl(258, 60%, 98%);
+  --body-co1or: #050608;
   --container-color: #fff;
+
+  /* hsl(258, 60%, 98%) */
 
   --body-font: "DM Sans", sans-serif;
   --h1-font-size: 2.25rem;
