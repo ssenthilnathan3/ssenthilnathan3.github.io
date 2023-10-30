@@ -6,7 +6,7 @@ export default function Works() {
     <section className="portfolio--section" id="works">
       <div className="portfolio--container-box">
         <div className="portfolio--container">
-          <p className="sub--title">Recent Projects</p>
+          <p className="sub--title">#whatido</p>
           <h2 className="section--heading">My Portfolio</h2>
         </div>
         <div>
@@ -39,6 +39,7 @@ export default function Works() {
             <div className="portfolio--section--card--content">
               <div>
                 <h3 className="portfolio--section--title">{item.title}</h3>
+                <br />
                 <p className="text-md">{item.description}</p>
               </div>
               <p className="text-sm portfolio--link">

@@ -10,18 +10,19 @@ const About = () => {
       </div>
       <div className="hero--section--content--box about--section--box">
         <div className="hero--section--content">
-          <p className="section--title">About</p>
+          <p className="section--title">#whoami</p>
           <h1 className="skills-section--heading">About Me</h1>
           <p className="hero--section-description">
-            I am a dedicated Bachelor of Technology student with a strong
-            background in Artificial Intelligence and Data Science. My expertise
-            encompasses mobile app development and machine learning, supported
-            by practical experience in various tech-related roles.
+            Hey there👋! I'm a tech-savvy student with a knack for all things in{" "}
+            <i>ai and data science</i>. I'm the go-to person when it comes to
+            building awesome mobile apps. Whether it's{" "}
+            <strong>Java, Kotlin, Swift, or React Native</strong>, I'm your guy.
+            I've also had my hands on machine learning, diving into the world of
+            algorithms and data crunching.
           </p>
           <p className="hero--section-description">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-            officiis sit debitis omnis harum sed veniam quasi dicta accusamus
-            recusandae?
+            So, if you're looking for a tech-savvy, problem-solving enthusiast
+            to join your team, let's chat and make things happen!
           </p>
         </div>
       </div>

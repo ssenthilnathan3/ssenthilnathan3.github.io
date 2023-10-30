@@ -6,7 +6,7 @@ import ScrollDown from './ScrollDown';
 import Shapes from './Shapes';
 // import TypeAnimation from 'react-type-animation';
 import TypingLetter from './typing-letters';
-
+import MyResume from '../../assets/resume__1_.pdf'
 
 
 const home = () => {
@@ -18,7 +18,7 @@ const home = () => {
         <TypingLetter />
         {/* <span className="home__education">I'm a student</span> */}
         <HeaderSocials />
-        <a href="#contact" className="btn">Hire Me!</a>
+        <a href={MyResume} className="btn">Hire Me!</a>
         <ScrollDown />
       </div>
       <Shapes />

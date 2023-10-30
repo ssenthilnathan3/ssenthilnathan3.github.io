@@ -14,7 +14,7 @@
 .timeline__item {
     position: relative;
     padding-top: 3.125rem;
-    padding-bottom: 3.125rem;
+    padding-bottom: 1.25rem;
 }
 
 .timeline__item:last-child {
@@ -30,6 +30,10 @@
     position: absolute;
     background-color: var(--first-color);
     /* z-index: 3; */
+}
+
+.low-row-gap {
+    padding-bottom: 20px !important;
 }
 
 .timeline .icon-briefcase,
@@ -57,4 +61,23 @@
 
 .timeline__date, .timeline__title, .timeline__description {
     padding: 20px;
+}
+
+@media screen and (max-wdith: 1024px) {
+    .resume__container {
+        row-gap: 1.875rem;
+        justify-content: center;
+        grid-template-columns: 450px;
+    }
+
+    .timeline__item:before {
+        left: 2px;
+    }
+
+    @media screen and (max-width: 576px) {
+        .resume__container {
+            grid-template-columns: 1fr;
+        }
+        
+    }
 }

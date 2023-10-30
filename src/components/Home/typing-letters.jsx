@@ -6,13 +6,13 @@ const TypingLetter = () => {
         <TypeAnimation
           sequence={[
             // Same substring at the start will only be typed out once, initially
-            'I am a Student',
+            'I am a curious student',
             750, // wait 1s before replacing "Mice" with "Hamsters"
-            'I am an Engineer',
+            'I am an innovative engineer',
             750,
-            'I am a Developer',
+            'I am a creative thinker',
             750,
-            'I am #me',
+            'I am a self-starter',
             750
           ]}
           wrapper="span"

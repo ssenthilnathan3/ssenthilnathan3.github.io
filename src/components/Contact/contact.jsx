@@ -14,22 +14,13 @@ export default function Contsct() {
       <form className="contact--form--container">
         <div className="container1">
           <label htmlFor="first-name" className="contact--label">
-            <span className="text-md">First Name</span>
+            <span className="text-md">Name</span>
             <input
               type="text"
               className="contact--input text-md"
               name="first-name"
               id="first-name"
-              required
-            />
-          </label>
-          <label htmlFor="last-name" className="contact--label">
-            <span className="text-md">Last Name</span>
-            <input
-              type="text"
-              className="contact--input text-md"
-              name="last-name"
-              id="last-name"
+              placeholder="Name"
               required
             />
           </label>
@@ -40,29 +31,11 @@ export default function Contsct() {
               className="contact--input text-md"
               name="email"
               id="email"
-              required
-            />
-          </label>
-          <label htmlFor="phone-number" className="contact--label">
-            <span className="text-md">phone-number</span>
-            <input
-              type="number"
-              className="contact--input text-md"
-              name="phone-number"
-              id="phone-number"
+              placeholder="Name"
               required
             />
           </label>
         </div>
-        <label htmlFor="choode-topic" className="contact--label">
-          <span className="text-md">Choose a topic</span>
-          <select id="choose-topic" className="contact--input text-md">
-            <option>Select One...</option>
-            <option>Item 1</option>
-            <option>Item 2</option>
-            <option>Item 3</option>
-          </select>
-        </label>
         <label htmlFor="message" className="contact--label">
           <span className="text-md">Message</span>
           <textarea

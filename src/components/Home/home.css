@@ -8,6 +8,7 @@
 .intro {
   max-width: 540px;
   text-align: center;
+  z-index: 3;
 }
 .home__img {
   margin-bottom: 1.5rem;
@@ -86,9 +87,12 @@
   top: 0;
   height: 100%;
   width: 100%;
+  z-index: 2;
+  transform: scale(1.2);
 }
 .shape {
   position: absolute;
+  
 }
 
 .s1 {
@@ -145,7 +149,6 @@
   bottom: 12%;
   right: 2%;
 }
-
 @media screen and (max-width: 1024px) {
   .home__social_link {
     font-size: 1.25rem;

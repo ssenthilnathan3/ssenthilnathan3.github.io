@@ -17,7 +17,7 @@
 .contact--form--container {
   display: grid;
   grid-template-columns: auto;
-  grid-template-rows: repeat(5, auto);
+  grid-template-rows: repeat(4, auto);
   width: 40%;
   row-gap: 32px;
 }
@@ -36,7 +36,21 @@
   width: 100%;
 }
 
+.input::-webkit-input-placeholder {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
 
+.input:-ms-input-placeholder {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.input:-moz-placeholder {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.input::-moz-placeholder {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
 .contact--input {
   display: flex;
   font-family: "Roboto";
@@ -45,7 +59,7 @@
   align-self: stretch;
   border-radius: 8px;
   border: 1.333px solid var(--primary) !important;
-  /* background: var(--white); */
+  background: #d3d3d3;
 }
 select {
   -webkit-appearance: none;

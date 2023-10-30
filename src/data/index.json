@@ -1,77 +1,43 @@
 {
-    "skills": [
-      {
-        "id": "1",
-        "src": "./img/product-chain-1.png",
-        "title": "Front-End",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique"
-      },
-      {
-        "id": "2",
-        "src": "./img/tag-1.png",
-        "title": "Back-End",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique"
-      },
-      {
-        "id": "3",
-        "src": "./img/feather-pen-2.png",
-        "title": "UI & UX Design",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique"
-      },
-      {
-        "id": "4",
-        "src": "./img/feather-pen-1.png",
-        "title": "Webflow Development",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique"
-      }
-    ],
-    "portfolio": [
-      {
-        "id": "1",
-        "src": "./img/placeholder-image.png",
-        "title": "Ahuse",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique",
-        "link": "View In Github"
-      },
-      {
-        "id": "2",
-        "src": "./img/placeholder-image-1.png",
-        "title": "App Dashboard",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique",
-        "link": "View In Github"
-      },
-      {
-        "id": "3",
-        "src": "./img/placeholder-image-2.png",
-        "title": "Easy Rentn",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique",
-        "link": "View In Github"
-      }
-    ],
-    "testimonial": [
-      {
-        "id": "1",
-        "count": "5",
-        "src": "./img/avatar-image.png",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique",
-        "author_name": "Dianne Russel",
-        "author_designation": "Starbucks"
-      },
-      {
-        "id": "2",
-        "count": "5",
-        "src": "./img/avatar-image-1.png",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique",
-        "author_name": "Kristin Watson",
-        "author_designation": "Louis Vuitton"
-      },
-      {
-        "id": "3",
-        "count": "5",
-        "src": "./img/avatar-image-2.png",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspenmdisse varius eim in eros elementum tristique",
-        "author_name": "Kathryn Murphy",
-        "author_designation": "McDonald's"
-      }
-    ]
-  }
+  "portfolio": [
+    {
+      "id": "4",
+      "src": "./image/qifi-app-image.png",
+      "title": "Qifi - Yoga, Nutrition, and Mindfulness Platform (Flutter)",
+      "description": "Developed a robust and user-friendly application for both Android and iOS platforms using Flutter. Handled the integration of APIs to fetch and display data from external sources within the app.",
+      "link": "GitHub Repo"
+    },
+    {
+      "id": "5",
+      "src": "./image/student-management-image.png",
+      "title": "Students Detail Management Platform (Go)",
+      "description": "Designed an abstract CRUD application for accessing student details using objects. Applied for managing college attendance and library checkouts.",
+      "link": "GitHub Repo"
+    },
+    {
+      "id": "6",
+      "src": "./image/college-website-image.png",
+      "title": "College Website Enhancement (Next.js and React.js)",
+      "description": "Enhancing our college website using Next.js and React.js to provide an improved user experience and modern design.",
+      "link": "GitHub Repo"
+    }
+  ],
+  "testimonial": [
+    {
+      "id": "1",
+      "count": "5",
+      "src": "./image/guru-prassannaa.png",
+      "description": "Senthilnathan is one of the best developers that I had the pleasure of working with directly.His problem-solving skills and his unique way of visualizing a problem has always left me baffled. We tackled many problems together as a team, and his role as a teammate has always been highly valuable. I can proudly recommend this guy for all of his future endeavors.",
+      "author_name": "Guru Prasannaa Rajsekar",
+      "author_designation": "Aspiring Entrepreneur | UX Specialist | Design Geek | Advertising and Marketing Enthusiast"
+    },
+    {
+      "id": "2",
+      "count": "5",
+      "src": "./image/shamilsha.png",
+      "description": "I had the pleasure of working closely with Senthil, and I can confidently say that he is an outstanding teammate. His passion for his work is truly inspiring, and his problem-solving skills are exceptional. Senthil is highly talented in web development, app development, and various other areas. He consistently delivers high-quality results and contributes positively to the team. I highly recommend Senthil for any project or team where expertise, dedication, and passion are valued.",
+      "author_name": "Shamilsha pt",
+      "author_designation": "Entrepreneur | Project Coordinator | Graphic Designer | UI & UX Designer | Web Developer"
+    }
+  ]
+}

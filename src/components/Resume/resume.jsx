@@ -6,12 +6,12 @@ import Card from './Card';
 /* eslint-disable */ 
 const Resume = () => {
   return (
-    <section className="resume container section" id="resume">
+    <section className="resume container section" id="experience">
       <h2 className="section__title">
         My Journey
       </h2>
       <div className="resume__container grid">
-        <div className="timeline grid">
+        <div className="timeline grid low-row-gap">
           {Data.map((val, id) => {
             if (val.category === "education") {
               return (
