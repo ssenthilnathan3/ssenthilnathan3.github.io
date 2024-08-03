@@ -1,7 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
-  --first-color: hsl(353, 100%, 65%);
+  --first-color: #ff4d61;
   --tit1e-co1or: hsl(244, 24%, 26%);
   --text-co1or: hsl(244, 16%, 43%);
   --body-co1or: #050608;
@@ -9,7 +13,8 @@
 
   /* hsl(258, 60%, 98%) */
 
-  --body-font: "DM Sans", sans-serif;
+  --body-font: "Sora", sans-serif;
+  --head-font: "DM Sans";
   --h1-font-size: 2.25rem;
   --h2-font-size: 1.5rem;
   --h3-font-size: 1.25rem;
@@ -110,30 +115,7 @@ img {
   top: -0.875rem;
 }
 
-.btn {
-  padding: 0.75rem 2rem;
-  line-height: 1;
-  border-radius: 1.875rem;
-  box-shadow: 0px 1px rgb(000 0%);
-  border: 1px solid transparent;
-  color: #fff;
-  display: inline-block;
-  background-color: var(--first-color);
-  font-weight: var(--font-bold);
-}
 
-@keyframes button-push {
-  50% {
-    transform: scale(0.8);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.btn:hover {
-  animation: button-push 0.3s linear 1;
-}
 
 @media screen and (max-width: 1024px) {
   :root {
@@ -182,12 +164,6 @@ img {
 }
 
 @media only screen and (max-width: 1024px) {
-  .btn-outline-primary {
-    display: none;
-  }
-  .btn {
-    padding: 0.75rem 1rem;
-  }
   .hero--section {
     display: flex;
     flex-direction: column-reverse;
