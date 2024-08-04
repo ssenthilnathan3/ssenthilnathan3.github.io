@@ -38,7 +38,7 @@ function sketch(p5) {
       if (mouseDist < maxDist) {
         heartClickCount--;
         if (heartClickCount == 0) {
-          window.location.href = '/finally'; // Replace with your desired URL
+          window.location.href = '/#/finally'; // Replace with your desired URL
         }
       }
     };
