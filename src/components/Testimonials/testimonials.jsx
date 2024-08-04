@@ -63,13 +63,49 @@ export default function Testimonials() {
         </div>
       </div>
       <div className="lg:hidden w-full justify-center items-center">
-        <AccordionItem
-          title="Daniel Clifford"
-          imgSrc="https://images.pexels.com/photos/3775534/pexels-photo-3775534.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
-          imgAlt="Daniel Clifford"
+      <AccordionItem
+          title="Guru Prasanna Rajsekar"
+          imgSrc="/assets/guru-prassannaa.png"
+          imgAlt="Guru Prasanna Rajsekar"
           content={{
-            title: "I received a job offer mid-course...",
-            body: "“ I was an EMT for many years before I joined the bootcamp... ”"
+            title: "CEO/UI/UX Designer",
+            body: "Senthilnathan is one of the best developers that I had the pleasure of working with directly. His problem-solving skills and his unique way of visualizing a problem has always left me baffled. We tackled many problems together as a team, and his role as a teammate has always been highly valuable. I can proudly recommend this guy for all of his future endeavors."
+          }}
+        />
+        <AccordionItem
+          title="Prabhu S"
+          imgSrc="/assets/user.webp"
+          imgAlt="Prabhu S"
+          content={{
+            title: "Classmate",
+            body: "Having worked closely with Senthilnathan during our academic projects, I can confidently say he is an outstanding classmate. His enthusiasm for learning and his willingness to help others make him a valuable asset in any group setting."
+          }}
+        />
+        <AccordionItem
+          title="Arunkumar S"
+          imgSrc="/assets/user.webp"
+          imgAlt="Arunkumar S"
+          content={{
+            title: "Colleague",
+            body: "Senthilnathan has been an exceptional peer colleague throughout our time working together. His dedication to excellence and innovative approach to problem-solving has consistently impressed me."
+          }}
+        />
+        <AccordionItem
+          title="Mentor"
+          imgSrc="/assets/user.webp"
+          imgAlt="Mentor"
+          content={{
+            title: "",
+            body: "Senthilnathan is an exceptional individual who demonstrates remarkable skill and dedication in all his endeavors. As a mentor, I have witnessed his growth and commitment to excellence firsthand. His analytical mindset, combined with his ability to communicate effectively, has made a significant impact on his projects and those around him."
+          }}
+        />
+        <AccordionItem
+          title="Shamilsha"
+          imgSrc="/assets/shamilsha.png"
+          imgAlt="Shamilsha"
+          content={{
+            title: "CEO",
+            body: "I had the pleasure of working closely with Senthil, and I can confidently say that he is an outstanding teammate. His passion for his work is truly inspiring, and his problem-solving skills are exceptional. Senthil is highly talented in web development, app development, and various other areas. He consistently delivers high-quality results and contributes positively to the team. I highly recommend Senthil for any project or team where expertise, dedication, and passion are valued."
           }}
         />
         

@@ -13,7 +13,7 @@ const AccordionItem = ({ title, content, imgSrc, imgAlt }) => {
           <img src={imgSrc} alt={imgAlt} className="w-8 h-8 rounded-full border-2 mr-4" />
           <div>
             <h1 className="text-base">{title}</h1>
-            <h2 className="text-xs text-opacity-50">Verified Graduate</h2>
+            <h2 className="text-xs text-opacity-50">{content.title}</h2>
           </div>
         </div>
         <span>{isOpen ? '-' : '+'}</span>

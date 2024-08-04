@@ -14,7 +14,7 @@ import P5Canvas from './components/Game/P5Canvas';
 const App = () => {
   return (
     <HashRouter>
-      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] overflow-x-hidden">
       {window.location.pathname === '/' ? <Navbar /> : null}
         <Routes>
           <Route path="/" element={
