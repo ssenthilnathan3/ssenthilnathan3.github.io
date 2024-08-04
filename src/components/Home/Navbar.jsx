@@ -20,7 +20,7 @@ const Navbar = () => {
                 <a className="text-gray-600 cursor-pointer transition-colors duration-300 font-semibold text-blue-600" onClick={() => handleClick("home")}>hero ⚡️</a>
                 <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => handleClick("about")}>more about me</a>
                 <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => handleClick("testimonial")}>what people say about me</a>
-                <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => window.location.href = '/finally'}>this'll be interesting 🥶</a>
+                <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => window.location.href = '/#/finally'}>this'll be interesting 🥶</a>
             </nav>
 
             <nav className="lg:hidden fixed top-4 left-2 z-10">

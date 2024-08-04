@@ -30,9 +30,9 @@ const App = () => {
     <HashRouter>
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
       {window.location.pathname === '/' ? <Navbar /> : null}
-      {window.location.pathname == '/finally' ? <BackButton/> : null}
+      {window.location.pathname == '/#/finally' ? <BackButton/> : null}
         <Routes>
-          <Route path="/#" element={
+          <Route path="/" element={
             <>
               <Home />
               <About />
@@ -43,7 +43,7 @@ const App = () => {
             </>
           } />
           
-          <Route path="/finally" element={<Works />} />
+          <Route path="/#/finally" element={<Works />} />
         </Routes>
       </div>
     </HashRouter>

@@ -18,7 +18,7 @@ const home = () => {
         <HeaderSocials />
         <div className="flex flex-row justify-center items-center mt-[50px]">
           <button onClick={() => {
-            window.location.href = '/finally';
+            window.location.href = '/#/finally';
             window.addEventListener('load', () => {
               const footerElement = document.getElementById('footer');
               if (footerElement) {
