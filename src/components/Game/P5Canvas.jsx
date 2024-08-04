@@ -38,7 +38,7 @@ function sketch(p5) {
       if (mouseDist < maxDist) {
         heartClickCount--;
         if (heartClickCount == 0) {
-          window.location.href = '/#/finally'; // Replace with your desired URL
+          window.location.href = '/finally'; // Replace with your desired URL
         }
       }
     };
@@ -56,11 +56,10 @@ function sketch(p5) {
     }
 
     const acc = p5.map(p5.mouseX, 0, p5.width, 0.005, 0.2);
-    const mouseDist = p5.dist(p5.mouseX, p5.mouseY, p5.width / 2, p5.height / 2);
 
     stars = stars.filter(star => {
       star.draw(p5);
-      star.update(acc, mouseDist);
+      star.update(acc);
       return star.isActive(p5.width, p5.height);
     });
 
@@ -71,17 +70,17 @@ function sketch(p5) {
     p5.fill(250, 0, 100);
     heart(p5, heartX, heartY, heartW, heartH);
 
-    // Make text size responsive
-    const textSizeMain = p5.width / 21; // Adjust based on canvas width
-    const textSizeSecondary = p5.width / 22; // Adjust based on canvas width
+   // Make text size responsive
+  const textSizeMain = p5.width / 21; // Adjust based on canvas width
+  const textSizeSecondary = p5.width / 22; // Adjust based on canvas width
 
-    p5.textSize(textSizeMain);
-    p5.textAlign(p5.CENTER, p5.CENTER);
-    p5.fill(0);
-    p5.text(`You are close to your dreams!`, p5.width / 2, p5.height / 4);
-    p5.textFont(customFont);
-    p5.textSize(textSizeSecondary);
-    p5.text(`Wanna see mine! you are ${heartClickCount} clicks away`, p5.width / 2, p5.height / 4 + 50);
+  p5.textSize(textSizeMain);
+  p5.textAlign(p5.CENTER, p5.CENTER);
+  p5.fill(0);
+  p5.text(`You are close to your dreams!`, p5.width / 2, p5.height / 4);
+  p5.textFont(customFont);
+  p5.textSize(textSizeSecondary);
+  p5.text(`Wanna see mine! you are ${heartClickCount} clicks away`, p5.width / 2, p5.height / 4 + 50);
   };
 
   class Star {
@@ -90,33 +89,26 @@ function sketch(p5) {
       this.prevPos = p5.createVector(x, y);
       this.vel = p5.createVector(0, 0);
       this.ang = p5.atan2(y - p5.height / 2, x - p5.width / 2);
-      this.size = 2; // Smaller star size
     }
 
     isActive(width, height) {
       return onScreen(this.prevPos.x, this.prevPos.y, width, height);
     }
 
-    update(acc, mouseDist) {
-      const distanceFactor = p5.map(mouseDist, 0, p5.width / 2, 1.5, 0.5);
-      this.vel.x += p5.cos(this.ang) * acc * distanceFactor * 2;
-      this.vel.y += p5.sin(this.ang) * acc * distanceFactor * 2;
+    update(acc) {
+      this.vel.x += p5.cos(this.ang) * acc;
+      this.vel.y += p5.sin(this.ang) * acc;
       this.prevPos.x = this.pos.x;
       this.prevPos.y = this.pos.y;
       this.pos.x += this.vel.x;
       this.pos.y += this.vel.y;
     }
 
-      draw(p5) {
-        // Reduce the stroke weight for the star trails
-        const strokeWeightValue = 1; // Adjust the stroke weight here
-        p5.strokeWeight(strokeWeightValue);
-        
-        // Compute alpha for fading effect
-        const alpha = p5.map(this.vel.mag(), 0, 3, 0, 255);
-        p5.stroke(0, alpha);
-        p5.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
-      }
+    draw(p5) {
+      const alpha = p5.map(this.vel.mag(), 0, 3, 0, 255);
+      p5.stroke(0, alpha);
+      p5.line(this.pos.x, this.pos.y, this.prevPos.x, this.prevPos.y);
+    }
   }
 
   function onScreen(x, y, width, height) {

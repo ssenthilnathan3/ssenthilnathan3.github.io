@@ -2,7 +2,7 @@ import React from "react";
 import {motion} from 'framer-motion';
 import Img from "/assets/about-me.jpg";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import Senthil from '/assets/senthil.jpg'
+import Senthil from '/assets/me.jpg'
 
 const About = () => {
   return (

@@ -39,6 +39,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden !important;
 }
 
 body,
@@ -53,6 +54,7 @@ body {
   background-color: var(--body-color);
   line-height: 1.7;
   color: var(--text-color);
+  overflow-x: hidden !important;
 }
 
 h1,

@@ -23,7 +23,7 @@ const Navbar = () => {
                 <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => window.location.href = '/#/finally'}>this'll be interesting 🥶</a>
             </nav>
 
-            <nav className="lg:hidden fixed top-4 left-2 z-10">
+            <nav className="lg:hidden fixed top-4 right-9 z-10">
                 <button 
                     className={`p-3 bg-white/80 backdrop-blur-md shadow-md rounded-full text-sm ${isOpen ? 'w-full' : 'w-12'}`} 
                     onClick={() => setIsOpen(!isOpen)}
@@ -31,7 +31,7 @@ const Navbar = () => {
                     {isOpen ? '❌' : '🍔'}
                 </button>
                 {isOpen && (
-                    <div className={`absolute top-16 left-0 bg-white/80 backdrop-blur-md shadow-md rounded-2xl transition-all ${isOpen ? 'w-64' : 'w-0'} overflow-hidden`}>
+                    <div className={`absolute top-16 right-0 bg-white/80 backdrop-blur-md shadow-md rounded-2xl transition-all ${isOpen ? 'w-64' : 'w-0'} overflow-hidden`}>
                         <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("home")}>hero ⚡️</a>
                         <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("about")}>more about me</a>
                         <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("experience")}>my journey</a>
