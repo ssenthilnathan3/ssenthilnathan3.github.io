@@ -1,24 +1,33 @@
-import React from 'react'
+import React from 'react';
 import './home.css';
-import Me from '../../assets/avatar.jpg';
 import HeaderSocials from './HeaderSocials';
 import ScrollDown from './ScrollDown';
 import Shapes from './Shapes';
-// import TypeAnimation from 'react-type-animation';
 import TypingLetter from './typing-letters';
-import MyResume from '../../assets/resume__1_.pdf'
 
 
 const home = () => {
+  const handleClick = () => {
+      window.open('/assets/Senthilnathan_Selvarajan.pdf', '_blank');
+    };
   return (
     <section className="home container" id="home">
       <div className="intro">
-        <img src={Me} alt="Naan thaan" className="home__img" />
-        <h1 className="home__name">Senthilnathan</h1>
+        <p>Hey 👋, I'm Senthilnathan! A passionate software engineer</p>
         <TypingLetter />
-        {/* <span className="home__education">I'm a student</span> */}
         <HeaderSocials />
-        <a href={MyResume} className="btn">Hire Me!</a>
+        <div className="flex flex-row justify-center items-center mt-[50px]">
+          <button onClick={() => {
+            window.location.href = '/finally';
+            window.addEventListener('load', () => {
+              const footerElement = document.getElementById('footer');
+              if (footerElement) {
+                footerElement.scrollIntoView({ behavior: 'smooth' });
+              }
+            });
+          }} className="mx-3 text-white bg-[#ff4d61] hover:[#ff4d61] focus:outline-none focus:ring-4 focus:ring-[#ff4d61] font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2">work with me</button>
+          <button onClick={() => handleClick()} className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">check my profile</button>
+        </div>
         <ScrollDown />
       </div>
       <Shapes />
