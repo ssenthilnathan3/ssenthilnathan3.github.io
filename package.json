@@ -2,7 +2,7 @@
   "name": "portfolio-v2",
   "private": true,
   "version": "0.0.2",
-  "homepage": "https://ssenthilnathan3.github.io/"
+  "homepage": "https://ssenthilnathan3.github.io"
   "type": "module",
   "scripts": {
     "dev": "vite",
