@@ -82,10 +82,27 @@ function Footer() {
   );
 }
 
+const BackButton = () => {
+
+  const handleBack = () => {
+    window.location.href = '/' // Navigate to the previous page
+  };
+
+  return (
+    <button
+      onClick={handleBack}
+      className="fixed top-4 left-4 text-2xl text-white bg-white py-2 px-4 rounded-lg hover:bg-gray-800 focus:outline-none"
+    >
+      👈🏾
+    </button>
+  );
+};
+
 
 export default function Works() {
   return (
     <div>
+      <BackButton/>
       <BentoGrid />
       <Header />
       <Footer />
