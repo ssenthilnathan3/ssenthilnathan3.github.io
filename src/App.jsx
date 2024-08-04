@@ -28,7 +28,7 @@ const App = () => {
             </>
           } />
           
-          <Route path="/finally" element={<Works />} />
+          <Route path="/#/finally" element={<Works />} />
         </Routes>
       </div>
     </HashRouter>

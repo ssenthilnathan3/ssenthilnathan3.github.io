@@ -34,10 +34,8 @@ const Navbar = () => {
                     <div className={`absolute top-16 right-0 bg-white/80 backdrop-blur-md shadow-md rounded-2xl transition-all ${isOpen ? 'w-64' : 'w-0'} overflow-hidden`}>
                         <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("home")}>hero ⚡️</a>
                         <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("about")}>more about me</a>
-                        <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("experience")}>my journey</a>
-                        <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("works")}>this'll be interesting</a>
                         <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("testimonial")}>what people say about me</a>
-                        <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => handleClick("contact")}>want to talk?</a>
+                        <a className="block text-gray-600 hover:text-blue-500 cursor-pointer px-4 py-2" onClick={() => window.location.href = '/#/finally'}>this'll be interesting</a>
                     </div>
                 )}
             </nav>
