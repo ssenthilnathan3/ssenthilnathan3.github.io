@@ -32,7 +32,7 @@ const BentoGrid = () => {
 
 
           <motion.div
-            className="col-span-2 sm:col-span-1 md:col-span-2 bg-whie-500 border rounded"
+            className="col-span-2 sm:col-span-1 md:col-span-2 bg-whie-500 rounded"
             {...fadeInProps}
           >
             <a href="" className="group relative flex flex-col overflow-hidden rounded-lg px-4 pb-4 pt-40 mb-4">
