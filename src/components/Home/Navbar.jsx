@@ -7,6 +7,7 @@ const Navbar = () => {
 
     const handleClick = (id) => {
         setIsOpen(!isOpen);
+
         const elm = document.getElementById(id);
         if (elm) {
             elm.scrollIntoView({ behavior: 'smooth' });
