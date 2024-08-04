@@ -32,7 +32,7 @@ const App = () => {
       {window.location.pathname === '/' ? <Navbar /> : null}
       {window.location.pathname == '/finally' ? <BackButton/> : null}
         <Routes>
-          <Route path="/" element={
+          <Route path="/#" element={
             <>
               <Home />
               <About />
