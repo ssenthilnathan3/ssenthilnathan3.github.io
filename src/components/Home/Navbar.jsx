@@ -16,12 +16,11 @@ const Navbar = () => {
 
     return (
         <div className="flex flex-col">
-            <nav className="lg:flex hidden justify-around py-4 bg-white/80 backdrop-blur-md shadow-md w-3/4 fixed top-4 left-1/2 transform -translate-x-1/2 z-10 rounded-2xl">
+            <nav className="lg:flex hidden justify-around py-4 bg-white/10 backdrop-blur-md shadow-md w-3/4 fixed top-4 left-1/2 transform -translate-x-1/2 z-10 rounded-full">
                 <a className="text-gray-600 cursor-pointer transition-colors duration-300 font-semibold text-blue-600" onClick={() => handleClick("home")}>hero ⚡️</a>
                 <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => handleClick("about")}>more about me</a>
                 <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => handleClick("testimonial")}>what people say about me</a>
-                <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => handleClick("contact")}>want to talk?</a>
-                <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => handleClick("works")}>this'll be interesting 🥶</a>
+                <a className="text-gray-600 hover:text-blue-500 cursor-pointer transition-colors duration-300" onClick={() => window.location.href = '/finally'}>this'll be interesting 🥶</a>
             </nav>
 
             <nav className="lg:hidden fixed top-4 left-2 z-10">
