@@ -1,114 +1,450 @@
 ---
-import { Image } from 'astro:assets';
-import { getCollection } from 'astro:content';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { getCollection } from "astro:content";
+import BaseHead from "../../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection("blog")).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Group posts by category
+const categories = {
+	tech: { label: "Tech", icon: "⌘", posts: [] as typeof posts },
+	philosophy: { label: "Thoughts", icon: "◯", posts: [] as typeof posts },
+	data: { label: "Data", icon: "▤", posts: [] as typeof posts },
+	photography: { label: "Visual", icon: "◉", posts: [] as typeof posts },
+	misc: { label: "Misc", icon: "✦", posts: [] as typeof posts },
+};
+
+posts.forEach((post) => {
+	const cat = post.data.category || "misc";
+	if (categories[cat]) {
+		categories[cat].posts.push(post);
+	} else {
+		categories.misc.posts.push(post);
+	}
+});
+
+// Filter out empty categories
+const activeCategories = Object.entries(categories).filter(
+	([_, cat]) => cat.posts.length > 0,
 );
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
+		<BaseHead
+			title={`Shelf — ${SITE_TITLE}`}
+			description={SITE_DESCRIPTION}
+		/>
 	</head>
 	<body>
-		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
-										<FormattedDate date={post.data.pubDate} />
-									</p>
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
+			<nav class="back-nav">
+				<a href="/" class="back-link">← Home</a>
+			</nav>
+
+			<header class="page-header">
+				<h1 class="page-title">Shelf</h1>
+				<p class="page-subtitle">
+					A collection of thoughts, experiments, and observations.
+				</p>
+			</header>
+
+			<div class="gallery-wall">
+				{
+					activeCategories.map(([key, category]) => (
+						<section class={`category-section category-${key}`}>
+							<div class="section-header">
+								<span class="section-icon">
+									{category.icon}
+								</span>
+								<h2 class="section-title">{category.label}</h2>
+								<span class="section-count">
+									{category.posts.length}
+								</span>
+							</div>
+
+							<div class="posts-grid">
+								{category.posts.map((post) => (
+									<a
+										href={`/blog/${post.id}/`}
+										class={`post-card card-${key}`}
+									>
+										<div class="card-content">
+											<span class="card-date">
+												{post.data.pubDate.toLocaleDateString(
+													"en-US",
+													{
+														month: "short",
+														year: "numeric",
+													},
+												)}
+											</span>
+											<h3 class="card-title">
+												{post.data.title}
+											</h3>
+											<p class="card-desc">
+												{post.data.description}
+											</p>
+										</div>
+										<div class="card-accent" />
+									</a>
+								))}
+							</div>
+						</section>
+					))
+				}
+			</div>
+
+			{
+				posts.length === 0 && (
+					<div class="empty-state">
+						<span class="empty-icon">📚</span>
+						<p>Nothing here yet. Check back soon.</p>
+					</div>
+				)
+			}
 		</main>
-		<Footer />
 	</body>
 </html>
+
+<style>
+	body {
+		background: var(--color-bg);
+		min-height: 100vh;
+	}
+
+	main {
+		max-width: 1000px;
+		margin: 0 auto;
+		padding: var(--space-8) var(--space-6);
+	}
+
+	/* Navigation */
+	.back-nav {
+		margin-bottom: var(--space-10);
+	}
+
+	.back-link {
+		font-family: var(--font-mono);
+		font-size: 0.85rem;
+		color: var(--color-text-muted);
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	.back-link:hover {
+		color: var(--color-accent);
+	}
+
+	/* Page Header */
+	.page-header {
+		margin-bottom: var(--space-12);
+	}
+
+	.page-title {
+		font-size: 3rem;
+		font-weight: 700;
+		margin-bottom: var(--space-2);
+		letter-spacing: -0.02em;
+	}
+
+	.page-subtitle {
+		color: var(--color-text-muted);
+		font-size: 1.1rem;
+		max-width: 500px;
+	}
+
+	/* Gallery Wall */
+	.gallery-wall {
+		display: flex;
+		flex-direction: column;
+		gap: var(--space-14);
+	}
+
+	/* Category Sections */
+	.category-section {
+		position: relative;
+	}
+
+	.section-header {
+		display: flex;
+		align-items: center;
+		gap: var(--space-3);
+		margin-bottom: var(--space-6);
+		padding-bottom: var(--space-4);
+	}
+
+	.section-header h2 {
+		border: none !important;
+	}
+	.section-icon {
+		font-size: 46px;
+		margin-bottom: -10px;
+		opacity: 0.6;
+	}
+
+	.section-title {
+		font-size: 1.1rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
+		text-transform: uppercase;
+	}
+
+	.section-count {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--color-text-muted);
+		background: var(--color-surface);
+		padding: 0.2rem 0.5rem;
+		border-radius: 999px;
+	}
+
+	/* Posts Grid */
+	.posts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+		gap: var(--space-5);
+	}
+
+	/* Base Post Card */
+	.post-card {
+		position: relative;
+		display: block;
+		padding: var(--space-6);
+		background: var(--color-surface);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-lg);
+		text-decoration: none;
+		color: inherit;
+		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+		overflow: hidden;
+	}
+
+	.post-card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+		border-color: transparent;
+	}
+
+	.card-content {
+		position: relative;
+		z-index: 1;
+	}
+
+	.card-date {
+		font-family: var(--font-mono);
+		font-size: 0.72rem;
+		color: var(--color-text-muted);
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+	}
+
+	.card-title {
+		font-size: 1.1rem;
+		font-weight: 600;
+		margin: var(--space-2) 0 var(--space-3);
+		line-height: 1.35;
+	}
+
+	.card-desc {
+		font-size: 0.88rem;
+		color: var(--color-text-muted);
+		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	.card-accent {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 3px;
+		background: var(--color-accent);
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease;
+	}
+
+	.post-card:hover .card-accent {
+		transform: scaleX(1);
+	}
+
+	/* === CATEGORY-SPECIFIC STYLES === */
+
+	/* Tech - Terminal aesthetic */
+	.card-tech {
+		background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+		border-color: #2d3a4f;
+	}
+	.card-tech .card-date {
+		color: #4ade80;
+	}
+	.card-tech .card-title {
+		color: #e2e8f0;
+	}
+	.card-tech .card-desc {
+		color: #94a3b8;
+	}
+	.card-tech .card-accent {
+		background: linear-gradient(90deg, #4ade80, #22d3ee);
+	}
+	.card-tech:hover {
+		border-color: #4ade80;
+	}
+
+	/* Philosophy - Warm paper aesthetic */
+	.card-philosophy {
+		background: linear-gradient(135deg, #fef7ed 0%, #fdf4e7 100%);
+		border-color: #e8dcc8;
+	}
+	.card-philosophy .card-date {
+		color: #92785d;
+	}
+	.card-philosophy .card-title {
+		color: #3d3425;
+		font-family: Georgia, serif;
+		font-style: italic;
+	}
+	.card-philosophy .card-desc {
+		color: #6b5c4a;
+	}
+	.card-philosophy .card-accent {
+		background: linear-gradient(90deg, #d4a574, #c49a6c);
+	}
+	.card-philosophy:hover {
+		border-color: #c49a6c;
+	}
+
+	/* Data - Dashboard aesthetic */
+	.card-data {
+		background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+		border-color: #334155;
+	}
+	.card-data .card-date {
+		color: #38bdf8;
+	}
+	.card-data .card-title {
+		color: #f1f5f9;
+		font-family: var(--font-mono);
+	}
+	.card-data .card-desc {
+		color: #94a3b8;
+	}
+	.card-data .card-accent {
+		background: linear-gradient(90deg, #38bdf8, #a78bfa);
+	}
+	.card-data:hover {
+		border-color: #38bdf8;
+	}
+
+	/* Photography - Polaroid aesthetic */
+	.card-photography {
+		background: #ffffff;
+		border-color: #e5e7eb;
+		padding: var(--space-4);
+		padding-bottom: var(--space-8);
+	}
+	.card-photography .card-content {
+		background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+		padding: var(--space-5);
+		border-radius: var(--radius-sm);
+		min-height: 100px;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+	}
+	.card-photography .card-date {
+		color: #6b7280;
+	}
+	.card-photography .card-title {
+		color: #1f2937;
+	}
+	.card-photography .card-desc {
+		color: #6b7280;
+	}
+	.card-photography .card-accent {
+		background: linear-gradient(90deg, #f43f5e, #ec4899);
+	}
+	.card-photography:hover {
+		border-color: #f43f5e;
+		transform: translateY(-4px) rotate(-1deg);
+	}
+
+	/* Misc - Clean minimal */
+	.card-misc {
+		background: var(--color-surface);
+	}
+	.card-misc .card-accent {
+		background: var(--color-accent);
+	}
+
+	/* Empty State */
+	.empty-state {
+		text-align: center;
+		padding: var(--space-16) 0;
+		color: var(--color-text-muted);
+	}
+
+	.empty-icon {
+		font-size: 3rem;
+		display: block;
+		margin-bottom: var(--space-4);
+		opacity: 0.5;
+	}
+
+	/* Responsive */
+	@media (max-width: 768px) {
+		main {
+			padding: var(--space-6) var(--space-4);
+		}
+
+		.page-title {
+			font-size: 2rem;
+		}
+
+		.posts-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	/* === CHAOS MODE === */
+	:global(body.chaos-mode) {
+		background: #0a0a0a;
+	}
+
+	:global(body.chaos-mode) .page-title,
+	:global(body.chaos-mode) .section-title {
+		color: #fff;
+	}
+
+	:global(body.chaos-mode) .page-subtitle,
+	:global(body.chaos-mode) .section-count {
+		color: rgba(255, 255, 255, 0.5);
+	}
+
+	:global(body.chaos-mode) .section-header {
+		border-color: rgba(255, 255, 255, 0.1);
+	}
+
+	:global(body.chaos-mode) .post-card {
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+	}
+
+	:global(body.chaos-mode) .post-card:hover {
+		box-shadow: 0 12px 50px rgba(0, 0, 0, 0.5);
+	}
+</style>
+
+<script is:inline>
+	// Apply Chaos Mode immediately
+	const isChaos = localStorage.getItem("chaosMode") === "true";
+	if (isChaos) {
+		document.body.classList.add("chaos-mode");
+	}
+</script>

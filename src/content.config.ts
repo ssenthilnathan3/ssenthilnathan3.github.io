@@ -13,6 +13,11 @@ const blog = defineCollection({
 			pubDate: z.coerce.date(),
 			updatedDate: z.coerce.date().optional(),
 			heroImage: image().optional(),
+			// Category for shelf sections
+			category: z.enum(['tech', 'philosophy', 'data', 'photography', 'misc']).optional().default('misc'),
+			// Additional optional fields
+			tags: z.array(z.string()).optional(),
+			draft: z.boolean().optional().default(false),
 		}),
 });
 

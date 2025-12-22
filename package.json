@@ -12,7 +12,13 @@
     "@astrojs/mdx": "^4.3.13",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/svelte": "^7.2.4",
+    "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
-    "sharp": "^0.34.3"
+    "framer-motion": "^12.23.26",
+    "sharp": "^0.34.3",
+    "svelte": "^5.46.0",
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,0 +1,413 @@
+---
+
+---
+
+<!-- Letterboxd Container (Top Left) -->
+<article class="chaos-widget widget-films">
+    <div class="widget-header">
+        <h3>Recent Watches</h3>
+    </div>
+    <div class="film-list">
+        <div class="film-item">
+            <div class="film-poster" style="background-color: #2c3e50;"></div>
+            <div class="film-info">
+                <span class="film-title">Perfect Days</span>
+                <span class="film-rating">★★★★★</span>
+            </div>
+        </div>
+        <div class="film-item">
+            <div class="film-poster" style="background-color: #8e44ad;"></div>
+            <div class="film-info">
+                <span class="film-title">Past Lives</span>
+                <span class="film-rating">★★★★½</span>
+            </div>
+        </div>
+        <div class="film-item">
+            <div class="film-poster" style="background-color: #c0392b;"></div>
+            <div class="film-info">
+                <span class="film-title">The Zone of Interest</span>
+                <span class="film-rating">★★★★☆</span>
+            </div>
+        </div>
+    </div>
+    <a href="https://letterboxd.com/" target="_blank" class="widget-link"
+        >Letterboxd →</a
+    >
+</article>
+
+<!-- Spinning TV Graphic (Decorative) -->
+<div class="chaos-widget widget-tv">
+    <img src="/charlie-spinning-tv.gif" alt="Spinning TV" />
+</div>
+
+<div class="chaos-widget widget-listening">
+    <img src="/listening.gif" alt="Listening" />
+</div>
+
+<style>
+    .chaos-widget {
+        position: fixed;
+        margin: 0 auto;
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none; /* Changed from auto to none */
+        z-index: 10;
+        background: rgba(var(--color-bg-rgb), 0.8) !important;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: var(--space-6);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--color-border);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(0.95);
+    }
+
+    :global(body.chaos-mode) .chaos-widget {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        pointer-events: auto;
+    }
+
+    /* Specific Positioning - Push them further into corners but safely */
+    .widget-films {
+        top: var(--space-8);
+        left: var(--space-8);
+        width: 300px;
+        height: fit-content;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05)
+        );
+        transition-delay: 0.1s;
+    }
+
+    .widget-music {
+        top: var(--space-8);
+        right: var(--space-8);
+        width: auto;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-3);
+        padding: var(--space-3) var(--space-5);
+        border-radius: 999px; /* Pill */
+        background: rgba(0, 0, 0, 0.3);
+        transition-delay: 0.2s;
+    }
+
+    .widget-video {
+        bottom: 60px; /* Leave space for reset button */
+        left: var(--space-8);
+        width: 300px;
+        transition-delay: 0.3s;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.1),
+            rgba(255, 255, 255, 0.05)
+        );
+    }
+
+    .widget-tv {
+        position: fixed;
+        width: 150px;
+        padding: 0;
+        background: transparent !important;
+        border: none;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        z-index: 5;
+        pointer-events: none;
+
+        animation: tv-wander 28s linear infinite;
+    }
+
+    .widget-tv img {
+        width: 100%;
+        display: block;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        animation: tv-float 6s ease-in-out infinite;
+    }
+
+    .widget-listening {
+        position: fixed;
+        width: 200px;
+        top: 43%;
+        right: 40px;
+        padding: 0;
+        background: transparent !important;
+        border: 10px solid black;
+        box-shadow: none;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        z-index: 20;
+        pointer-events: none;
+    }
+
+    .widget-listening img {
+        width: 100%;
+        display: block;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+    }
+
+    /* subtle local float */
+    @keyframes tv-float {
+        0%,
+        100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-14px) rotate(4deg);
+        }
+    }
+
+    /* global movement path */
+    @keyframes tv-wander {
+        0% {
+            transform: translate(10vw, 20vh);
+        }
+        20% {
+            transform: translate(70vw, 25vh);
+        }
+        40% {
+            transform: translate(60vw, 70vh);
+        }
+        60% {
+            transform: translate(15vw, 65vh);
+        }
+        80% {
+            transform: translate(30vw, 30vh);
+        }
+        100% {
+            transform: translate(10vw, 20vh);
+        }
+    }
+
+    /* Content Styling */
+    .widget-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: 0.8rem;
+        margin: 0 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        opacity: 0.8;
+        font-weight: 600;
+    }
+
+    .widget-header h3 {
+        margin-top: 0 !important;
+    }
+
+    .widget-link {
+        display: block;
+        margin-top: var(--space-3);
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.6);
+        text-decoration: none;
+        text-align: right;
+        transition: color 0.2s;
+    }
+
+    .widget-link:hover {
+        color: #fff;
+    }
+
+    /* Letterboxd Specifics */
+    .film-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .film-item {
+        display: flex;
+        gap: var(--space-3);
+        align-items: center;
+    }
+
+    .film-poster {
+        width: 36px;
+        height: 54px;
+        background: #333;
+        border-radius: var(--radius-sm);
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .film-info {
+        display: flex;
+        flex-direction: column;
+        font-size: 0.9rem;
+    }
+
+    .film-title {
+        font-weight: 500;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 180px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .film-rating {
+        color: #00e054;
+        font-size: 0.8rem;
+        letter-spacing: -1px;
+        margin-top: 2px;
+    }
+
+    /* Music Specifics */
+    .music-visualizer {
+        display: flex;
+        gap: 3px;
+        align-items: flex-end;
+        height: 24px;
+    }
+
+    .bar {
+        width: 4px;
+        background: #1db954; /* Spotify green */
+        animation: equalize 1s infinite alternate;
+        border-radius: 2px;
+    }
+
+    .bar:nth-child(1) {
+        height: 60%;
+        animation-delay: -0.2s;
+    }
+    .bar:nth-child(2) {
+        height: 100%;
+        animation-delay: -0.4s;
+    }
+    .bar:nth-child(3) {
+        height: 40%;
+        animation-delay: -0.6s;
+    }
+    .bar:nth-child(4) {
+        height: 80%;
+        animation-delay: -0.8s;
+    }
+
+    .music-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .music-info .label {
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        opacity: 0.6;
+        margin-bottom: 2px;
+    }
+
+    .music-info .track-name {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #fff;
+        text-decoration: none;
+        line-height: 1.1;
+    }
+
+    .music-info .artist-name {
+        font-size: 0.75rem;
+        opacity: 0.8;
+    }
+
+    .album-art {
+        width: 42px;
+        height: 42px;
+        background: #444;
+        border-radius: 50%;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        animation: spin 10s linear infinite;
+    }
+
+    /* Video Specifics */
+    .video-preview {
+        position: relative;
+        height: 160px;
+        background: #000;
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding: var(--space-4);
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-preview:hover {
+        transform: scale(1.02);
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: background 0.2s;
+    }
+
+    .video-preview:hover .play-button {
+        background: rgba(255, 255, 255, 0.25);
+    }
+
+    .video-meta {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        z-index: 1;
+    }
+
+    .video-title {
+        font-weight: 700;
+        font-size: 0.95rem;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        margin-bottom: 2px;
+    }
+
+    .video-source {
+        font-size: 0.75rem;
+        opacity: 0.9;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+    }
+
+    @keyframes equalize {
+        0% {
+            height: 20%;
+        }
+        100% {
+            height: 100%;
+        }
+    }
+
+    @keyframes spin {
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .chaos-widget {
+            display: none;
+        }
+    }
+</style>

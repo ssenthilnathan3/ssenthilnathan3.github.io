@@ -1,0 +1,199 @@
+---
+
+---
+
+<div id="chaos-container">
+    <svg
+        id="chaos-svg"
+        width="100%"
+        height="100%"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <!-- Rings will be injected here -->
+    </svg>
+</div>
+
+<!-- Center Trigger Button -->
+<a id="chaos-center-btn" href="/blog" aria-label="Open Blogshelf">
+    <img src="/cat-vibe.gif" alt="Vibing Cat" class="center-gif" />
+</a>
+
+<style>
+    #chaos-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #chaos-svg {
+        width: 100vw;
+        height: 100vh;
+        display: block;
+    }
+
+    /* Interactive Center Button */
+    #chaos-center-btn {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        width: 18vmin;
+        height: 18vmin;
+        max-width: 160px;
+        max-height: 160px;
+        min-width: 100px;
+        min-height: 100px;
+        border-radius: 50%;
+        background: #000;
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        color: #fff;
+        cursor: pointer;
+        z-index: 50;
+        transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        pointer-events: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+        padding: 0;
+        overflow: hidden;
+        text-decoration: none; /* Reset anchor style */
+    }
+
+    .center-gif {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+    }
+
+    #chaos-center-btn:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        border-color: #fff;
+    }
+
+    #chaos-center-btn:hover .center-gif {
+        opacity: 1;
+    }
+
+    :global(body.chaos-mode) #chaos-center-btn {
+        transform: translate(-50%, -50%) scale(1);
+    }
+</style>
+
+<script>
+    interface Window {
+        triggerChaosAnimation?: () => void;
+        restoreChaosState?: () => void;
+    }
+    // Constants
+    const CHAOS_COLORS = [
+        "#ff6b6b",
+        "#feca57",
+        "#48dbfb",
+        "#ff9ff3",
+        "#54a0ff",
+        "#5f27cd",
+        "#00d2d3",
+        "#ff9f43",
+        "#10ac84",
+        "#ee5a24",
+        "#c44569",
+        "#f8b739",
+        "#6ab04c",
+        "#eb4d4b",
+        "#686de0",
+    ];
+
+    const svg = document.getElementById("chaos-svg");
+
+    // Export function to be callable from parent
+    (window as Window).triggerChaosAnimation = () => {
+        if (!svg) return;
+        svg.innerHTML = ""; // Clear existing
+
+        // CONFIGURATION
+        // We use percentages relative to viewport geometry
+        // Max radius should cover corners (approx 85% is usually good for centered circle in 16:9).
+        // To remove gaps, we need more rings or thicker strokes.
+        // Let's use MORE rings for a dense trippy look.
+
+        const numRings = 25; // Denser
+
+        // Create rings from outside in
+        for (let i = numRings; i >= 0; i--) {
+            // Radius as percentage
+            const radius = (i / numRings) * 90;
+
+            if (radius <= 0) continue;
+
+            const color = CHAOS_COLORS[i % CHAOS_COLORS.length];
+
+            const circle = document.createElementNS(
+                "http://www.w3.org/2000/svg",
+                "circle",
+            );
+            circle.setAttribute("cx", "50%");
+            circle.setAttribute("cy", "50%");
+            circle.setAttribute("r", `${radius}%`);
+            circle.setAttribute("fill", "none");
+            circle.setAttribute("stroke", color);
+
+            // Width needs to scale. If radius goes from 0 to 90%.
+            // Total span = 90%. Number of rings = 25.
+            // Gap between centers = 90 / 25 = 3.6%.
+            // Stroke width should be roughly 2 * 3.6%? No, r is radius.
+            // distance between ring i and i+1 is (1/25)*90 = 3.6%.
+            // If we want them to touch, stroke width must be approx 3.6% (since stroke is centered usually, extending half out/half in).
+            // Actually stroke is centered on path. So width=3.6% would cover +/- 1.8%.
+            // Distance between centers is 3.6%.
+            // So they perfectly touch if width = 3.6%.
+            // Let's make it slightly overlaps or "thick enough".
+            // Using vmin for consistent screen thickness or %?
+            // Since r is %, let's try to relate stroke width to density.
+            // But SVG % stroke-width is relative to diagonal?
+
+            circle.setAttribute("stroke-width", "4vmin"); // Thicker to close gaps
+            circle.setAttribute("opacity", "0");
+
+            circle.style.transformOrigin = "center";
+
+            svg.appendChild(circle);
+
+            // Animate: Outer rings start LAST (bigger delay)??
+            // Design: concentric rings expanding. Usually center starts first?
+            // Actually, looks cool if consistent.
+            const animDelay = i * 50;
+
+            const keyframes = [
+                { transform: "scale(0)", opacity: 0 },
+                { transform: "scale(1)", opacity: 1 },
+            ];
+
+            const options: KeyframeAnimationOptions = {
+                duration: 1500,
+                delay: animDelay,
+                fill: "forwards",
+                easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            };
+
+            circle.animate(keyframes, options);
+        }
+    };
+
+    (window as Window).restoreChaosState = () => {
+        if (!svg) return;
+        svg.innerHTML = "";
+        (window as Window).triggerChaosAnimation?.();
+    };
+</script>

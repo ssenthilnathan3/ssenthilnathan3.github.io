@@ -1,0 +1,159 @@
+<div class="floaters-container" aria-hidden="true">
+    <!-- Floater 1: Squiggly line -->
+    <svg class="floater f1" viewBox="0 0 100 100" width="100" height="100">
+        <path
+            d="M10,50 Q30,20 50,50 T90,50"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            opacity="0.4"></path>
+    </svg>
+
+    <!-- Floater 2: Cell-like circle -->
+    <svg class="floater f2" viewBox="0 0 50 50" width="60" height="60">
+        <circle
+            cx="25"
+            cy="25"
+            r="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            opacity="0.3"></circle>
+        <circle cx="25" cy="25" r="8" fill="currentColor" opacity="0.1"
+        ></circle>
+    </svg>
+
+    <!-- Floater 3: Worm-like shape -->
+    <svg class="floater f3" viewBox="0 0 120 40" width="120" height="40">
+        <path
+            d="M10,20 C30,10 30,30 50,20 S70,30 90,20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            opacity="0.3"></path>
+    </svg>
+
+    <!-- Floater 4: Stringy bit -->
+    <svg class="floater f4" viewBox="0 0 80 80" width="80" height="80">
+        <path
+            d="M40,10 Q60,40 40,70"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1"
+            opacity="0.3"></path>
+    </svg>
+</div>
+
+<style>
+    .floaters-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2; /* Moved above Chaos Rings (z-index 1) */
+        pointer-events: none;
+        overflow: hidden;
+        opacity: 0.7; /* Slightly more visible */
+        transition: opacity 2s ease;
+        color: var(--color-text-subtle);
+    }
+
+    /* Chaos Mode Overrides */
+    :global(body.chaos-mode) .floaters-container {
+        z-index: 20; /* Above everything */
+        opacity: 0.8;
+    }
+
+    /* Colorize floaters in chaos mode */
+    :global(body.chaos-mode) .f1 {
+        color: #ff6b6b;
+        filter: blur(1px);
+    }
+    :global(body.chaos-mode) .f2 {
+        color: #feca57;
+        filter: blur(1px);
+    }
+    :global(body.chaos-mode) .f3 {
+        color: #48dbfb;
+        filter: blur(1px);
+    }
+    :global(body.chaos-mode) .f4 {
+        color: #ff9ff3;
+        filter: blur(1px);
+    }
+
+    .floater {
+        position: absolute;
+        filter: blur(2px); /* Authentic eye floater blur */
+        animation-timing-function: ease-in-out;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        transition:
+            color 1s ease,
+            filter 1s ease;
+    }
+
+    .f1 {
+        top: 20%;
+        left: 15%;
+        animation: float1 25s infinite;
+        transform: rotate(15deg);
+    }
+
+    .f2 {
+        top: 60%;
+        right: 20%;
+        animation: float2 32s infinite;
+    }
+
+    .f3 {
+        bottom: 15%;
+        left: 30%;
+        animation: float3 28s infinite;
+        transform: rotate(-10deg);
+    }
+
+    .f4 {
+        top: 30%;
+        right: 35%;
+        animation: float4 35s infinite;
+        transform: rotate(45deg);
+    }
+
+    @keyframes float1 {
+        0% {
+            transform: translate(0, 0) rotate(15deg) scale(1);
+        }
+        100% {
+            transform: translate(100px, 50px) rotate(45deg) scale(1.1);
+        }
+    }
+
+    @keyframes float2 {
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+        100% {
+            transform: translate(-80px, 60px) scale(0.9);
+        }
+    }
+
+    @keyframes float3 {
+        0% {
+            transform: translate(0, 0) rotate(-10deg);
+        }
+        100% {
+            transform: translate(60px, -40px) rotate(10deg);
+        }
+    }
+
+    @keyframes float4 {
+        0% {
+            transform: translate(0, 0) rotate(45deg);
+        }
+        100% {
+            transform: translate(-50px, -70px) rotate(0deg);
+        }
+    }
+</style>
