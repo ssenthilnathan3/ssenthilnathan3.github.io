@@ -6,6 +6,7 @@ import About from "./components/About/about";
 import Works from "./components/Works/works";
 import Resume from "./components/Resume/resume";
 import Contact from "./components/Contact/contact";
+import Posts from './components/Blog/Blog';
 import Testimonials from "./components/Testimonials/testimonials";
 import P5Canvas from './components/Game/P5Canvas';
 
@@ -29,6 +30,10 @@ const App = () => {
           } />
           
           <Route path="/finally" element={<Works />} />
+          <Route path='/posts' element={<Posts/>}>
+             <Route path=":id" element={<PostDetails />} />
+          </Route>
+        
         </Routes>
       </div>
     </HashRouter>
