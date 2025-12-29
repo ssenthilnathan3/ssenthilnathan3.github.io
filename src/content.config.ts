@@ -1,24 +1,33 @@
-import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { defineCollection, z } from "astro:content";
+import { notionLoader } from "notion-astro-loader";
+import {
+  notionPageSchema,
+  transformedPropertySchema,
+} from "notion-astro-loader/schemas";
 
 const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
-	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			// Transform string to Date object
-			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			heroImage: image().optional(),
-			// Category for shelf sections
-			category: z.enum(['tech', 'philosophy', 'data', 'photography', 'misc']).optional().default('misc'),
-			// Additional optional fields
-			tags: z.array(z.string()).optional(),
-			draft: z.boolean().optional().default(false),
-		}),
+  loader: notionLoader({
+    auth: import.meta.env.NOTION_TOKEN,
+    database_id: import.meta.env.NOTION_DB_ID,
+
+    filter: {
+      property: "status",
+      status: { equals: "Published" },
+    },
+  }),
+
+  schema: notionPageSchema({
+    properties: z.object({
+      Name: transformedPropertySchema.title,
+      "Published Date": transformedPropertySchema.date.optional(),
+      updatedDate: transformedPropertySchema.date.optional(),
+      heroImage: transformedPropertySchema.multi_select.optional(),
+      preview: transformedPropertySchema.multi_select.optional(),
+      category: transformedPropertySchema.select.optional(),
+      tags: transformedPropertySchema.multi_select.optional(),
+      published: transformedPropertySchema.checkbox.optional(),
+    }),
+  }),
 });
 
 export const collections = { blog };

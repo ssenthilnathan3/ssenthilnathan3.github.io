@@ -1,122 +1,129 @@
 ---
 import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
 import BaseHead from "../components/BaseHead.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { Name: title, "Published Date": pubDate } = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={title} description={description} />
-	</head>
+    <head>
+        <BaseHead title={title} description={""} />
+    </head>
 
-	<body>
-		<main class="content-wrapper">
-			<nav class="back-nav">
-				<a href="/" class="back-link">← Home</a>
-			</nav>
+    <body>
+        <main class="content-wrapper">
+            <nav class="back-nav">
+                <a href="/blog" class="back-link">
+                    <Icon name="mdi:backburger" size={16} />
+                    Blog
+                </a>
+                <a href="/" class="back-link">
+                    <Icon name="mdi:home" size={16} />
+                    Home
+                </a>
+            </nav>
 
-			<article class="prose">
-				<header class="article-header">
-					<div class="article-meta">
-						<FormattedDate date={pubDate} />
-						{
-							updatedDate && (
-								<span class="last-updated-on">
-									· Updated{" "}
-									<FormattedDate date={updatedDate} />
-								</span>
-							)
-						}
-					</div>
-					<h1 class="title">{title}</h1>
-					{description && <p class="description">{description}</p>}
-					<hr />
-				</header>
-				<div class="article-content">
-					<slot />
-				</div>
-			</article>
+            <article class="prose">
+                <header class="article-header">
+                    <div class="article-meta">
+                        <FormattedDate date={pubDate["start"]} />
+                    </div>
+                    <h1 class="title">{title}</h1>
+                    <hr />
+                </header>
+                <div class="article-content">
+                    <slot />
+                </div>
+            </article>
 
-			<footer class="article-footer">
-				<a href="/blog" class="back-link">← All posts</a>
-			</footer>
-		</main>
-	</body>
+            <footer class="article-footer"></footer>
+        </main>
+    </body>
 </html>
 
 <style>
-	.content-wrapper {
-		max-width: 720px;
-		margin: 0 auto;
-		padding: var(--space-8) var(--space-6) var(--space-16);
-	}
+    .content-wrapper {
+        max-width: 720px;
+        margin: 0 auto;
+        padding: var(--space-8) var(--space-6) var(--space-16);
+    }
 
-	.back-nav {
-		margin-bottom: var(--space-8);
-	}
+    .back-nav {
+        margin-bottom: var(--space-8);
+        display: flex;
+        justify-content: space-between;
+        gap: var(--space-4);
+    }
 
-	.back-link {
-		font-family: var(--font-mono);
-		font-size: 0.85rem;
-		color: var(--color-text-muted);
-		text-decoration: none;
-		transition: color 0.2s ease;
-	}
+    .back-link {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        text-decoration: none;
+        transition: color 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
 
-	.back-link:hover {
-		color: var(--color-accent);
-	}
+    .back-link:hover {
+        color: var(--color-accent);
+    }
 
-	.prose {
-		max-width: 100%;
-	}
+    .back-link :global(svg) {
+        color: inherit;
+    }
 
-	.article-header {
-		margin-bottom: var(--space-8);
-	}
+    .prose {
+        max-width: 100%;
+    }
 
-	.title {
-		margin-bottom: var(--space-2);
-		line-height: 1.1;
-	}
+    .article-header {
+        margin-bottom: var(--space-8);
+    }
 
-	.description {
-		font-size: 1.2rem;
-		color: var(--color-text-muted);
-		line-height: 1.4;
-		margin-bottom: var(--space-4);
-	}
+    .title {
+        margin-bottom: var(--space-2);
+        line-height: 1.1;
+    }
 
-	.article-meta {
-		font-family: var(--font-mono);
-		font-size: 0.85rem;
-		color: var(--color-text-subtle);
-		margin-bottom: var(--space-4);
-	}
+    .description {
+        font-size: 1.2rem;
+        color: var(--color-text-muted);
+        line-height: 1.4;
+        margin-bottom: var(--space-4);
+    }
 
-	.last-updated-on {
-		font-style: italic;
-	}
+    .article-meta {
+        font-family: var(--font-mono);
+        font-size: 0.85rem;
+        color: var(--color-text-subtle);
+        margin-bottom: var(--space-4);
+    }
 
-	hr {
-		border: 0;
-		border-top: 1px solid var(--color-border);
-		margin: var(--space-6) 0;
-	}
+    .last-updated-on {
+        font-style: italic;
+    }
 
-	.article-footer {
-		margin-top: var(--space-12);
-		padding-top: var(--space-6);
-		border-top: 1px solid var(--color-border);
-	}
+    hr {
+        border: 0;
+        border-top: 1px solid var(--color-border);
+        margin: var(--space-6) 0;
+    }
 
-	@media (max-width: 768px) {
-		.content-wrapper {
-			padding: var(--space-6) var(--space-4);
-		}
-	}
+    .article-footer {
+        margin-top: var(--space-12);
+        padding-top: var(--space-6);
+        border-top: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 768px) {
+        .content-wrapper {
+            padding: var(--space-6) var(--space-4);
+        }
+    }
 </style>
