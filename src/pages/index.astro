@@ -313,36 +313,119 @@ import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "../consts";
 	interface Window {
 		triggerChaosAnimation?: () => void;
 		restoreChaosState?: () => void;
+		setChaosMode?: (enabled: boolean) => void;
 	}
 
+	// =========================
+	// coordination layer
+	// =========================
+	let __faviconChaosInterval = null;
+	let __faviconWinkInterval = null;
+	let __faviconBusy = false;
+
+	// =========================
+	// chaos mode state
+	// =========================
 	const toggleBtn = document.getElementById("chaos-toggle");
 	let isChaos = localStorage.getItem("chaosMode") === "true";
 
-	function setMode(enabled: boolean) {
+	function setMode(enabled) {
 		isChaos = enabled;
 		localStorage.setItem("chaosMode", String(enabled));
 
 		if (enabled) {
 			document.body.classList.add("chaos-mode");
-			// Trigger animations if available
 			(window as Window).triggerChaosAnimation?.();
+			startChaosFavicon();
 		} else {
 			document.body.classList.remove("chaos-mode");
-			// Clean up Chaos
+
+			// cleanup svg chaos
 			const svg = document.getElementById("chaos-svg");
-			if (svg) svg.innerHTML = ""; // Clear rings
+			if (svg) svg.innerHTML = "";
+
+			stopChaosFavicon();
+			setDot("#ffffff");
 		}
 	}
 
-	// Initialize
+	// expose for other systems
+	(window as Window).setChaosMode = setMode;
+
 	if (isChaos) {
-		// Small delay to allow components to mount/hydrate?
-		// Actually, standard script runs after DOM is ready usually or defers.
-		// Use requestAnimationFrame to ensure smooth entry
 		requestAnimationFrame(() => setMode(true));
 	}
 
 	toggleBtn?.addEventListener("click", () => {
 		setMode(!isChaos);
+	});
+
+	const favicon = document.getElementById("favicon");
+
+	function setDot(color, opacity = 1) {
+		if (__faviconBusy) return;
+
+		const svg = `
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+				<circle cx="50" cy="50" r="50" fill="${color}" fill-opacity="${opacity}"/>
+			</svg>
+		`;
+		favicon?.href = "data:image/svg+xml," + encodeURIComponent(svg);
+	}
+
+	// default favicon
+	setDot("#ffffff");
+
+	function wink() {
+		if (!isChaos) return;
+		if (__faviconBusy) return;
+
+		__faviconBusy = true;
+		setDot("#ffffff", 0.15);
+
+		setTimeout(() => {
+			setDot("#ffffff", 1);
+			__faviconBusy = false;
+		}, 240);
+	}
+
+	if (__faviconWinkInterval) clearInterval(__faviconWinkInterval);
+	__faviconWinkInterval = setInterval(() => {
+		if (isChaos && Math.random() < 0.15) wink();
+	}, 60000);
+
+	function startChaosFavicon() {
+		const colors = ["#ffffff", "#ff3b3b", "#3b82ff", "#22c55e", "#facc15"];
+		let i = 0;
+
+		if (__faviconChaosInterval) clearInterval(__faviconChaosInterval);
+
+		__faviconChaosInterval = setInterval(() => {
+			if (!isChaos) return;
+			if (__faviconBusy) return;
+
+			setDot(colors[i % colors.length]);
+			i++;
+		}, 700);
+	}
+
+	function stopChaosFavicon() {
+		if (__faviconChaosInterval) {
+			clearInterval(__faviconChaosInterval);
+			__faviconChaosInterval = null;
+		}
+		__faviconBusy = false;
+	}
+
+	if (Math.random() < 0.0003) {
+		setDot("#ffd700");
+	}
+
+	document.addEventListener("visibilitychange", () => {
+		if (document.hidden) {
+			stopChaosFavicon();
+		} else if (isChaos) {
+			startChaosFavicon();
+		}
 	});
 </script>
