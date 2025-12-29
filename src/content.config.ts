@@ -7,8 +7,8 @@ import {
 
 const blog = defineCollection({
   loader: notionLoader({
-    auth: import.meta.env.NOTION_TOKEN,
-    database_id: import.meta.env.NOTION_DB_ID,
+    auth: import.meta.env.ASTRO_NOTION_TOKEN,
+    database_id: import.meta.env.ASTRO_NOTION_DB_ID,
 
     filter: {
       property: "status",
