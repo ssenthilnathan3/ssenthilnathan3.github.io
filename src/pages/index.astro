@@ -9,423 +9,425 @@ import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "../consts";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
 
-	<body>
-		<EyeFloaters />
-		<ChaosRings />
-		<ChaosWidgets />
+    <body>
+        <EyeFloaters />
+        <ChaosRings />
+        <ChaosWidgets />
 
-		<!-- Game Layer (Only visible in Chaos Mode) -->
+        <!-- Game Layer (Only visible in Chaos Mode) -->
 
-		<main>
-			<section class="intro">
-				<h1 class="greeting">
-					hello, i'm <span class="name">{AUTHOR_NAME}</span><button
-						id="chaos-toggle"
-						class="chaos-toggle"
-						aria-label="Toggle Chaos Mode"
-					>
-						<span class="toggle-track">
-							<span class="toggle-thumb"></span>
-						</span>
-					</button>
-				</h1>
+        <main>
+            <section class="intro">
+                <h1 class="greeting">
+                    hello, i'm <span class="name">{AUTHOR_NAME}</span><button
+                        id="chaos-toggle"
+                        class="chaos-toggle"
+                        aria-label="Toggle Chaos Mode"
+                    >
+                        <span class="toggle-track">
+                            <span class="toggle-thumb"></span>
+                        </span>
+                    </button>
+                </h1>
 
-				<p class="lead">{SITE_DESCRIPTION}</p>
+                <p class="lead">{SITE_DESCRIPTION}</p>
 
-				<p>
-					this site is a collection of my writing, notes, and
-					experiments. i'm interested in the intersection of design
-					and engineering.
-				</p>
+                <p>
+                    this site is a collection of my writing, notes, and
+                    experiments. i'm interested in the intersection of design
+                    and engineering.
+                </p>
 
-				<nav class="nav-links">
-					<a href="/blog">shelf</a>
-					<a href="/about">about</a>
-					<a href="/rss.xml">rss</a>
-				</nav>
-			</section>
-		</main>
-		<div id="chaos-game-container">
-			<ChaosGame client:only="svelte" />
-		</div>
+                <nav class="nav-links">
+                    <a href="/blog">shelf</a>
+                    <a href="/about">about</a>
+                    <a href="/rss.xml">rss</a>
+                </nav>
+            </section>
+        </main>
+        <div id="chaos-game-container">
+            <ChaosGame client:only="svelte" />
+        </div>
 
-		<footer class="footer">
-			<p>&copy; {new Date().getFullYear()} {AUTHOR_NAME}</p>
-		</footer>
-	</body>
+        <footer class="footer">
+            <p>&copy; {new Date().getFullYear()} {AUTHOR_NAME}</p>
+        </footer>
+    </body>
 </html>
 
 <style>
-	body {
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		position: relative;
-		overflow-x: hidden;
-		background: var(--color-bg);
-		transition: background 0.5s ease;
-	}
+    body {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow-x: hidden;
+        background: var(--color-bg);
+        transition: background 0.5s ease;
+    }
 
-	main {
-		flex: 1;
-		padding: var(--space-16) var(--space-8);
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		position: relative;
-		z-index: 10;
-		pointer-events: none;
-	}
+    main {
+        flex: 1;
+        padding: var(--space-16) var(--space-8);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+        pointer-events: none;
+    }
 
-	.intro {
-		max-width: 600px;
-		margin: 0 auto;
-		background: transparent;
-		transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-		pointer-events: auto;
-	}
+    .intro {
+        max-width: 600px;
+        margin: 0 auto;
+        background: transparent;
+        transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: auto;
+    }
 
-	/* Toggle Styles (The Inline Switch) */
-	.chaos-toggle {
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		background: transparent;
-		border: none;
-		cursor: pointer;
-		padding: 0;
-		margin-left: var(--space-2);
-	}
+    /* Toggle Styles (The Inline Switch) */
+    .chaos-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        margin-left: var(--space-2);
+    }
 
-	.toggle-track {
-		width: 64px;
-		height: 32px;
-		background: rgba(0, 0, 0, 0.1);
-		border: 1px solid var(--color-border);
-		border-radius: 999px;
-		position: relative;
-		transition: all 0.3s ease;
-	}
+    .toggle-track {
+        width: 64px;
+        height: 32px;
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--color-border);
+        border-radius: 999px;
+        position: relative;
+        transition: all 0.3s ease;
+    }
 
-	.toggle-thumb {
-		width: 27px;
-		height: 27px;
-		background: var(--color-text-subtle);
-		border-radius: 50%;
-		position: absolute;
-		top: 2px;
-		left: 2px;
-		transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-	}
+    .toggle-thumb {
+        width: 27px;
+        height: 27px;
+        background: var(--color-text-subtle);
+        border-radius: 50%;
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
 
-	.chaos-toggle:hover .toggle-track {
-		background: rgba(0, 0, 0, 0.15);
-		border-color: var(--color-text-muted);
-	}
+    .chaos-toggle:hover .toggle-track {
+        background: rgba(0, 0, 0, 0.15);
+        border-color: var(--color-text-muted);
+    }
 
-	.chaos-toggle:hover .toggle-thumb {
-		background: var(--color-text);
-	}
+    .chaos-toggle:hover .toggle-thumb {
+        background: var(--color-text);
+    }
 
-	/* Active State */
-	:global(body.chaos-mode) .toggle-track {
-		background: rgba(255, 107, 107, 0.2); /* Accent bg */
-		border-color: #ff6b6b;
-	}
+    /* Active State */
+    :global(body.chaos-mode) .toggle-track {
+        background: rgba(255, 107, 107, 0.2); /* Accent bg */
+        border-color: #ff6b6b;
+    }
 
-	:global(body.chaos-mode) .toggle-thumb {
-		background: #ff6b6b;
-		transform: translateX(30px);
-	}
+    :global(body.chaos-mode) .toggle-thumb {
+        background: #ff6b6b;
+        transform: translateX(30px);
+    }
 
-	/* Card Mode (Bottom Right) */
-	:global(body.chaos-mode) .intro {
-		position: fixed;
-		top: 30px;
-		right: var(--space-8);
-		width: 320px;
-		max-width: calc(100vw - var(--space-12));
-		background: #0a0a0a; /* Dark glass */
-		border: 1px solid #333;
-		padding: var(--space-6);
-		border-radius: var(--radius-lg);
-		box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-		margin: 0;
-		transform-origin: bottom right;
-		color: #fff;
-		z-index: 100 !important; /* Above everything */
-		pointer-events: auto; /* Allow interaction */
-	}
+    /* Card Mode (Bottom Right) */
+    :global(body.chaos-mode) .intro {
+        position: fixed;
+        top: 30px;
+        right: var(--space-8);
+        width: 320px;
+        max-width: calc(100vw - var(--space-12));
+        background: #0a0a0a; /* Dark glass */
+        border: 1px solid #333;
+        padding: var(--space-6);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        margin: 0;
+        transform-origin: bottom right;
+        color: #fff;
+        z-index: 100 !important; /* Above everything */
+        pointer-events: auto; /* Allow interaction */
+    }
 
-	:global(body.chaos-mode) .intro * {
-		pointer-events: auto;
-	}
+    :global(body.chaos-mode) .intro * {
+        pointer-events: auto;
+    }
 
-	:global(body.chaos-mode) .chaos-toggle {
-		pointer-events: auto;
-		cursor: pointer;
-		position: relative;
-		z-index: 101;
-	}
+    :global(body.chaos-mode) .chaos-toggle {
+        pointer-events: auto;
+        cursor: pointer;
+        position: relative;
+        z-index: 101;
+    }
 
-	:global(body.chaos-mode) .intro p:nth-of-type(2) {
-		display: none;
-	}
+    :global(body.chaos-mode) .intro p:nth-of-type(2) {
+        display: none;
+    }
 
-	:global(body.chaos-mode) .nav-links {
-		margin-top: var(--space-4);
-		gap: var(--space-3);
-	}
+    :global(body.chaos-mode) .nav-links {
+        margin-top: var(--space-4);
+        gap: var(--space-3);
+    }
 
-	:global(body.chaos-mode) .greeting {
-		font-size: 1.5rem;
-		margin-bottom: var(--space-2);
-		color: #fff;
-	}
+    :global(body.chaos-mode) .greeting {
+        font-size: 1.5rem;
+        margin-bottom: var(--space-2);
+        color: #fff;
+    }
 
-	:global(body.chaos-mode) .lead {
-		font-size: 0.9rem;
-		margin-bottom: var(--space-3);
-		display: -webkit-box;
-		-webkit-line-clamp: 3;
-		-webkit-box-orient: vertical;
-		overflow: hidden;
-		color: #ccc;
-	}
+    :global(body.chaos-mode) .lead {
+        font-size: 0.9rem;
+        margin-bottom: var(--space-3);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        color: #ccc;
+    }
 
-	:global(body.chaos-mode) footer {
-		display: none;
-	}
+    :global(body.chaos-mode) footer {
+        display: none;
+    }
 
-	/* Standard Styles */
-	.greeting {
-		font-size: clamp(2rem, 5vw, 3rem);
-		font-weight: 700;
-		letter-spacing: -0.03em;
-		margin-bottom: var(--space-4);
-		line-height: 1.1;
-		transition: all 0.5s ease;
-	}
+    /* Standard Styles */
+    .greeting {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        margin-bottom: var(--space-4);
+        line-height: 1.1;
+        transition: all 0.5s ease;
+    }
 
-	.name {
-		transition: all 0.5s ease;
-	}
+    .name {
+        transition: all 0.5s ease;
+    }
 
-	:global(body.chaos-mode) .name {
-		background: linear-gradient(
-			135deg,
-			#ff6b6b,
-			#feca57,
-			#48dbfb,
-			#ff9ff3,
-			#54a0ff
-		);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
+    :global(body.chaos-mode) .name {
+        background: linear-gradient(
+            135deg,
+            #ff6b6b,
+            #feca57,
+            #48dbfb,
+            #ff9ff3,
+            #54a0ff
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
-	.lead {
-		font-size: 1.15rem;
-		color: var(--color-text-muted);
-		line-height: 1.6;
-		margin-bottom: var(--space-4);
-		transition: all 0.5s ease;
-	}
+    .lead {
+        font-size: 1.15rem;
+        color: var(--color-text-muted);
+        line-height: 1.6;
+        margin-bottom: var(--space-4);
+        transition: all 0.5s ease;
+    }
 
-	.nav-links {
-		margin-top: var(--space-8);
-		display: flex;
-		gap: var(--space-6);
-		flex-wrap: wrap;
-	}
+    .nav-links {
+        margin-top: var(--space-8);
+        display: flex;
+        gap: var(--space-6);
+        flex-wrap: wrap;
+    }
 
-	.nav-links a {
-		font-family: var(--font-mono);
-		font-size: 0.9rem;
-		color: var(--color-text);
-		text-decoration: none;
-		padding-bottom: 2px;
-		border-bottom: 1px solid var(--color-border);
-		transition: all 0.2s ease;
-	}
+    .nav-links a {
+        font-family: var(--font-mono);
+        font-size: 0.9rem;
+        color: var(--color-text);
+        text-decoration: none;
+        padding-bottom: 2px;
+        border-bottom: 1px solid var(--color-border);
+        transition: all 0.2s ease;
+    }
 
-	:global(body.chaos-mode) .nav-links a {
-		color: #999;
-		border-color: #444;
-	}
+    :global(body.chaos-mode) .nav-links a {
+        color: #999;
+        border-color: #444;
+    }
 
-	.nav-links a:hover {
-		color: var(--color-accent);
-		border-bottom-color: var(--color-accent);
-	}
+    .nav-links a:hover {
+        color: var(--color-accent);
+        border-bottom-color: var(--color-accent);
+    }
 
-	:global(body.chaos-mode) .nav-links a:hover {
-		color: #fff;
-		border-color: #fff;
-	}
+    :global(body.chaos-mode) .nav-links a:hover {
+        color: #fff;
+        border-color: #fff;
+    }
 
-	.footer {
-		padding: var(--space-6) var(--space-8);
-		text-align: center;
-		position: relative;
-		z-index: 10;
-	}
+    .footer {
+        padding: var(--space-6) var(--space-8);
+        text-align: center;
+        position: relative;
+        z-index: 10;
+    }
 
-	.footer p {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		color: var(--color-text-subtle);
-		margin: 0;
-	}
+    .footer p {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--color-text-subtle);
+        margin: 0;
+    }
 
-	@media (max-width: 768px) {
-		main {
-			padding: var(--space-12) var(--space-6);
-		}
-	}
+    @media (max-width: 768px) {
+        main {
+            padding: var(--space-12) var(--space-6);
+        }
+    }
 
-	/* Game Container */
-	#chaos-game-container {
-		display: none;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		width: 100%;
-		height: 40%;
-		z-index: 20; /* Below widgets (50) but above everything else */
-		pointer-events: auto;
-	}
+    /* Game Container */
+    #chaos-game-container {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 40%;
+        z-index: 20; /* Below widgets (50) but above everything else */
+        pointer-events: auto;
+    }
 
-	/* Active */
-	:global(body.chaos-mode) #chaos-game-container {
-		display: block;
-		pointer-events: auto; /* Enable interaction */
-	}
+    /* Active */
+    :global(body.chaos-mode) #chaos-game-container {
+        display: block;
+        pointer-events: auto; /* Enable interaction */
+    }
 </style>
 
 <script>
-	interface Window {
-		triggerChaosAnimation?: () => void;
-		restoreChaosState?: () => void;
-		setChaosMode?: (enabled: boolean) => void;
-	}
+    interface Window {
+        triggerChaosAnimation?: () => void;
+        restoreChaosState?: () => void;
+        setChaosMode?: (enabled: boolean) => void;
+    }
 
-	// =========================
-	// coordination layer
-	// =========================
-	let __faviconChaosInterval = null;
-	let __faviconWinkInterval = null;
-	let __faviconBusy = false;
+    // =========================
+    // coordination layer
+    // =========================
+    let __faviconChaosInterval = null;
+    let __faviconWinkInterval = null;
+    let __faviconBusy = false;
 
-	// =========================
-	// chaos mode state
-	// =========================
-	const toggleBtn = document.getElementById("chaos-toggle");
-	let isChaos = localStorage.getItem("chaosMode") === "true";
+    // =========================
+    // chaos mode state
+    // =========================
+    const toggleBtn = document.getElementById("chaos-toggle");
+    let isChaos = localStorage.getItem("chaosMode") === "true";
 
-	function setMode(enabled) {
-		isChaos = enabled;
-		localStorage.setItem("chaosMode", String(enabled));
+    function setMode(enabled) {
+        isChaos = enabled;
+        localStorage.setItem("chaosMode", String(enabled));
 
-		if (enabled) {
-			document.body.classList.add("chaos-mode");
-			(window as Window).triggerChaosAnimation?.();
-			startChaosFavicon();
-		} else {
-			document.body.classList.remove("chaos-mode");
+        if (enabled) {
+            document.body.classList.add("chaos-mode");
+            (window as Window).triggerChaosAnimation?.();
+            startChaosFavicon();
+        } else {
+            document.body.classList.remove("chaos-mode");
 
-			// cleanup svg chaos
-			const svg = document.getElementById("chaos-svg");
-			if (svg) svg.innerHTML = "";
+            // cleanup svg chaos
+            const svg = document.getElementById("chaos-svg");
+            if (svg) svg.innerHTML = "";
 
-			stopChaosFavicon();
-			setDot("#ffffff");
-		}
-	}
+            stopChaosFavicon();
+            setDot("#ffffff");
+        }
+    }
 
-	// expose for other systems
-	(window as Window).setChaosMode = setMode;
+    // expose for other systems
+    (window as Window).setChaosMode = setMode;
 
-	if (isChaos) {
-		requestAnimationFrame(() => setMode(true));
-	}
+    if (isChaos) {
+        requestAnimationFrame(() => setMode(true));
+    }
 
-	toggleBtn?.addEventListener("click", () => {
-		setMode(!isChaos);
-	});
+    toggleBtn?.addEventListener("click", () => {
+        setMode(!isChaos);
+    });
 
-	const favicon = document.getElementById("favicon");
+    const favicon = document.getElementById("favicon");
 
-	function setDot(color, opacity = 1) {
-		if (__faviconBusy) return;
+    function setDot(color, opacity = 1) {
+        if (__faviconBusy) return;
 
-		const svg = `
+        const svg = `
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
 				<circle cx="50" cy="50" r="50" fill="${color}" fill-opacity="${opacity}"/>
 			</svg>
 		`;
-		favicon?.href = "data:image/svg+xml," + encodeURIComponent(svg);
-	}
+        if (favicon) {
+            favicon.href = "data:image/svg+xml," + encodeURIComponent(svg);
+        }
+    }
 
-	// default favicon
-	setDot("#ffffff");
+    // default favicon
+    setDot("#ffffff");
 
-	function wink() {
-		if (!isChaos) return;
-		if (__faviconBusy) return;
+    function wink() {
+        if (!isChaos) return;
+        if (__faviconBusy) return;
 
-		__faviconBusy = true;
-		setDot("#ffffff", 0.15);
+        __faviconBusy = true;
+        setDot("#ffffff", 0.15);
 
-		setTimeout(() => {
-			setDot("#ffffff", 1);
-			__faviconBusy = false;
-		}, 240);
-	}
+        setTimeout(() => {
+            setDot("#ffffff", 1);
+            __faviconBusy = false;
+        }, 240);
+    }
 
-	if (__faviconWinkInterval) clearInterval(__faviconWinkInterval);
-	__faviconWinkInterval = setInterval(() => {
-		if (isChaos && Math.random() < 0.15) wink();
-	}, 60000);
+    if (__faviconWinkInterval) clearInterval(__faviconWinkInterval);
+    __faviconWinkInterval = setInterval(() => {
+        if (isChaos && Math.random() < 0.15) wink();
+    }, 60000);
 
-	function startChaosFavicon() {
-		const colors = ["#ffffff", "#ff3b3b", "#3b82ff", "#22c55e", "#facc15"];
-		let i = 0;
+    function startChaosFavicon() {
+        const colors = ["#ffffff", "#ff3b3b", "#3b82ff", "#22c55e", "#facc15"];
+        let i = 0;
 
-		if (__faviconChaosInterval) clearInterval(__faviconChaosInterval);
+        if (__faviconChaosInterval) clearInterval(__faviconChaosInterval);
 
-		__faviconChaosInterval = setInterval(() => {
-			if (!isChaos) return;
-			if (__faviconBusy) return;
+        __faviconChaosInterval = setInterval(() => {
+            if (!isChaos) return;
+            if (__faviconBusy) return;
 
-			setDot(colors[i % colors.length]);
-			i++;
-		}, 700);
-	}
+            setDot(colors[i % colors.length]);
+            i++;
+        }, 700);
+    }
 
-	function stopChaosFavicon() {
-		if (__faviconChaosInterval) {
-			clearInterval(__faviconChaosInterval);
-			__faviconChaosInterval = null;
-		}
-		__faviconBusy = false;
-	}
+    function stopChaosFavicon() {
+        if (__faviconChaosInterval) {
+            clearInterval(__faviconChaosInterval);
+            __faviconChaosInterval = null;
+        }
+        __faviconBusy = false;
+    }
 
-	if (Math.random() < 0.0003) {
-		setDot("#ffd700");
-	}
+    if (Math.random() < 0.0003) {
+        setDot("#ffd700");
+    }
 
-	document.addEventListener("visibilitychange", () => {
-		if (document.hidden) {
-			stopChaosFavicon();
-		} else if (isChaos) {
-			startChaosFavicon();
-		}
-	});
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopChaosFavicon();
+        } else if (isChaos) {
+            startChaosFavicon();
+        }
+    });
 </script>
