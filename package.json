@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "publish": "node scripts/publish.js"
+    "astro-publish": "node scripts/publish.js"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -26,5 +26,8 @@
     "svelte": "^5.46.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "dotenv": "^17.2.3"
   }
 }

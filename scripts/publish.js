@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 const WEBHOOK_URL = process.env.PUBLISH_WEBHOOK_URL;
 const WEBHOOK_SECRET = process.env.PUBLISH_WEBHOOK_SECRET;
 

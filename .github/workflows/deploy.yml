@@ -32,8 +32,8 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          ASTRO_NOTION_TOKEN: ${{ secrets.ASTRO_NOTION_TOKEN }}
-          ASTRO_NOTION_DB_ID: ${{ secrets.ASTRO_NOTION_DB_ID }}
+          ASTRO_NOTION_TOKEN: ${{ vars.ASTRO_NOTION_TOKEN }}
+          ASTRO_NOTION_DB_ID: ${{ vars.ASTRO_NOTION_DB_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
