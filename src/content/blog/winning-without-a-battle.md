@@ -5,68 +5,94 @@ pubDate: 'Jan 02 2025'
 category: 'philosophy'
 ---
 
-i was literally screaming my lungs out: **"AKAZAAAAA"** with the protagonist.
-when **akaza** showed up before **tanjiro** in the Demon Slayer: Infinity Castle Arc movie
+i was literally screaming my lungs out — **“AKAZAAAAA”** — along with the protagonist when akaza showed up before tanjiro in the **[Demon Slayer: Infinity Castle ](https://www.crunchyroll.com/series/G8DHV7809/demon-slayer-kimetsu-no-yaiba-infinity-castle)**
 
-but something about their battle made it linger. apart from the mind-blowing efforts that were put in the animation, choreography and the script. there was one thing that stayed.
+but something about their battle lingered.
 
-the battle of someone who perseveres through every obstacle he may face and a demon who *really* knows how to fight and knows every move that the enemy may take who faces him.
+apart from the mind-blowing effort put into the animation, choreography, and script, there was one thing that stayed with me.
 
-to get to the gist we have to understand about the main two people of this battle.
+this fight wasn’t won by strength.
 
-## **who are akaza & tanjiro... really?**
 
-tanjiro is someone who lost his family because of demons. he is given two choices where he has run for the rest of the life and watch his sister die eventually OR he has to become a demon slayer and kill the demons who killed their family, then eventually save his sister.
+## **who are akaza & tanjiro… really?**
 
-he has this incredible amount of perseverence, strength and compassion that can't just be defeated by sheer force from the demons.
+**Tanjiro Kamado** is someone who loses his family to demons. his sister is turned into one. he’s given a brutal choice: run for the rest of his life and watch her die slowly, or become a demon slayer, kill demons, and try to save what remains of his family.
 
-for akaza, he is someone who wanted to live a normal life instead of staying being a thief. but due to humans being humans, the people he loves also gets killed (by humans). so he turns into a DEMON out of hatred from humans.
+he chooses the harder path.
 
-i think akaza and tanjiro are just, **polar opposites** - not in strength, but in how they relate to intention.
+tanjiro carries an unusual mix of perseverance, strength, and compassion — not as traits, but as a way of being. he keeps moving forward not because he hates demons, but because he refuses to abandon what still matters.
+
+**Akaza**, on the other hand, wanted a normal life. he tried to leave behind theft and violence. but the people he loved were killed — by humans. that loss hardened into resentment, and that resentment turned into power.
+
+akaza becomes a demon not out of survival, but out of hatred.
+
+they are polar opposites — not in strength, but in how they relate to intention.
+
+
+## **the kind of fighter akaza is**
+
+akaza doesn’t just fight bodies.
+
+he fights *intent*.
+
+his entire combat philosophy is built around sensing fighting spirit, predicting attacks before they happen, and feeding on escalation. the stronger the will to win, the clearer the signal he reads.
+
+effort gives him information. resistance gives him control.
+
+this is why brute force never works against him.
 
 ## **hinokami kagura**
 
-it is a *series of 12 moves* that are performed repeatedly in a night (till sunrise). it is a generational thing. it is an **art form** practiced in tanjiro's family.
+when tanjiro realizes he can’t defeat akaza by being faster or more aggressive — after all, akaza is Upper Rank Three — he does something unexpected.
 
-when tanjiro knew he couldn't kill akaza just by fighting vigorously and being fast (because he is a demon of third rank), he stopped and thought every experience related to akaza. 
+he stops.
 
-he went through his fight with him before: how he loves the **fighting spirit of the opposite** and how he **predicts the attack** even before it happened
+he replays everything he has learned about akaza: how akaza reads intent, how he anticipates movement, how he thrives on fighting spirit itself.
 
-and it hit him. 
+and then tanjiro remembers his father, and the teachings of **hinokami kagura**.
 
-*"he is a different animal now" akaza said after.*
+hinokami kagura is described as a *series of twelve forms*, passed down through generations. performed not as isolated techniques, but as a continuous cycle. one movement flows into the next without waste or interruption.
 
-tanjiro not only uses the art form as a *breathing technique* but he learns something out of it that defines his fighting itself. what tanjiro really understood is not a way to kill akaza but the **art of war** itself.
+but tanjiro doesn’t just adopt it as a breathing technique.
 
-## **art of war** - by sun tzu
+he understands the *state* behind it.
 
-sun tzu never talked about winning by overpowering the enemy. he talked about something far more unsettling:  
-**making the enemy’s strengths unusable.**
 
-akaza is a perfect fighter - as long as there is intent to fight.  
-his entire combat philosophy is built on sensing will, reading anticipation, feeding on resistance. he doesn’t react to bodies. he reacts to _signals_.
+## **the art of war**
 
-this is why tanjiro couldn’t defeat him by being faster or stronger. every increase in effort only gave akaza more information.
+sun tzu never described victory as overpowering the enemy. he described something far more unsettling:
 
-**hinokami kagura** didn’t give tanjiro new moves. it gave him a new _state_.
+winning by removing the conditions for defeat.
 
-a cycle with no wasted motion.  
-no anticipatory tension.  
-no excess intention.
+akaza is nearly unbeatable as long as his opponent is broadcasting intent. his strength depends on reading anticipation, emotion, and resistance.
 
-when tanjiro entered that state, he stopped broadcasting his next move. akaza’s predictive advantage collapsed. not because tanjiro hid something, but because there was nothing to sense.
+hinokami kagura doesn’t give tanjiro stronger attacks. it gives him a different relationship to motion itself.
 
-this is what the art of war means by _winning without battle_.
+no excess movement.
+no anticipatory tension.
+no emotional leakage.
 
-akaza was still fighting.  
-tanjiro had already exited the fight.
+when tanjiro enters this state, he stops signaling his next move. akaza’s greatest advantage collapses — not because tanjiro hides his intent, but because there is nothing left to sense.
 
-and in that silence, power lost its grip.
+akaza himself notices it:
 
-## **so what??**
+*“he is a different animal now.”*
 
-*ig most of us fight like akaza. we escalate, we signal, we resist. and sometimes, like tanjiro, the answer isn’t more effort, it’s less noise.*
+this is what *winning without battle* looks like.
 
-***the art of war** isn’t about defeating others.* 
+akaza is still fighting.
+tanjiro has already exited the game akaza trained for.
 
-*it’s about reaching a state where conflict no longer defines the outcome. that’s what made this battle linger. not the spectacle, but the silence it left behind*
+---
+
+## **why this fight stays**
+
+akaza didn’t lose because tanjiro was stronger.
+he lost because the world he understood disappeared.
+
+one warrior lived through intention.
+the other learned to let it go.
+
+this fight lingers because it shows something uncomfortable: sometimes power doesn’t lose to greater power. it loses to silence.
+
+when nothing is wasted, nothing can be countered.
