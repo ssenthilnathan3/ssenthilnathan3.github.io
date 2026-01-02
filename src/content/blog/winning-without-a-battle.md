@@ -3,6 +3,8 @@ title: 'winning without a battle'
 description: 'demon slayer through sun tzu'
 pubDate: 'Jan 02 2025'
 category: 'philosophy'
+heroImage: /images/winning-battle.jpg
+heroImageSource: Zen Brush and Ink with Katie Yosha Scott-Childress
 ---
 
 i was literally screaming my lungs out — **“AKAZAAAAA”** — along with the protagonist when akaza showed up before tanjiro in the **[Demon Slayer: Infinity Castle ](https://www.crunchyroll.com/series/G8DHV7809/demon-slayer-kimetsu-no-yaiba-infinity-castle)**
