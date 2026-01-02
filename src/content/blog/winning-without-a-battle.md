@@ -7,7 +7,7 @@ heroImage: /images/winning-battle.jpg
 heroImageSource: Zen Brush and Ink with Katie Yosha Scott-Childress
 ---
 
-i was literally screaming my lungs out — **“AKAZAAAAA”** — along with the protagonist when akaza showed up before tanjiro in the **[Demon Slayer: Infinity Castle ](https://www.crunchyroll.com/series/G8DHV7809/demon-slayer-kimetsu-no-yaiba-infinity-castle)**
+i was literally screaming my lungs out - **“AKAZAAAAA”** - along with the protagonist when akaza showed up before tanjiro in the **[Demon Slayer: Infinity Castle ](https://www.crunchyroll.com/series/G8DHV7809/demon-slayer-kimetsu-no-yaiba-infinity-castle)**
 
 but something about their battle lingered.
 
@@ -22,13 +22,13 @@ this fight wasn’t won by strength.
 
 he chooses the harder path.
 
-tanjiro carries an unusual mix of perseverance, strength, and compassion — not as traits, but as a way of being. he keeps moving forward not because he hates demons, but because he refuses to abandon what still matters.
+tanjiro carries an unusual mix of perseverance, strength, and compassion, not as traits, but as a way of being. he keeps moving forward not because he hates demons, but because he refuses to abandon what still matters.
 
-**Akaza**, on the other hand, wanted a normal life. he tried to leave behind theft and violence. but the people he loved were killed — by humans. that loss hardened into resentment, and that resentment turned into power.
+**Akaza**, on the other hand, wanted a normal life. he tried to leave behind theft and violence. but the people he loved were killed, by humans. that loss hardened into resentment, and that resentment turned into power.
 
 akaza becomes a demon not out of survival, but out of hatred.
 
-they are polar opposites — not in strength, but in how they relate to intention.
+they are polar opposites, not in strength, but in how they relate to intention.
 
 
 ## **the kind of fighter akaza is**
@@ -45,7 +45,7 @@ this is why brute force never works against him.
 
 ## **hinokami kagura**
 
-when tanjiro realizes he can’t defeat akaza by being faster or more aggressive — after all, akaza is Upper Rank Three — he does something unexpected.
+when tanjiro realizes he can’t defeat akaza by being faster or more aggressive - after all, akaza is Upper Rank Three - he does something unexpected.
 
 he stops.
 
@@ -74,7 +74,7 @@ no excess movement.
 no anticipatory tension.
 no emotional leakage.
 
-when tanjiro enters this state, he stops signaling his next move. akaza’s greatest advantage collapses — not because tanjiro hides his intent, but because there is nothing left to sense.
+when tanjiro enters this state, he stops signaling his next move. akaza’s greatest advantage collapses - not because tanjiro hides his intent, but because there is nothing left to sense.
 
 akaza himself notices it:
 
