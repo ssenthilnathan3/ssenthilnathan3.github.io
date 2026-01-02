@@ -83,7 +83,6 @@ this is what *winning without battle* looks like.
 akaza is still fighting.
 tanjiro has already exited the game akaza trained for.
 
----
 
 ## **why this fight stays**
 
