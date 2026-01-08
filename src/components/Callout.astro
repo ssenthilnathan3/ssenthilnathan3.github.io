@@ -1,0 +1,310 @@
+---
+export interface Props {
+    type?: "info" | "warning" | "success" | "danger" | "note" | "gray";
+    title?: string;
+    collapsible?: boolean;
+    defaultOpen?: boolean;
+}
+
+const {
+    type = "note",
+    title,
+    collapsible = false,
+    defaultOpen = true,
+} = Astro.props;
+
+const typeConfig = {
+    info: {
+        label: "Info",
+    },
+    warning: {
+        label: "Warning",
+    },
+    success: {
+        label: "Success",
+    },
+    danger: {
+        label: "Danger",
+    },
+    note: {
+        label: "Note",
+    },
+    gray: {
+        label: "Quote",
+    },
+};
+
+const config = typeConfig[type];
+const displayTitle = title || config.label;
+---
+
+<aside
+    class={`callout callout-${type} ${collapsible ? "callout-collapsible" : ""} ${!defaultOpen ? "callout-collapsed" : ""}`}
+    data-collapsible={collapsible}
+    data-open={defaultOpen}
+>
+    <div class="callout-header">
+        <span class="callout-title">{displayTitle}</span>
+        {
+            collapsible && (
+                <button class="callout-toggle" aria-label="Toggle callout">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="chevron-icon"
+                    >
+                        <path d="m6 9 6 6 6-6" />
+                    </svg>
+                </button>
+            )
+        }
+    </div>
+    <div class="callout-content">
+        <slot />
+    </div>
+</aside>
+
+<style>
+    .callout {
+        position: relative;
+        margin: var(--space-6) 0;
+        padding: var(--space-4);
+        border-radius: var(--radius-lg);
+        border-left: 4px solid;
+        background: var(--callout-bg);
+        border-left-color: var(--callout-accent);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .callout:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Type-specific colors - Light mode */
+    .callout-info {
+        --callout-accent: #3b82f6;
+        --callout-bg: rgba(59, 130, 246, 0.08);
+        --callout-icon-bg: rgba(59, 130, 246, 0.15);
+    }
+
+    .callout-warning {
+        --callout-accent: #f59e0b;
+        --callout-bg: rgba(245, 158, 11, 0.08);
+        --callout-icon-bg: rgba(245, 158, 11, 0.15);
+    }
+
+    .callout-success {
+        --callout-accent: #10b981;
+        --callout-bg: rgba(16, 185, 129, 0.08);
+        --callout-icon-bg: rgba(16, 185, 129, 0.15);
+    }
+
+    .callout-danger {
+        --callout-accent: #ef4444;
+        --callout-bg: rgba(239, 68, 68, 0.08);
+        --callout-icon-bg: rgba(239, 68, 68, 0.15);
+    }
+
+    .callout-note {
+        --callout-accent: #8b7355;
+        --callout-bg: rgba(139, 115, 85, 0.08);
+        --callout-icon-bg: rgba(139, 115, 85, 0.15);
+    }
+
+    .callout-gray {
+        --callout-accent: white;
+        --callout-bg: rgba(107, 114, 128, 0.08);
+        --callout-icon-bg: rgba(107, 114, 128, 0.15);
+    }
+
+    /* Dark mode adjustments */
+    @media (prefers-color-scheme: dark) {
+        .callout-info {
+            --callout-bg: rgba(59, 130, 246, 0.12);
+            --callout-icon-bg: rgba(59, 130, 246, 0.2);
+        }
+
+        .callout-warning {
+            --callout-bg: rgba(245, 158, 11, 0.12);
+            --callout-icon-bg: rgba(245, 158, 11, 0.2);
+        }
+
+        .callout-success {
+            --callout-bg: rgba(16, 185, 129, 0.12);
+            --callout-icon-bg: rgba(16, 185, 129, 0.2);
+        }
+
+        .callout-danger {
+            --callout-bg: rgba(239, 68, 68, 0.12);
+            --callout-icon-bg: rgba(239, 68, 68, 0.2);
+        }
+
+        .callout-note {
+            --callout-bg: rgba(139, 115, 85, 0.12);
+            --callout-icon-bg: rgba(139, 115, 85, 0.2);
+        }
+
+        .callout-gray {
+            --callout-bg: rgba(107, 114, 128, 0.12);
+            --callout-icon-bg: rgba(107, 114, 128, 0.2);
+        }
+
+        .callout:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    /* Header */
+    .callout-header {
+        display: flex;
+        align-items: center;
+        gap: var(--space-3);
+    }
+
+    .callout-icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: var(--radius-md);
+        background: var(--callout-icon-bg);
+        color: var(--callout-accent);
+        flex-shrink: 0;
+        transition: transform 0.2s ease;
+    }
+
+    .callout:hover .callout-icon-wrapper {
+        transform: scale(1.05);
+    }
+
+    .callout-icon-wrapper :global(svg) {
+        width: 18px;
+        height: 18px;
+    }
+
+    .callout-title {
+        font-family: var(--font-sans);
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--callout-accent);
+        letter-spacing: -0.01em;
+        flex: 1;
+    }
+
+    /* Content */
+    .callout-content {
+        padding-left: calc(32px + var(--space-3));
+        color: var(--color-text-muted);
+        font-size: 0.925rem;
+        line-height: 1.65;
+        overflow: hidden;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .callout-content :global(p) {
+        margin: 0;
+    }
+
+    .callout-content :global(p + p) {
+        margin-top: var(--space-3);
+    }
+
+    .callout-content :global(a) {
+        color: var(--callout-accent);
+        text-decoration-color: var(--callout-accent);
+    }
+
+    .callout-content :global(code) {
+        background: var(--callout-icon-bg);
+        color: var(--callout-accent);
+    }
+
+    /* Collapsible functionality */
+    .callout-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border: none;
+        background: var(--callout-icon-bg);
+        border-radius: var(--radius-sm);
+        color: var(--callout-accent);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+
+    .callout-toggle:hover {
+        background: var(--callout-accent);
+        color: white;
+    }
+
+    .callout-toggle .chevron-icon {
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .callout-collapsed .callout-toggle .chevron-icon {
+        transform: rotate(-90deg);
+    }
+
+    .callout-collapsed .callout-content {
+        max-height: 0;
+        opacity: 0;
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    .callout-collapsible .callout-header {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .callout-collapsible:not(.callout-collapsed) .callout-content {
+        max-height: 500px;
+        opacity: 1;
+    }
+
+    /* Subtle entrance animation */
+    @keyframes callout-enter {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .callout {
+        animation: callout-enter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+</style>
+
+<script>
+    document.querySelectorAll(".callout-collapsible").forEach((callout) => {
+        const header = callout.querySelector(".callout-header");
+
+        header?.addEventListener("click", () => {
+            const isOpen = !callout.classList.contains("callout-collapsed");
+
+            if (isOpen) {
+                callout.classList.add("callout-collapsed");
+                callout.setAttribute("data-open", "false");
+            } else {
+                callout.classList.remove("callout-collapsed");
+                callout.setAttribute("data-open", "true");
+            }
+        });
+    });
+</script>

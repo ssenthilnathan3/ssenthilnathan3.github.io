@@ -18,8 +18,6 @@ import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "../consts";
         <ChaosRings />
         <ChaosWidgets />
 
-        <!-- Game Layer (Only visible in Chaos Mode) -->
-
         <main>
             <section class="intro">
                 <h1 class="greeting">
@@ -316,20 +314,14 @@ import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "../consts";
         setChaosMode?: (enabled: boolean) => void;
     }
 
-    // =========================
-    // coordination layer
-    // =========================
-    let __faviconChaosInterval = null;
+    let __faviconChaosInterval: any = null;
     let __faviconWinkInterval = null;
     let __faviconBusy = false;
 
-    // =========================
-    // chaos mode state
-    // =========================
     const toggleBtn = document.getElementById("chaos-toggle");
     let isChaos = localStorage.getItem("chaosMode") === "true";
 
-    function setMode(enabled) {
+    function setMode(enabled: any) {
         isChaos = enabled;
         localStorage.setItem("chaosMode", String(enabled));
 
@@ -362,7 +354,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "../consts";
 
     const favicon = document.getElementById("favicon");
 
-    function setDot(color, opacity = 1) {
+    function setDot(color: any, opacity = 1) {
         if (__faviconBusy) return;
 
         const svg = `
@@ -371,7 +363,8 @@ import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR_NAME } from "../consts";
 			</svg>
 		`;
         if (favicon) {
-            favicon.href = "data:image/svg+xml," + encodeURIComponent(svg);
+            (favicon as HTMLAnchorElement).href =
+                "data:image/svg+xml," + encodeURIComponent(svg);
         }
     }
 
