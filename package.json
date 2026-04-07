@@ -16,20 +16,20 @@
     }
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.3.13",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/sitemap": "^3.7.0",
-    "@astrojs/svelte": "^7.2.5",
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/svelte": "^8.0.4",
     "@iconify-json/mdi": "^1.2.3",
-    "@tailwindcss/vite": "^4.1.18",
-    "astro": "^5.17.2",
+    "@tailwindcss/vite": "^4.2.2",
+    "astro": "^6.1.4",
     "astro-icon": "^1.1.5",
-    "dompurify": "^3.3.1",
-    "framer-motion": "^12.34.0",
-    "marked": "^17.0.2",
+    "dompurify": "^3.3.3",
+    "framer-motion": "^12.38.0",
+    "marked": "^18.0.0",
     "sharp": "^0.34.5",
-    "svelte": "^5.51.2",
-    "tailwindcss": "^4.1.18",
-    "typescript": "^5.9.3"
+    "svelte": "^5.55.1",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^6.0.2"
   }
 }

@@ -105,9 +105,9 @@ you're saying: "here's a circuit. build it. now electricity will flow through it
 - there's no "execution order"
 - all the wires exist simultaneously
 - signals propagate constantly
-- the "result" isn't computed — it *emerges*
+- the "result" isn't computed - it *emerges*
 
-even "state" — like registers or flip-flops — isn't a "variable that changes over time."
+even "state" - like registers or flip-flops - isn't a "variable that changes over time."
 
 it's better described as:
 
@@ -128,7 +128,7 @@ when you program an FPGA, you're not "running code."
 
 you're carving circuits into silicon.
 
-once it's configured, the FPGA doesn't "execute" anything. the circuit just *is*. signals flow through it like water through pipes. the output isn't "calculated" — it's the natural consequence of physics.
+once it's configured, the FPGA doesn't "execute" anything. the circuit just *is*. signals flow through it like water through pipes. the output isn't "calculated" - it's the natural consequence of physics.
 
 
 ## why this matters
@@ -141,17 +141,17 @@ here's why:
 
 in software, you beg for parallelism. threads, async/await, mutexes, race conditions. it's a mess.
 
-in hardware, **everything is parallel by default.** a thousand operations happening simultaneously isn't a feature — it's the starting point. you have to go out of your way to make things sequential.
+in hardware, **everything is parallel by default.** a thousand operations happening simultaneously isn't a feature - it's the starting point. you have to go out of your way to make things sequential.
 
 ### 2. latency is deterministic
 
-CPUs are fast on average but unpredictable in the worst case. cache misses, branch mispredictions, OS interrupts — good luck guaranteeing timing.
+CPUs are fast on average but unpredictable in the worst case. cache misses, branch mispredictions, OS interrupts - good luck guaranteeing timing.
 
 FPGAs? the delay through a circuit is a function of physics. you can measure it in *picoseconds*. it won't change because your OS decided to run garbage collection.
 
 ### 3. you're building actual hardware
 
-this isn't a simulation. when you configure an FPGA, you're physically rewiring transistors. you're not *simulating* a circuit — you *are* the circuit.
+this isn't a simulation. when you configure an FPGA, you're physically rewiring transistors. you're not *simulating* a circuit - you *are* the circuit.
 
 
 ## back to anniyan
@@ -162,9 +162,9 @@ after weeks of struggling with FPGAs, the analogy finally clicked:
 
 **ambi mode:** you write Verilog. everything works in simulation. timing is perfect. life is good. this is you following the tutorials, doing everything "right."
 
-**anniyan mode:** you synthesize. the tool does things you didn't expect. timing fails. resources explode. what you *meant* and what you *wrote* were apparently different things. the FPGA is doing exactly what you told it — not what you wanted.
+**anniyan mode:** you synthesize. the tool does things you didn't expect. timing fails. resources explode. what you *meant* and what you *wrote* were apparently different things. the FPGA is doing exactly what you told it - not what you wanted.
 
-**remo mode:** you start thinking in hardware. you stop fighting the paradigm. you design *with* the grain of silicon. and suddenly, the FPGA doesn't just work — it does things that would take a CPU orders of magnitude longer. it likes you now.
+**remo mode:** you start thinking in hardware. you stop fighting the paradigm. you design *with* the grain of silicon. and suddenly, the FPGA doesn't just work - it does things that would take a CPU orders of magnitude longer. it likes you now.
 
 
 ## the shift
