@@ -42,3 +42,5 @@ when you build with ruby and bundler, things feel stable. you don't have a giant
 i'd rather spend my energy writing articles than maintaining my local development environment.
 
 sometimes, choosing the simpler, older tool isn't going backward. it's just protecting your focus.
+
+so **AALA VIDRA BALLEILAKKA**
