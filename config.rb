@@ -5,7 +5,7 @@
 ###
 set :site_url,       'https://ssenthilnathan3.github.io'
 set :site_title,     'Senthilnathan'
-set :site_description, 'i have some thoughts on technology, research, and ideas that i would like to put out.'
+set :site_description, 'this is where i spawn random thoughts'
 set :author_name,    'SENTHILNATHAN'
 
 ###

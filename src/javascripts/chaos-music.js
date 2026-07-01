@@ -134,8 +134,6 @@
     });
   }
 
-  // Preload a random song immediately on page load
-  playRandomSong(false);
 
   window.startChaosMusic = function () {
     if (preloaded) {

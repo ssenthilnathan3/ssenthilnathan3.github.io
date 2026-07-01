@@ -7,6 +7,59 @@
   var toggleBtn = document.getElementById('chaos-toggle');
   var isChaos = localStorage.getItem('chaosMode') === 'true';
 
+  var scriptsLoaded = false;
+  var scriptsLoading = false;
+  var loadingCallbacks = [];
+
+  function loadChaosScripts(callback) {
+    if (scriptsLoaded) {
+      if (callback) callback();
+      return;
+    }
+    if (callback) {
+      loadingCallbacks.push(callback);
+    }
+    if (scriptsLoading) {
+      return;
+    }
+    scriptsLoading = true;
+
+    function loadScript(src, cb) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.onload = cb;
+      s.onerror = function () {
+        console.error("Failed to load script: " + src);
+        cb();
+      };
+      document.body.appendChild(s);
+    }
+
+    loadScript("https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js", function () {
+      var remaining = [
+        "/javascripts/chaos-rings.js",
+        "/javascripts/chaos-pong.js",
+        "/javascripts/chaos-p5.js",
+        "/javascripts/chaos-music.js"
+      ];
+      var count = 0;
+      function checkDone() {
+        count++;
+        if (count === remaining.length) {
+          scriptsLoaded = true;
+          scriptsLoading = false;
+          while (loadingCallbacks.length > 0) {
+            var cb = loadingCallbacks.shift();
+            cb();
+          }
+        }
+      }
+      for (var i = 0; i < remaining.length; i++) {
+        loadScript(remaining[i], checkDone);
+      }
+    });
+  }
+
   function setDot(color, opacity) {
     if (faviconBusy) return;
     opacity = opacity === undefined ? 1 : opacity;
@@ -44,11 +97,14 @@
     localStorage.setItem('chaosMode', String(enabled));
     if (enabled) {
       document.body.classList.add('chaos-mode');
-      if (window.triggerChaosAnimation) window.triggerChaosAnimation();
-      if (window.startChaosMusic) window.startChaosMusic();
-      if (window.startChaosPong) window.startChaosPong();
-      if (window.startChaosP5) window.startChaosP5();
       startChaosFavicon();
+      loadChaosScripts(function () {
+        if (!isChaos) return;
+        if (window.triggerChaosAnimation) window.triggerChaosAnimation();
+        if (window.startChaosMusic) window.startChaosMusic();
+        if (window.startChaosPong) window.startChaosPong();
+        if (window.startChaosP5) window.startChaosP5();
+      });
     } else {
       document.body.classList.remove('chaos-mode');
       var svg = document.getElementById('chaos-svg');

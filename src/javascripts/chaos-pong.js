@@ -157,7 +157,11 @@
   };
 
   // Attempt to initialize on load if canvas is already present
-  document.addEventListener('DOMContentLoaded', function() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      init();
+    });
+  } else {
     init();
-  });
+  }
 })();
