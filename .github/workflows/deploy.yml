@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Deploy Middleman to GitHub Pages
 
 on:
   push:
@@ -6,48 +6,42 @@ on:
       - master
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: pnpm/action-setup@v2
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          version: 8
+          ruby-version: '3.3'
+          bundler-cache: true
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "24.14.0"
-          node-version-file: package.json
-          cache: pnpm
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Build
-        run: pnpm build
+      - name: Build with Middleman
+        run: bundle exec middleman build --clean
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: build/
 
   deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
+    runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

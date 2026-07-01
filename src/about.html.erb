@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate" type="application/rss+xml" title="Senthilnathan" href="/feed.xml" />
+  <link rel="canonical" href="<%= config[:site_url] %>/about/" />
+  <title>About — Senthilnathan</title>
+  <meta name="title" content="About — Senthilnathan" />
+  <meta name="description" content="<%= config[:site_description] %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= config[:site_url] %>/about/" />
+  <meta property="og:title" content="About — Senthilnathan" />
+  <meta property="og:description" content="<%= config[:site_description] %>" />
+  <link rel="stylesheet" href="/stylesheets/global.css" />
+  <style>
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-6);
+    }
+    .back-nav { margin-bottom: var(--space-8); }
+    .back-link {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover { color: var(--color-accent); }
+    @media (max-width: 768px) {
+      main { padding: var(--space-6) var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <nav class="back-nav">
+      <a href="/" class="back-link">← Home</a>
+    </nav>
+    <article class="content">
+      <h1>About</h1>
+      <p>
+        Hi, I'm <strong><%= config[:author_name] %></strong>.
+      </p>
+      <p>
+        I'm a developer and writer. This website acts as a digital
+        garden for my thoughts, projects, and explorations.
+      </p>
+      <p>
+        I chose this minimal design to prioritize content structure
+        and readability. The layout emphasizes utility and clarity.
+      </p>
+      <h2>Colophon</h2>
+      <p>
+        Built with <a href="https://middlemanapp.com">Middleman</a>. Type set
+        in <a href="https://rsms.me/inter/">Inter</a> and <a
+          href="https://www.jetbrains.com/lp/mono/"
+        >JetBrains Mono</a>.
+      </p>
+    </article>
+  </main>
+</body>
+</html>
