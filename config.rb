@@ -52,7 +52,7 @@ page '/blog/',  layout: false   # blog index manages its own full html
 ###
 set :source,     'src'
 set :css_dir,    'stylesheets'
-set :js_dir,     'javascripts'
+set :js_dir,     'js'
 set :images_dir, 'images'
 
 ###

@@ -37,10 +37,10 @@
 
     loadScript("https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js", function () {
       var remaining = [
-        "/javascripts/chaos-rings.js",
-        "/javascripts/chaos-pong.js",
-        "/javascripts/chaos-p5.js",
-        "/javascripts/chaos-music.js"
+        "/js/chaos-rings.js",
+        "/js/chaos-pong.js",
+        "/js/chaos-p5.js",
+        "/js/chaos-music.js"
       ];
       var count = 0;
       function checkDone() {
