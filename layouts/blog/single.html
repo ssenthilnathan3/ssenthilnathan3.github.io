@@ -1,0 +1,79 @@
+{{ define "custom_head" }}
+  <!-- Using tailwind via CDN in baseof.html now, so no need for external css if we fully convert, but leaving it just in case -->
+  <link rel="stylesheet" href="/stylesheets/blog-index.css" />
+{{ end }}
+
+{{ define "main" }}
+<main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="w-full flex justify-start">
+    <nav class="mb-12 mx-5 flex items-center justify-between w-full">
+      <a href="/blog/" class="text-sm font-mono text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors flex items-center gap-1"><i class="ph ph-arrow-left text-base"></i> Back</a>
+      <a href="/" class="text-sm font-mono text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors flex items-center gap-1"><i class="ph ph-house text-base"></i> Home</a>
+    </nav>
+  </div>
+  
+
+<article class="mx-auto max-w-3xl">
+      <header>
+        <div class="text-sm font-mono text-gray-500 dark:text-gray-400 mb-4 flex items-center space-x-2">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">
+            {{ .Date.Format "Jan 2, 2006" }}
+          </time>
+          {{ if .Params.updated_date }}
+            <span>·</span>
+            <span>Updated {{ (time .Params.updated_date).Format "Jan 2, 2006" }}</span>
+          {{ end }}
+        </div>
+        <h1 class="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-4">{{ .Title }}</h1>
+        {{ if .Description }}
+          <p class="text-lg text-gray-600 dark:text-gray-400">{{ .Description }}</p>
+        {{ end }}
+        <hr class="my-8 border-gray-200 dark:border-gray-800" />
+      </header>
+
+      {{ if .Params.hero_image }}
+        <figure class="mb-10">
+          <div class="rounded-xl overflow-hidden shadow-sm">
+            <img
+              src="{{ .Params.hero_image | relURL }}"
+              alt="{{ .Title }}"
+              class="w-full h-auto object-cover"
+              loading="eager"
+              decoding="async"
+            />
+          </div>
+          {{ if .Params.hero_image_source }}
+            <figcaption class="mt-3 text-sm text-center text-gray-500 font-mono">source: {{ .Params.hero_image_source }}</figcaption>
+          {{ end }}
+        </figure>
+      {{ end }}
+
+      <div class="article-content prose max-w-none dark:prose-invert">
+        {{ .Content }}
+      </div>
+    </article>
+
+    <div class="fixed left-8 z-10" id="toc-container" style="display:none">
+      <div id="table-of-contents">
+        <div class="text-sm font-semibold text-gray-500 dark:text-gray-400 mb-3 tracking-wide uppercase">On this page</div>
+        <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+        </ul>
+      </div>
+    </div>
+
+  <footer class="w-full flex items-center justify-between pt-8 border-t border-gray-200 dark:border-gray-800 flex justify-between items-center">
+    <a href="/blog/" class="text-sm font-mono text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors flex items-center gap-1"><i class="ph ph-arrow-left text-base"></i> All posts</a>
+    <div class="article-social">
+      <a href="https://www.github.com/ssenthilnathan3" class="text-sm font-mono text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 transition-colors flex items-center gap-1">
+        github <i class="ph ph-arrow-up-right text-base"></i>
+      </a>
+    </div>
+  </footer>
+</main>
+
+<!-- Table of contents enhancement -->
+<script src="/js/toc.js"></script>
+
+<!-- Widget JS (only loaded on blog posts that use them) -->
+<script src="/js/widgets.js"></script>
+{{ end }}

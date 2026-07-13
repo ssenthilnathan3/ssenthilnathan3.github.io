@@ -15,8 +15,6 @@ for a solo developer, the javascript ecosystem can feel like a full-time job. it
 
 why do we do this to ourselves?
 
----
-
 ## scales and tools
 
 to be fair: npm isn't bad. it's just solving a different problem.
@@ -31,16 +29,14 @@ at my scale, every single dependency is another thing competing for my attention
 
 every minute spent debugging a failing bundler, resolving webpack version conflicts, or chasing down deprecation warnings is a minute not spent writing or thinking. the tooling becomes the product.
 
----
+## go and hugo
 
-## ruby and middleman
+that is why i ended up throwing out the entire node asset pipeline for this portfolio and rewriting it to compile using hugo (go).
 
-that is why i ended up throwing out the entire node asset pipeline for this portfolio and rewriting it to compile using middleman (ruby).
-
-when you build with ruby and bundler, things feel stable. you don't have a giant **node_modules** tree with 1,500 nested packages just to compile a few stylesheets. the ecosystem has a set of conventions that have survived for a long time, and they don't try to reinvent how assets are served every six months.
+when you build with a single static binary like hugo, things feel stable. you don't have a giant **node_modules** tree with 1,500 nested packages just to compile a few stylesheets. there is no bundler config to fight with, no dependency trees to audit, and it generates the entire site in milliseconds. the tool just stays out of the way.
 
 i'd rather spend my energy writing articles than maintaining my local development environment.
 
-sometimes, choosing the simpler, older tool isn't going backward. it's just protecting your focus.
+sometimes, choosing a single compiled binary isn't going backward. it's just protecting your focus.
 
 so **AALA VIDRA BALLEILAKKA**

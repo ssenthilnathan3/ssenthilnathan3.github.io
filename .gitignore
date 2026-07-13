@@ -8,5 +8,9 @@ vendor/bundle/
 # macOS-specific files
 .DS_Store
 
-# jetbrains setting folder
-.idea/
+# hugo
+public/
+resources/
+
+# project-specific
+blog_plan.md

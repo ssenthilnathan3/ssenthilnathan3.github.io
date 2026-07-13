@@ -6,7 +6,7 @@ main {
   min-height: 100vh; padding: var(--space-8);
   padding-top: var(--space-10);
 }
-.container { max-width: 600px; width: 100%; }
+.container { max-width: 400px; width: 100%; }
 .header { margin-bottom: var(--space-10); }
 .back-link {
   font-family: var(--font-mono); font-size: 0.85rem;

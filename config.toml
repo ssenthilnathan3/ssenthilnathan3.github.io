@@ -1,0 +1,25 @@
+baseURL = "https://ssenthilnathan3.github.io/"
+languageCode = "en-us"
+title = "Senthilnathan"
+
+[params]
+  author_name = "SENTHILNATHAN"
+  site_description = "this is where i spawn random thoughts"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    style = "github"
+
+[mediaTypes]
+[outputFormats]
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML"]
+disableKinds = ["taxonomy", "term"]

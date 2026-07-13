@@ -1,0 +1,44 @@
+{{ define "custom_head" }}
+<style>
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: var(--space-8) var(--space-6);
+  }
+  .back-nav { margin-bottom: var(--space-8); }
+  .back-link {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover { color: var(--color-accent); }
+  @media (max-width: 768px) {
+    main { padding: var(--space-6) var(--space-4); }
+  }
+</style>
+{{ end }}
+
+{{ define "main" }}
+<main>
+  <nav class="back-nav">
+    <a href="/" class="back-link flex items-center gap-1"><i class="ph ph-arrow-left text-base"></i> Home</a>
+  </nav>
+  <article class="content">
+    <h1>About</h1>
+    <p>
+      Hi again, I'm <strong>{{ .Site.Params.author_name }}</strong>.
+    </p>
+    
+    <h2>Colophon</h2>
+    <p>
+      Built with <a href="https://gohugo.io/">Hugo</a>. Type set
+      in <a href="https://rsms.me/inter/">Inter</a> and <a
+        href="https://www.jetbrains.com/lp/mono/"
+      >JetBrains Mono</a>.
+    </p>
+    {{ .Content }}
+  </article>
+</main>
+{{ end }}
