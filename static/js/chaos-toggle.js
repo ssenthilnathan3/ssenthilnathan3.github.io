@@ -4,8 +4,8 @@
   var faviconWinkInterval = null;
   var faviconBusy = false;
 
-  var toggleBtn = document.getElementById('chaos-toggle');
-  var isChaos = localStorage.getItem('chaosMode') === 'true';
+  var toggleBtn = document.getElementById("chaos-toggle");
+  var isChaos = localStorage.getItem("chaosMode") === "true";
 
   var scriptsLoaded = false;
   var scriptsLoading = false;
@@ -25,7 +25,7 @@
     scriptsLoading = true;
 
     function loadScript(src, cb) {
-      var s = document.createElement('script');
+      var s = document.createElement("script");
       s.src = src;
       s.onload = cb;
       s.onerror = function () {
@@ -35,42 +35,53 @@
       document.body.appendChild(s);
     }
 
-    loadScript("https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js", function () {
-      var remaining = [
-        "/js/chaos-rings.js",
-        "/js/chaos-pong.js",
-        "/js/chaos-p5.js",
-        "/js/chaos-music.js"
-      ];
-      var count = 0;
-      function checkDone() {
-        count++;
-        if (count === remaining.length) {
-          scriptsLoaded = true;
-          scriptsLoading = false;
-          while (loadingCallbacks.length > 0) {
-            var cb = loadingCallbacks.shift();
-            cb();
+    loadScript(
+      "https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js",
+      function () {
+        var remaining = [
+          "/js/chaos-rings.js",
+          "/js/chaos-pong.js",
+          // "/js/chaos-p5.js",
+          "/js/chaos-music.js",
+          // "/js/chaos-vhs.js",
+          // "/js/chaos-bongo.js",
+        ];
+        var count = 0;
+        function checkDone() {
+          count++;
+          if (count === remaining.length) {
+            scriptsLoaded = true;
+            scriptsLoading = false;
+            while (loadingCallbacks.length > 0) {
+              var cb = loadingCallbacks.shift();
+              cb();
+            }
           }
         }
-      }
-      for (var i = 0; i < remaining.length; i++) {
-        loadScript(remaining[i], checkDone);
-      }
-    });
+        for (var i = 0; i < remaining.length; i++) {
+          loadScript(remaining[i], checkDone);
+        }
+      },
+    );
   }
 
   function setDot(color, opacity) {
     if (faviconBusy) return;
     opacity = opacity === undefined ? 1 : opacity;
-    var svgStr = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">' +
-      '<circle cx="50" cy="50" r="50" fill="' + color + '" fill-opacity="' + opacity + '"/></svg>';
-    var favicon = document.getElementById('favicon');
-    if (favicon) favicon.href = 'data:image/svg+xml,' + encodeURIComponent(svgStr);
+    var svgStr =
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">' +
+      '<circle cx="50" cy="50" r="50" fill="' +
+      color +
+      '" fill-opacity="' +
+      opacity +
+      '"/></svg>';
+    var favicon = document.getElementById("favicon");
+    if (favicon)
+      favicon.href = "data:image/svg+xml," + encodeURIComponent(svgStr);
   }
 
   function startChaosFavicon() {
-    var colors = ['#ffffff','#ff3b3b','#3b82ff','#22c55e','#facc15'];
+    var colors = ["#ffffff", "#ff3b3b", "#3b82ff", "#22c55e", "#facc15"];
     var i = 0;
     if (faviconChaosInterval) clearInterval(faviconChaosInterval);
     faviconChaosInterval = setInterval(function () {
@@ -81,22 +92,28 @@
   }
 
   function stopChaosFavicon() {
-    if (faviconChaosInterval) { clearInterval(faviconChaosInterval); faviconChaosInterval = null; }
+    if (faviconChaosInterval) {
+      clearInterval(faviconChaosInterval);
+      faviconChaosInterval = null;
+    }
     faviconBusy = false;
   }
 
   function wink() {
     if (!isChaos || faviconBusy) return;
     faviconBusy = true;
-    setDot('#ffffff', 0.15);
-    setTimeout(function () { setDot('#ffffff', 1); faviconBusy = false; }, 240);
+    setDot("#ffffff", 0.15);
+    setTimeout(function () {
+      setDot("#ffffff", 1);
+      faviconBusy = false;
+    }, 240);
   }
 
   function setMode(enabled) {
     isChaos = enabled;
-    localStorage.setItem('chaosMode', String(enabled));
+    localStorage.setItem("chaosMode", String(enabled));
     if (enabled) {
-      document.body.classList.add('chaos-mode');
+      document.body.classList.add("chaos-mode");
       startChaosFavicon();
       loadChaosScripts(function () {
         if (!isChaos) return;
@@ -104,32 +121,41 @@
         if (window.startChaosMusic) window.startChaosMusic();
         if (window.startChaosPong) window.startChaosPong();
         if (window.startChaosP5) window.startChaosP5();
+        if (window.startChaosVHS) window.startChaosVHS();
+        if (window.startChaosBongo) window.startChaosBongo();
       });
     } else {
-      document.body.classList.remove('chaos-mode');
-      var svg = document.getElementById('chaos-svg');
-      if (svg) svg.innerHTML = '';
+      document.body.classList.remove("chaos-mode");
+      var svg = document.getElementById("chaos-svg");
+      if (svg) svg.innerHTML = "";
       if (window.stopChaosMusic) window.stopChaosMusic();
       if (window.stopChaosPong) window.stopChaosPong();
       if (window.stopChaosP5) window.stopChaosP5();
+      if (window.stopChaosVHS) window.stopChaosVHS();
+      if (window.stopChaosBongo) window.stopChaosBongo();
       stopChaosFavicon();
-      setDot('#ffffff');
+      setDot("#ffffff");
     }
   }
 
   window.setChaosMode = setMode;
 
   // Default favicon
-  setDot('#ffffff');
+  setDot("#ffffff");
 
   // Rare gold easter egg
-  if (Math.random() < 0.0003) setDot('#ffd700');
+  if (Math.random() < 0.0003) setDot("#ffd700");
 
   // Restore saved state
-  if (isChaos) requestAnimationFrame(function () { setMode(true); });
+  if (isChaos)
+    requestAnimationFrame(function () {
+      setMode(true);
+    });
 
   if (toggleBtn) {
-    toggleBtn.addEventListener('click', function () { setMode(!isChaos); });
+    toggleBtn.addEventListener("click", function () {
+      setMode(!isChaos);
+    });
   }
 
   if (faviconWinkInterval) clearInterval(faviconWinkInterval);
@@ -137,8 +163,11 @@
     if (isChaos && Math.random() < 0.15) wink();
   }, 60000);
 
-  document.addEventListener('visibilitychange', function () {
-    if (document.hidden) { stopChaosFavicon(); }
-    else if (isChaos) { startChaosFavicon(); }
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      stopChaosFavicon();
+    } else if (isChaos) {
+      startChaosFavicon();
+    }
   });
 })();

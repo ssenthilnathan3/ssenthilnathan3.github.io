@@ -1,53 +1,101 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="icon" {{ if .IsHome }}id="favicon" {{ end }}type="image/svg+xml" href="/favicon.svg" />
-  <link rel="alternate" type="application/rss+xml" title="Senthilnathan" href="/index.xml" />
-  <link rel="canonical" href="{{ .Permalink }}" />
-  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
-  <meta name="title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}" />
-  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.site_description }}{{ end }}" />
-  <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
-  <meta property="og:url" content="{{ .Permalink }}" />
-  <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
-  <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.site_description }}{{ end }}" />
-  {{ if .Params.hero_image }}
-  <meta property="og:image" content="{{ .Params.hero_image | absURL }}" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:image" content="{{ .Params.hero_image | absURL }}" />
-  {{ else }}
-  <meta property="twitter:card" content="summary" />
-  {{ end }}
-  <meta property="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}" />
-  <meta property="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.site_description }}{{ end }}" />
-  <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <link rel="preconnect" href="https://rsms.me/">
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link
+      rel="icon"
+      {{
+      if
+      .IsHome
+      }}id="favicon"
+      {{
+      end
+      }}type="image/svg+xml"
+      href="/favicon.svg"
+    />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Senthilnathan"
+      href="/index.xml"
+    />
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <title>
+      {{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title
+      }}{{ end }}
+    </title>
+    <meta
+      name="title"
+      content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}"
+    />
+    <meta
+      name="description"
+      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.site_description }}{{ end }}"
+    />
+    <meta
+      property="og:type"
+      content="{{ if .IsPage }}article{{ else }}website{{ end }}"
+    />
+    <meta property="og:url" content="{{ .Permalink }}" />
+    <meta
+      property="og:title"
+      content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}"
+    />
+    <meta
+      property="og:description"
+      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.site_description }}{{ end }}"
+    />
+    {{ if .Params.hero_image }}
+    <meta property="og:image" content="{{ .Params.hero_image | absURL }}" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:image"
+      content="{{ .Params.hero_image | absURL }}"
+    />
+    {{ else }}
+    <meta property="twitter:card" content="summary" />
+    {{ end }}
+    <meta
+      property="twitter:title"
+      content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}"
+    />
+    <meta
+      property="twitter:description"
+      content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.site_description }}{{ end }}"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
           },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        font-family: "Inter", sans-serif;
+      }
+      @supports (font-variation-settings: normal) {
+        :root {
+          font-family: "Inter var", sans-serif;
         }
       }
-    }
-  </script>
-  <style>
-    :root { font-family: 'Inter', sans-serif; }
-    @supports (font-variation-settings: normal) {
-      :root { font-family: 'Inter var', sans-serif; }
-    }
-  </style>
-  <link rel="stylesheet" href="/stylesheets/global.css" />
-  {{ block "custom_head" . }}{{ end }}
-</head>
-<body>
-  {{ block "main" . }}{{ end }}
-  {{ block "custom_foot" . }}{{ end }}
-</body>
+    </style>
+    <link rel="stylesheet" href="/stylesheets/global.css" />
+    <link rel="stylesheet" href="/stylesheets/theme-toggle.css" />
+    <!-- Theme: runs before paint to avoid flash -->
+    <script src="/js/theme.js"></script>
+    {{ block "custom_head" . }}{{ end }}
+  </head>
+  <body>
+    {{ block "main" . }}{{ end }} {{ block "custom_foot" . }}{{ end }}
+  </body>
 </html>

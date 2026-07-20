@@ -1,44 +1,79 @@
-{{ define "custom_head" }}
-<style>
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: var(--space-8) var(--space-6);
-  }
-  .back-nav { margin-bottom: var(--space-8); }
-  .back-link {
-    font-family: var(--font-mono);
-    font-size: 0.85rem;
-    color: var(--color-text-muted);
-    text-decoration: none;
-    transition: color 0.2s ease;
-  }
-  .back-link:hover { color: var(--color-accent); }
-  @media (max-width: 768px) {
-    main { padding: var(--space-6) var(--space-4); }
-  }
-</style>
-{{ end }}
-
 {{ define "main" }}
-<main>
-  <nav class="back-nav">
-    <a href="/" class="back-link flex items-center gap-1"><i class="ph ph-arrow-left text-base"></i> Home</a>
-  </nav>
-  <article class="content">
-    <h1>About</h1>
-    <p>
-      Hi again, I'm <strong>{{ .Site.Params.author_name }}</strong>.
-    </p>
-    
-    <h2>Colophon</h2>
-    <p>
-      Built with <a href="https://gohugo.io/">Hugo</a>. Type set
-      in <a href="https://rsms.me/inter/">Inter</a> and <a
-        href="https://www.jetbrains.com/lp/mono/"
-      >JetBrains Mono</a>.
-    </p>
-    {{ .Content }}
-  </article>
+<main class="min-h-screen bg-[var(--color-bg)]">
+  <div class="mx-auto max-w-[680px] px-5 pt-16 sm:px-6 sm:pt-24">
+    <nav class="mb-12">
+      <a
+        href="/"
+        class="inline-flex h-9 items-center gap-1.5 rounded-full bg-[var(--color-surface)] px-3.5 text-sm font-medium tracking-tight text-[var(--color-text-muted)] ring-1 ring-[var(--color-border)] transition-colors hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          fill="none"
+          class="-ml-0.5"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M9.99997 6C9.99997 5.44772 10.4477 5 11 5H16C17.464 5 18.7234 5.75731 19.5893 6.77271C20.4537 7.78636 21 9.13716 21 10.5C21 11.8628 20.4537 13.2136 19.5893 14.2273C18.7235 15.2427 17.464 16 16 16H8V18C8 18.4045 7.75636 18.7691 7.38268 18.9239C7.00901 19.0787 6.57889 18.9931 6.29289 18.7071L3.29289 15.7071C2.90237 15.3166 2.90237 14.6834 3.29289 14.2929L6.29289 11.2929C6.57889 11.0069 7.00901 10.9213 7.38268 11.0761C7.75636 11.2309 8 11.5955 8 12V14H16C16.7451 14 17.4857 13.6119 18.0675 12.9296C18.6508 12.2455 19 11.3463 19 10.5C19 9.65369 18.6508 8.75449 18.0675 8.07043C17.4857 7.38812 16.7451 7 16 7H11C10.4477 7 9.99997 6.55228 9.99997 6Z"
+            fill="currentColor"
+          />
+        </svg>
+        Home
+      </a>
+    </nav>
+
+    <article>
+      <h1
+        class="text-[34px] font-medium leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] sm:text-[44px]"
+      >
+        About
+      </h1>
+      <div
+        class="mt-8 space-y-5 text-base leading-relaxed tracking-tight text-[var(--color-text-muted)]"
+      >
+        <p>
+          Hi again, I'm
+          <strong class="text-[var(--color-text)] font-semibold"
+            >{{ .Site.Params.author_name }}</strong
+          >.
+        </p>
+        <p>{{ .Content }}</p>
+      </div>
+
+      <div class="mt-16">
+        <h2
+          class="text-xl font-semibold tracking-tight text-[var(--color-text)]"
+        >
+          Colophon
+        </h2>
+        <div
+          class="mt-4 space-y-5 text-base leading-relaxed tracking-tight text-[var(--color-text-muted)]"
+        >
+          <p>
+            Built with
+            <a
+              href="https://gohugo.io/"
+              class="text-[var(--color-accent)] underline underline-offset-2 decoration-1 hover:text-[var(--color-text-muted)] transition-colors"
+              >Hugo</a
+            >. Type set in
+            <a
+              href="https://rsms.me/inter/"
+              class="text-[var(--color-accent)] underline underline-offset-2 decoration-1 hover:text-[var(--color-text-muted)] transition-colors"
+              >Inter</a
+            >
+            and
+            <a
+              href="https://www.jetbrains.com/lp/mono/"
+              class="text-[var(--color-accent)] underline underline-offset-2 decoration-1 hover:text-[var(--color-text-muted)] transition-colors"
+              >JetBrains Mono</a
+            >.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
 </main>
 {{ end }}

@@ -15,7 +15,6 @@ apart from the mind-blowing effort put into the animation, choreography, and scr
 
 this fight wasn't won by strength.
 
-
 ## **who are akaza & tanjiro… really?**
 
 **Tanjiro Kamado** is someone who loses his family to demons. his sister is turned into one. he's given a brutal choice: run for the rest of his life and watch her die slowly, or become a demon slayer, kill demons, and try to save what remains of his family.
@@ -30,12 +29,11 @@ akaza becomes a demon not out of survival, but out of hatred.
 
 they are polar opposites, not in strength, but in how they relate to intention.
 
-
 ## **the kind of fighter akaza is**
 
 akaza doesn't just fight bodies.
 
-he fights *intent*.
+he fights _intent_.
 
 his entire combat philosophy is built around sensing fighting spirit, predicting attacks before they happen, and feeding on escalation. the stronger the will to win, the clearer the signal he reads.
 
@@ -53,12 +51,11 @@ he replays everything he has learned about akaza: how akaza reads intent, how he
 
 and then tanjiro remembers his father, and the teachings of **hinokami kagura**.
 
-hinokami kagura is described as a *series of twelve forms*, passed down through generations. performed not as isolated techniques, but as a continuous cycle. one movement flows into the next without waste or interruption.
+hinokami kagura is described as a _series of twelve forms_, passed down through generations. performed not as isolated techniques, but as a continuous cycle. one movement flows into the next without waste or interruption.
 
 but tanjiro doesn't just adopt it as a breathing technique.
 
-he understands the *state* behind it.
-
+he understands the _state_ behind it.
 
 ## **the art of war**
 
@@ -78,13 +75,12 @@ when tanjiro enters this state, he stops signaling his next move. akaza's greate
 
 akaza himself notices it:
 
-*"he is a different animal now."*
+_"he is a different animal now."_
 
-this is what *winning without battle* looks like.
+this is what _winning without battle_ looks like.
 
 akaza is still fighting.
 tanjiro has already exited the game akaza trained for.
-
 
 ## **why this fight stays**
 

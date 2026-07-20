@@ -1,0 +1,180 @@
+/* ─── Theme Toggle ───────────────────────────────────────────────────────── */
+#theme-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 99999; /* above texture overlay (99998) */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+#theme-toggle-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+#theme-toggle-btn:hover {
+  background: var(--color-accent-light);
+  border-color: var(--color-border-hover);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transform: scale(1.06);
+}
+
+#theme-toggle-btn svg {
+  display: block;
+}
+
+/* ─── Popover ────────────────────────────────────────────────────────────── */
+#theme-popover {
+  position: absolute;
+  bottom: calc(100% + 0.625rem);
+  right: 0;
+  width: 192px;
+  padding: 0.875rem 1rem;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  /* hidden state */
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(6px) scale(0.97);
+  transform-origin: bottom right;
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#theme-popover.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+
+/* ─── Labels row ─────────────────────────────────────────────────────────── */
+#theme-popover-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: var(--color-text-subtle);
+}
+
+#theme-pct-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+  min-width: 2.5rem;
+  text-align: center;
+  background: var(--color-accent-light);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* ─── Slider track ───────────────────────────────────────────────────────── */
+#theme-track {
+  position: relative;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--color-border);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#theme-track-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--color-text-muted);
+  border-radius: 99px;
+  pointer-events: none;
+  transition: width 0.05s linear;
+}
+
+#theme-slider {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+/* ─── Preset buttons ─────────────────────────────────────────────────────── */
+#theme-presets {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.375rem;
+}
+
+.theme-preset {
+  padding: 0.25rem 0;
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.1s ease;
+  text-align: center;
+}
+
+.theme-preset:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+  border-color: var(--color-border-hover);
+  transform: scale(1.04);
+}
+
+.theme-preset:active {
+  transform: scale(0.97);
+}
+
+/* ─── Mobile ─────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  #theme-toggle {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  #theme-popover {
+    width: 176px;
+    right: 0;
+  }
+}

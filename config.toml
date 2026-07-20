@@ -14,7 +14,7 @@ title = "Senthilnathan"
     codeFences = true
     guessSyntax = true
     lineNos = false
-    style = "github"
+    style = "monokai"
 
 [mediaTypes]
 [outputFormats]

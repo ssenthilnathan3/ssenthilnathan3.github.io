@@ -19,7 +19,7 @@ This blog will cover a variety of topics that interest me, including:
 
 Writing is thinking. By putting ideas into words, I'm forced to clarify my thoughts and challenge my assumptions. This blog serves as both a personal knowledge base and a way to contribute back to the community.
 
-I try to write the kind of content I wish existed when I was learning — practical, honest, and focused on the *why* behind decisions, not just the *how*.
+I try to write the kind of content I wish existed when I was learning — practical, honest, and focused on the _why_ behind decisions, not just the _how_.
 
 ## Get in Touch
 
