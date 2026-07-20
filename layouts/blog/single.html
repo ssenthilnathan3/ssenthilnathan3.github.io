@@ -44,7 +44,7 @@
 
   <!-- Hero Section -->
   {{ if .Params.hero_image }}
-  <div class="post-hero">
+  <div class="post-hero"{{ with .Params.hero_image_fit }} style="--hero-fit: {{ . }};"{{ end }}>
     <img
       src="{{ .Params.hero_image | relURL }}"
       alt="{{ .Title }}"
@@ -122,6 +122,12 @@
     >
       {{ .Content }}
     </article>
+    <aside id="toc-container" class="toc-sidebar">
+      <nav id="table-of-contents">
+        <div class="toc-label">Contents</div>
+        <ul></ul>
+      </nav>
+    </aside>
   </div>
 
   <!-- Footer -->
@@ -175,23 +181,6 @@
     }
   });
 
-  // Animate article paragraphs on scroll
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("fade-in");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
-  );
-
-  document.querySelectorAll(".post-content > *").forEach((el) => {
-    el.classList.add("fade-ready");
-    observer.observe(el);
-  });
 </script>
 
 <script src="/js/toc.js"></script>

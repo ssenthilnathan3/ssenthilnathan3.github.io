@@ -100,7 +100,6 @@ body::after {
   position: fixed;
   inset: 0;
   z-index: 99998;
-  background-image: url("/textured-paper.png");
   background-repeat: repeat;
   background-size: 480px;
   opacity: var(--texture-opacity, 0.18);

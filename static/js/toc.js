@@ -114,18 +114,7 @@
       observer.observe(h);
     });
 
-    function showHide() {
-      if (window.innerWidth >= 1024) {
-        tocContainer.style.display = "";
-        var rect = contentEl.getBoundingClientRect();
-        tocContainer.style.top = rect.top + window.scrollY + "px";
-      } else {
-        tocContainer.style.display = "none";
-      }
-    }
 
-    showHide();
-    window.addEventListener("resize", showHide);
   }
 
   function slugify(text) {

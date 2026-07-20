@@ -101,7 +101,7 @@
 .post-hero-img {
   width: 100%;
   aspect-ratio: 16 / 7;
-  object-fit: cover;
+  object-fit: var(--hero-fit, cover);
   border-radius: 14px;
   display: block;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.14);
@@ -215,16 +215,61 @@
   /* override global p max-width */
 }
 
-/* Drop cap on the very first paragraph */
-.post-content > p:first-of-type::first-letter {
-  float: left;
-  font-size: 3.5rem;
-  font-weight: 700;
-  line-height: 0.85;
-  margin-right: 0.1em;
-  margin-top: 0.08em;
-  color: var(--color-text);
-  font-family: var(--font-sans);
+/* ─── TOC Sidebar ──────────────────────────────────── */
+.toc-sidebar {
+  display: none;
+  position: fixed;
+  top: 100px;
+  width: 200px;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+@media (min-width: 1360px) {
+  .toc-sidebar {
+    display: block;
+    right: calc((100% - 820px) / 2 - 220px);
+  }
+}
+
+.toc-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-subtle);
+  margin-bottom: 0.75rem;
+}
+
+#table-of-contents ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#table-of-contents li {
+  line-height: 1.5;
+}
+
+#table-of-contents a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.15s;
+  display: block;
+  padding: 2px 0;
+  border-left: 2px solid transparent;
+  padding-left: 0.5rem;
+}
+
+#table-of-contents a:hover {
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
+}
+
+#table-of-contents a.font-semibold {
+  color: var(--color-accent);
+  border-left-color: var(--color-accent);
 }
 
 /* Prose overrides — ensure full column width */
@@ -294,20 +339,6 @@
   border-radius: 0 8px 8px 0;
   font-style: italic;
   color: var(--color-text-muted);
-}
-
-/* ─── Scroll Fade Animations ─────────────────────────── */
-.fade-ready {
-  opacity: 0;
-  transform: translateY(16px);
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
-}
-
-.fade-in {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ─── Callout Components ─────────────────────────────── */
@@ -497,10 +528,6 @@
 
   .post-title {
     font-size: 1.75rem;
-  }
-
-  .post-content > p:first-of-type::first-letter {
-    font-size: 2.75rem;
   }
 
   .post-footer {
