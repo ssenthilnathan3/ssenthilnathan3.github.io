@@ -375,3 +375,9 @@ the cause turned out to be embarrassingly simple. i only wrote footers when free
 so much later, when coalescing tried to walk backwards, it read whatever random bytes happened to be sitting where the footer should have been. those random bytes became a random block size. the random block size became a random pointer.
 
 the fix was to every time a block's size changes, write its footer. always!!
+
+## source code
+
+This article focuses on the ideas and design decisions. The complete implementation, tests, and debugging journey are available here:
+
+https://github.com/ssenthilnathan3/bump-allocation-c.git
