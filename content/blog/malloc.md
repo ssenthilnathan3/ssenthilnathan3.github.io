@@ -25,9 +25,9 @@ for example, when I request 13 bytes.
 actually reserved:
 
 ```
-+--------+--------------+---------+-------------+
-| Header | Back Pointer | Padding | User Memory |
-+--------+--------------+---------+-------------+
++--------+---------+--------------+-------------+
+| Header | Padding | Back Pointer | User Memory |
++--------+---------+--------------+-------------+
 ```
 
 the user memory is the only thing we are gonna use and the \*p returns the start of that memory. all the others are just there... not for usage.. why is that??
@@ -124,9 +124,7 @@ if the distance to the header isn't fixed, don't rely on distance. store a **poi
 ```
 [ Header ][ ...variable padding... ][ Back Pointer ][ User Memory ]
                                      ^ always exactly sizeof(void*)
-                                       bytes before User Memory,
-                                       no matter how much padding
-                                       came before it
+                                       before the returned pointer
 ```
 
 now `free()` doesn't need to know or recompute any padding. it just does:
@@ -146,9 +144,9 @@ wait.. it's not the *arena's cursor* that needs aligning. it's the *user pointer
 so the actual math looks like this:
 
 ```
-candidate = header + sizeof(Header) + sizeof(void*)
-padding   = align(candidate, alignment)
-user_ptr  = candidate + padding
+candidate = header + sizeof(Header)
+padding   = align(candidate + sizeof(void*), alignment)
+user_ptr  = candidate + sizeof(void*) + padding
 ```
 
 and the padding amount gets stored in the header too, mostly because it turned out useful for debugging and testing later, you can sanity-check `user_ptr - padding` lands exactly back on `candidate`.
@@ -158,12 +156,12 @@ and the padding amount gets stored in the header too, mostly because it turned o
 once i had all this working => header, back pointer, alignment. i sat with the layout for a second:
 
 ```
-[ Header ][ Back Pointer ][ Padding ][ User Memory ]
+[ Header ][ Padding ][ Back Pointer ][ User Memory ]
 ```
 
 and the obvious question showed up:
 
-**those padding bytes between the metadata and my actual object... they're just sitting there, unused, for the entire lifetime of the allocation. why can't the allocator reuse them?**
+**those padding bytes between the header and the back pointer.... they're just sitting there, unused, for the entire lifetime of the allocation. why can't the allocator reuse them?**
 
 **because the allocation has to be one contiguous block.** the caller was promised N contiguous bytes starting at `user_ptr`, and there's no way to describe "here's your memory, except for these 3 bytes in the middle, those belong to something else" without breaking the entire contract of what an allocation *is*.
 
