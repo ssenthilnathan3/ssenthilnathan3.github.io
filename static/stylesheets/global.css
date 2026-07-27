@@ -23,6 +23,8 @@
   /* Layout */
   --sidebar-width: 260px;
   --max-width: 1000px;
+  --content-width: 860px;
+  --content-padding: 1.25rem;
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -88,7 +90,18 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
+  padding: 5rem var(--content-padding) 0;
   background: transparent;
+}
+
+/* Shared max-width container used by all page sections */
+.page-container {
+  max-width: var(--content-width);
+  width: 100%;
+  margin-left: auto;
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: auto;
 }
 
 /* Paper texture overlay — sits on top of all content as a grain layer.
@@ -281,6 +294,111 @@ a:hover {
   color: var(--prose-body);
 }
 
+/* Floating Top Bar Nav (Segmented Control) */
+.top-bar-nav {
+  position: fixed;
+  top: 1rem;
+  /* Align left edge to content area: centered when viewport > content-width, otherwise use padding */
+  left: max(var(--content-padding), calc(50% - var(--content-width) / 2));
+  z-index: 100;
+  pointer-events: none;
+}
+
+.top-bar-segments {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-surface);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+  outline: 1px solid var(--color-border);
+  pointer-events: auto;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  width: fit-content;
+}
+
+.top-bar-segment {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 34px;
+  padding: 0 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.top-bar-segment:hover {
+  color: var(--color-text);
+  background: var(--color-accent-light);
+}
+
+.top-bar-segment.active {
+  color: var(--color-bg);
+  background: var(--color-text);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.top-bar-segment.ballistic {
+  background: transparent;
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.top-bar-segment.ballistic::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  padding: 1.5px;
+  background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #ff6b6b);
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: rainbow-shift 3s linear infinite;
+}
+
+body.chaos-mode .top-bar-segment.ballistic {
+  background: #ff6b6b;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 107, 107, 0.4);
+}
+
+body.chaos-mode .top-bar-segment.ballistic::after {
+  animation: rainbow-shift 1.5s linear infinite;
+}
+
+body.chaos-mode .top-bar-segment.ballistic:hover {
+  background: #ff4444;
+  box-shadow: 0 0 18px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes rainbow-shift {
+  to { background-position: 200% 0; }
+}
+
+@media (prefers-color-scheme: dark) {
+  .top-bar-segments {
+    box-shadow:
+      0 1px 3px rgba(0, 0, 0, 0.2),
+      0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
 /* Blog nav & footer */
 .blog-nav {
   display: flex;
@@ -293,7 +411,7 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 820px;
+  max-width: var(--content-width);
   margin: 0 auto;
 }
 
@@ -314,6 +432,9 @@ a:hover {
 body.chaos-mode .floaters-container {
   z-index: 20;
   opacity: 0.8;
+}
+body.chaos-mode .top-bar-nav {
+  display: none;
 }
 body.chaos-mode .f1 {
   color: #ff6b6b;
@@ -756,3 +877,4 @@ body.chaos-mode .chaos-widget {
     font-size: 2rem;
   }
 }
+

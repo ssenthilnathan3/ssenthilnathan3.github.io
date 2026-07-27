@@ -96,6 +96,15 @@
     {{ block "custom_head" . }}{{ end }}
   </head>
   <body>
+    <nav class="top-bar-nav" role="navigation" aria-label="Main navigation">
+      <div class="top-bar-segments">
+        <a href="/" class="top-bar-segment{{ if .IsHome }} active{{ end }}">home</a>
+        <a href="/blog/" class="top-bar-segment{{ if and (not .IsHome) (or (eq .Section "blog") (in .RelPermalink "/blog/")) }} active{{ end }}">shelf</a>
+        <a href="/about/" class="top-bar-segment{{ if eq .RelPermalink "/about/" }} active{{ end }}">about</a>
+        <button id="topbar-ballistic" class="top-bar-segment ballistic" onclick="window.setChaosMode&amp;&amp;window.setChaosMode(!document.body.classList.contains('chaos-mode'))">go ballistic</button>
+      </div>
+    </nav>
     {{ block "main" . }}{{ end }} {{ block "custom_foot" . }}{{ end }}
+    <script src="/js/chaos-toggle.js"></script>
   </body>
 </html>

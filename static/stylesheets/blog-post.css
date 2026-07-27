@@ -11,6 +11,11 @@
   border-radius: 0 2px 2px 0;
 }
 
+/* Hide global topbar on blog post pages */
+.top-bar-nav {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   #reading-progress-bar {
     background: var(--color-text-muted);
@@ -92,9 +97,9 @@
 .post-hero {
   position: relative;
   width: 100%;
-  max-width: 820px;
-  margin: 2.5rem auto 0;
-  padding: 0 1.25rem;
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -115,7 +120,7 @@
 
 .post-hero-overlay {
   position: absolute;
-  inset: 0 1.25rem;
+  inset: 0;
   border-radius: 14px;
   background: linear-gradient(
     to bottom,
@@ -137,13 +142,13 @@
 
 /* ─── Article Header ─────────────────────────────────── */
 .post-header-wrap {
-  max-width: 820px;
+  max-width: var(--content-width);
   margin: 2.5rem auto 0;
-  padding: 0 1.25rem;
+  padding: 0;
 }
 
 .post-header-wrap--no-hero {
-  margin-top: 3.5rem;
+  margin-top: 0;
 }
 
 .post-header {
@@ -206,70 +211,104 @@
 
 /* ─── Article Content ────────────────────────────────── */
 .post-content-wrap {
-  max-width: 820px;
+  max-width: var(--content-width);
   margin: 0 auto;
-  padding: 2.5rem 1.25rem 0;
+  padding: 2.5rem 0 0;
 }
 
-.post-content {
-  /* override global p max-width */
-}
 
-/* ─── TOC Sidebar ──────────────────────────────────── */
+/* ─── TOC Sidebar ────────────────────────────── */
 .toc-sidebar {
   display: none;
   position: fixed;
-  top: 100px;
-  width: 200px;
-  max-height: calc(100vh - 140px);
+  top: 96px;
+  width: 220px;
+  max-height: calc(100vh - 120px);
   overflow-y: auto;
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
+  scrollbar-width: none;
+  animation: toc-fade-in 0.4s ease both;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1rem 0 0.75rem;
+}
+
+.toc-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes toc-fade-in {
+  from { opacity: 0; transform: translateX(8px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
 @media (min-width: 1360px) {
   .toc-sidebar {
     display: block;
-    right: calc((100% - 820px) / 2 - 220px);
+    right: calc((100% - var(--content-width)) / 2 - 240px);
   }
 }
 
+/* Label */
 .toc-label {
-  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--color-text-subtle);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.625rem;
+  padding: 0 1rem;
 }
 
+/* List */
 #table-of-contents ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-#table-of-contents li {
-  line-height: 1.5;
+#table-of-contents li + li {
+  margin-top: 1px;
 }
 
-#table-of-contents a {
+/* Links */
+.toc-link {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.45;
   color: var(--color-text-muted);
   text-decoration: none;
-  transition: color 0.15s;
-  display: block;
-  padding: 2px 0;
+  padding: 0.4rem 1rem;
   border-left: 2px solid transparent;
-  padding-left: 0.5rem;
+  transition:
+    color 0.15s ease,
+    border-color 0.15s ease,
+    background 0.15s ease;
 }
 
-#table-of-contents a:hover {
-  color: var(--color-accent);
-  border-left-color: var(--color-accent);
+.toc-level-3 .toc-link {
+  padding-left: 1.75rem;
+  font-size: 0.73rem;
+  color: var(--color-text-subtle);
 }
 
-#table-of-contents a.font-semibold {
-  color: var(--color-accent);
+.toc-link:hover {
+  color: var(--color-text);
+  border-left-color: var(--color-border-hover);
+  background: var(--color-accent-light);
+}
+
+/* Active state */
+.toc-link[data-active] {
+  color: var(--color-text);
   border-left-color: var(--color-accent);
+  background: var(--color-accent-light);
+  font-weight: 500;
+}
+
+.toc-level-3 .toc-link[data-active] {
+  color: var(--color-text-muted);
 }
 
 /* Prose overrides — ensure full column width */
@@ -458,11 +497,12 @@
   width: 100%;
   margin-top: 5rem;
   border-top: 1px solid var(--color-border);
-  padding: 2rem 1.25rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .post-footer-inner {
-  max-width: 820px;
+  max-width: var(--content-width);
   margin: 0 auto;
   display: flex;
   align-items: center;

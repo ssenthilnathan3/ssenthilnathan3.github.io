@@ -164,18 +164,25 @@
 
     <p class="lead">{{ .Site.Params.site_description }}</p>
 
-    <nav class="nav-links">
-      <a href="/blog/">shelf</a>
-      <a href="/resume.pdf" class="resume-btn">resume</a>
-      <a href="/about/">about</a>
-      <a href="/index.xml">rss</a>
-    </nav>
+
   </section>
 </main>
+
+<div class="ascii-art" id="ascii-art" aria-hidden="true"></div>
+
+<div class="skyline">
+  <img src="/images/skyline.gif" alt="" />
+  <div class="skyline-stack">
+    <img src="/images/leo.gif" alt="" />
+    <img src="/images/catto.gif" alt="" />
+  </div>
+</div>
 
 <footer class="footer">
   <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.author_name }}</p>
 </footer>
-{{ end }} {{ define "custom_foot" }}
-<script src="/js/chaos-toggle.js"></script>
+{{ end }}
+
+{{ define "custom_foot" }}
+<script src="/js/ascii-art.js"></script>
 {{ end }}

@@ -18,7 +18,7 @@
       return;
     }
 
-    var headings = contentEl.querySelectorAll("h1, h2, h3");
+    var headings = contentEl.querySelectorAll("h2, h3");
     if (headings.length === 0) {
       tocContainer.style.display = "none";
       return;
@@ -26,6 +26,7 @@
 
     tocList.innerHTML = "";
 
+    // Build TOC items
     headings.forEach(function (heading) {
       var id = heading.id;
       if (!id) {
@@ -33,20 +34,16 @@
         heading.id = id;
       }
 
-      var level = heading.tagName.charAt(1);
+      var level = parseInt(heading.tagName.charAt(1), 10); // 2 or 3
       var li = document.createElement("li");
-      li.className =
-        level === "1"
-          ? "font-semibold text-gray-900 dark:text-gray-100 mb-1"
-          : level === "2"
-            ? "ml-4 mb-1"
-            : "ml-8 mb-1";
+      li.className = "toc-item toc-level-" + level;
 
       var link = document.createElement("a");
       link.href = "#" + id;
       link.textContent = heading.textContent;
-      link.className =
-        "text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors";
+      link.className = "toc-link";
+      link.dataset.tocTarget = id;
+
       link.addEventListener("click", function (e) {
         e.preventDefault();
         heading.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -57,64 +54,54 @@
       tocList.appendChild(li);
     });
 
-    var tocLinks = document.querySelectorAll("#table-of-contents a");
-    if (tocLinks.length === 0) return;
+    // Activate first item by default
+    var allLinks = tocList.querySelectorAll(".toc-link");
+    if (allLinks.length > 0) setActive(allLinks[0]);
 
-    var activeClass = "font-semibold text-gray-800 dark:text-gray-200";
-
-    function setActive(link) {
-      tocLinks.forEach(function (l) {
-        l.classList.remove(
-          "font-semibold",
-          "text-gray-800",
-          "dark:text-gray-200",
-        );
-      });
-      if (link)
-        link.classList.add.apply(link.classList, activeClass.split(" "));
-    }
-
+    // IntersectionObserver for active tracking
     var observer = new IntersectionObserver(
       function (entries) {
         var visible = [];
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            visible.push(entry.target);
-          }
+          if (entry.isIntersecting) visible.push(entry.target);
         });
+
         if (visible.length > 0) {
-          var first = visible[0];
-          var link = document.querySelector(
-            '#table-of-contents a[href="#' + first.id + '"]',
+          var link = tocList.querySelector(
+            '.toc-link[data-toc-target="' + visible[0].id + '"]'
           );
           setActive(link);
         } else {
+          // Fall back to last heading above viewport
           var active = null;
           for (var i = headings.length - 1; i >= 0; i--) {
             var rect = headings[i].getBoundingClientRect();
-            if (rect.top + window.scrollY <= window.scrollY + 120) {
+            if (rect.top <= 120) {
               active = headings[i];
               break;
             }
           }
           if (active) {
-            var link = document.querySelector(
-              '#table-of-contents a[href="#' + active.id + '"]',
+            var link = tocList.querySelector(
+              '.toc-link[data-toc-target="' + active.id + '"]'
             );
             setActive(link);
-          } else {
-            setActive(tocLinks[0]);
           }
         }
       },
-      { rootMargin: "-80px 0px -60% 0px" },
+      { rootMargin: "-80px 0px -60% 0px" }
     );
 
     headings.forEach(function (h) {
       observer.observe(h);
     });
+  }
 
-
+  function setActive(link) {
+    document.querySelectorAll(".toc-link").forEach(function (l) {
+      l.removeAttribute("data-active");
+    });
+    if (link) link.setAttribute("data-active", "true");
   }
 
   function slugify(text) {
@@ -123,6 +110,6 @@
       .replace(/[^a-z0-9\s-]/g, "")
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-")
-      .trim("-");
+      .trim();
   }
 })();

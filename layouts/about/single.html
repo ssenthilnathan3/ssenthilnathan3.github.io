@@ -1,79 +1,73 @@
+{{ define "custom_head" }}
+<link rel="stylesheet" href="/stylesheets/about.css" />
+{{ end }}
+
 {{ define "main" }}
-<main class="min-h-screen bg-[var(--color-bg)]">
-  <div class="mx-auto max-w-[680px] px-5 pt-16 sm:px-6 sm:pt-24">
-    <nav class="mb-12">
-      <a
-        href="/"
-        class="inline-flex h-9 items-center gap-1.5 rounded-full bg-[var(--color-surface)] px-3.5 text-sm font-medium tracking-tight text-[var(--color-text-muted)] ring-1 ring-[var(--color-border)] transition-colors hover:bg-[var(--color-accent-light)] hover:text-[var(--color-accent)]"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          width="16"
-          height="16"
-          fill="none"
-          class="-ml-0.5"
-        >
-          <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
-            d="M9.99997 6C9.99997 5.44772 10.4477 5 11 5H16C17.464 5 18.7234 5.75731 19.5893 6.77271C20.4537 7.78636 21 9.13716 21 10.5C21 11.8628 20.4537 13.2136 19.5893 14.2273C18.7235 15.2427 17.464 16 16 16H8V18C8 18.4045 7.75636 18.7691 7.38268 18.9239C7.00901 19.0787 6.57889 18.9931 6.29289 18.7071L3.29289 15.7071C2.90237 15.3166 2.90237 14.6834 3.29289 14.2929L6.29289 11.2929C6.57889 11.0069 7.00901 10.9213 7.38268 11.0761C7.75636 11.2309 8 11.5955 8 12V14H16C16.7451 14 17.4857 13.6119 18.0675 12.9296C18.6508 12.2455 19 11.3463 19 10.5C19 9.65369 18.6508 8.75449 18.0675 8.07043C17.4857 7.38812 16.7451 7 16 7H11C10.4477 7 9.99997 6.55228 9.99997 6Z"
-            fill="currentColor"
-          />
-        </svg>
-        Home
+<main class="about-main">
+  <div class="about-container">
+
+    <!-- Header -->
+    <header class="about-header">
+      <div class="about-name">dis' me</div>
+    </header>
+
+    <!-- Links -->
+    <section class="about-links">
+      <a href="https://github.com/ssenthilnathan3" class="about-link" target="_blank" rel="noopener">
+        <span class="about-link-label">github</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-    </nav>
+      <a href="/resume.pdf" class="about-link" target="_blank" rel="noopener">
+        <span class="about-link-label">résumé</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+      <a href="/index.xml" class="about-link">
+        <span class="about-link-label">rss feed</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </section>
 
-    <article>
-      <h1
-        class="text-[34px] font-medium leading-[1.1] tracking-[-0.02em] text-[var(--color-text)] sm:text-[44px]"
-      >
-        About
-      </h1>
-      <div
-        class="mt-8 space-y-5 text-base leading-relaxed tracking-tight text-[var(--color-text-muted)]"
-      >
-        <p>
-          Hi again, I'm
-          <strong class="text-[var(--color-text)] font-semibold"
-            >{{ .Site.Params.author_name }}</strong
-          >.
-        </p>
-        <p>{{ .Content }}</p>
-      </div>
+    <!-- Bio -->
+    <section class="about-bio">
+      {{ .Content }}
+    </section>
 
-      <div class="mt-16">
-        <h2
-          class="text-xl font-semibold tracking-tight text-[var(--color-text)]"
-        >
-          Colophon
-        </h2>
-        <div
-          class="mt-4 space-y-5 text-base leading-relaxed tracking-tight text-[var(--color-text-muted)]"
-        >
-          <p>
-            Built with
-            <a
-              href="https://gohugo.io/"
-              class="text-[var(--color-accent)] underline underline-offset-2 decoration-1 hover:text-[var(--color-text-muted)] transition-colors"
-              >Hugo</a
-            >. Type set in
-            <a
-              href="https://rsms.me/inter/"
-              class="text-[var(--color-accent)] underline underline-offset-2 decoration-1 hover:text-[var(--color-text-muted)] transition-colors"
-              >Inter</a
-            >
-            and
-            <a
-              href="https://www.jetbrains.com/lp/mono/"
-              class="text-[var(--color-accent)] underline underline-offset-2 decoration-1 hover:text-[var(--color-text-muted)] transition-colors"
-              >JetBrains Mono</a
-            >.
-          </p>
-        </div>
+    <!-- Divider -->
+    <div class="about-divider"></div>
+
+    <!-- Quick facts row -->
+    <section class="about-facts">
+      <div class="about-fact">
+        <span class="about-fact-label">currently</span>
+        <span class="about-fact-value">building things at scale</span>
       </div>
-    </article>
+      <div class="about-fact">
+        <span class="about-fact-label">based in</span>
+        <span class="about-fact-value">India</span>
+      </div>
+      <div class="about-fact">
+        <span class="about-fact-label">interests</span>
+        <span class="about-fact-value">systems, film, music</span>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="about-divider"></div>
+
+    <!-- Colophon -->
+    <section class="about-colophon">
+      <span class="about-eyebrow">colophon</span>
+      <p>
+        Built with <a href="https://gohugo.io/">Hugo</a>.
+        Typeset in <a href="https://rsms.me/inter/">Inter</a> and <a href="https://www.jetbrains.com/lp/mono/">JetBrains Mono</a>.
+        Hosted on <a href="https://pages.github.com/">GitHub Pages</a>.
+      </p>
+    </section>
+
   </div>
 </main>
+{{ end }}
+
+{{ define "custom_foot" }}
+<script src="/js/about-hover.js"></script>
 {{ end }}
