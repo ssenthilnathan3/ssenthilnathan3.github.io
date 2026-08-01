@@ -33,8 +33,8 @@
 
 .about-bio {
   color: var(--color-text-muted);
-  line-height: 1.7;
-  font-size: 1rem;
+  line-height: 1.6;
+  font-size: 1.0625rem;
   margin-bottom: var(--space-10);
 }
 

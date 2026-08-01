@@ -30,8 +30,10 @@
 
 /* ─── Sticky Nav ─────────────────────────────────────── */
 .post-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 40;
   display: flex;
   align-items: center;
@@ -71,13 +73,10 @@
 }
 
 .post-nav-title {
-  flex: 1;
-  text-align: center;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--color-text);
   letter-spacing: -0.02em;
-  padding: 0 1rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -88,7 +87,30 @@
     transform 0.3s ease;
 }
 
-.post-nav-title.visible {
+.post-nav-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0 1rem;
+}
+
+.post-nav-thumb {
+  width: 44px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.post-nav-fade.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -247,6 +269,13 @@
     display: block;
     right: calc((100% - var(--content-width)) / 2 - 240px);
   }
+
+  /* Shift content left so it balances against the right-side TOC */
+  .post-hero,
+  .post-header-wrap,
+  .post-content-wrap {
+    margin-left: calc(50% - var(--content-width) / 2 - 120px);
+  }
 }
 
 /* Label */
@@ -314,8 +343,8 @@
 /* Prose overrides — ensure full column width */
 .post-content p {
   max-width: 100%;
-  font-size: 1.0625rem;
-  line-height: 1.75;
+  font-size: 1.125rem;
+  line-height: 1.65;
   color: var(--color-text-muted);
   margin-bottom: 1.5rem;
 }

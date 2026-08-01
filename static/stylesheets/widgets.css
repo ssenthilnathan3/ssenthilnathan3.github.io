@@ -7,7 +7,7 @@
   border-radius: 8px;
   padding: 1.5rem;
   margin: 2rem 0;
-  font-family: var(--font-sans, "Inter", sans-serif);
+  font-family: var(--font-sans, "Geist", sans-serif);
 }
 .widget-section-title {
   font-size: 0.7rem;
@@ -646,7 +646,7 @@
   border: 1px solid var(--color-border, #e4ddd6);
   border-radius: 8px;
   margin: 1.5rem 0;
-  font-family: var(--font-sans, "Inter", sans-serif);
+  font-family: var(--font-sans, "Geist", sans-serif);
 }
 .side {
   display: flex;

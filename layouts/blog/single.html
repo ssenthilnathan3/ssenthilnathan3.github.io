@@ -7,6 +7,52 @@
 
 <main class="post-main">
 
+  <!-- Sticky Nav -->
+  <nav class="post-nav" id="post-nav" aria-label="Post navigation">
+    <a href="/blog/" class="post-nav-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        width="14"
+        height="14"
+        fill="none"
+      >
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M14 18C14 18.4045 13.7564 18.7691 13.3827 18.9239C13.009 19.0787 12.5789 18.9931 12.2929 18.7071L9.29289 15.7071C8.90237 15.3166 8.90237 14.6834 9.29289 14.2929L12.2929 11.2929C12.5789 11.0069 13.009 10.9213 13.3827 11.0761C13.7564 11.2309 14 11.5955 14 12V18Z"
+          fill="currentColor"
+        />
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M10 18C10 18.4045 10.2436 18.7691 10.6173 18.9239C10.991 19.0787 11.4211 18.9931 11.7071 18.7071L14.7071 15.7071C15.0976 15.3166 15.0976 14.6834 14.7071 14.2929L11.7071 11.2929C11.4211 11.0069 10.991 10.9213 10.6173 11.0761C10.2436 11.2309 10 11.5955 10 12V18Z"
+          fill="currentColor"
+        />
+      </svg>
+      All posts
+    </a>
+    <div class="post-nav-center">
+      {{ if .Params.hero_image }}
+      <img
+        src="{{ .Params.hero_image | relURL }}"
+        alt=""
+        class="post-nav-thumb post-nav-fade"
+        aria-hidden="true"
+      />
+      {{ end }}
+      <span class="post-nav-title post-nav-fade">{{ .Title }}</span>
+    </div>
+    <a
+      href="https://www.github.com/ssenthilnathan3"
+      class="post-nav-btn"
+      target="_blank"
+      rel="noopener"
+    >
+      github <span aria-hidden="true">↗</span>
+    </a>
+  </nav>
+
   <!-- Hero Section -->
   {{ if .Params.hero_image }}
   <div class="post-hero"{{ with .Params.hero_image_fit }} style="--hero-fit: {{ . }};"{{ end }}>
@@ -82,17 +128,16 @@
 
   <!-- Article Content -->
   <div class="post-content-wrap">
+    <aside id="toc-container" class="toc-sidebar">
+      <nav id="table-of-contents">
+        <ul></ul>
+      </nav>
+    </aside>
     <article
       class="post-content article-content prose prose-gray max-w-none dark:prose-invert"
     >
       {{ .Content }}
     </article>
-    <!-- <aside id="toc-container" class="toc-sidebar">
-      <nav id="table-of-contents">
-        <div class="toc-label">Contents</div>
-        <ul></ul>
-      </nav>
-    </aside> -->
   </div>
 
   <!-- Footer -->
@@ -129,16 +174,39 @@
 
 <script>
   const bar = document.getElementById("reading-progress-bar");
+  const navFadeEls = document.querySelectorAll(".post-nav-fade");
+  const headerWrap = document.querySelector(".post-header-wrap");
+  const postNav = document.getElementById("post-nav");
 
-  window.addEventListener("scroll", () => {
+  const navHeight = postNav ? postNav.offsetHeight : 56;
+  let ticking = false;
+
+  function update() {
     const scrollTop = window.scrollY;
     const docHeight = document.body.scrollHeight - window.innerHeight;
     const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     bar.style.width = pct + "%";
-  });
 
+    if (headerWrap) {
+      const top = headerWrap.getBoundingClientRect().top;
+      const passed = top <= navHeight;
+      navFadeEls.forEach((el) => el.classList.toggle("visible", passed));
+    }
+
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  update();
 </script>
 
-<!-- <script src="/js/toc.js"></script> -->
+<script src="/js/toc.js"></script>
 <script src="/js/widgets.js"></script>
 {{ end }}

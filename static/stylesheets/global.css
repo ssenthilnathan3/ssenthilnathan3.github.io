@@ -1,5 +1,5 @@
 /* Fonts */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
 :root {
   --color-bg: #fdf8f3;
@@ -17,7 +17,7 @@
   --color-border-hover: #d3cbc3;
 
   /* Typography */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "JetBrains Mono", monospace;
 
   /* Layout */
@@ -76,7 +76,7 @@
 
 html {
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 17px;
   line-height: 1.6;
   color: var(--color-text);
   background-color: var(--color-bg);
@@ -187,8 +187,8 @@ a:hover {
   --prose-hr: var(--color-border);
   --prose-th-bg: var(--color-accent-light);
   color: var(--prose-body);
-  line-height: 1.6;
-  font-size: 1rem;
+  line-height: 1.55;
+  font-size: 1.0625rem;
 }
 .prose h2 {
   color: var(--prose-heading);
@@ -210,7 +210,7 @@ a:hover {
 }
 .prose p {
   margin-bottom: 1.25rem;
-  line-height: 1.65;
+  line-height: 1.55;
 }
 .prose a {
   color: var(--prose-link);
