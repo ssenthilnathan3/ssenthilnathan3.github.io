@@ -1,0 +1,14 @@
+{{ $type := .Get "type" | default "info" }}
+{{ $title := .Get "title" | default "" }}
+{{ $icon := .Get "icon" | default "" }}
+<div class="callout callout-{{ $type }}">
+  <div class="callout-header">
+    {{ with $icon }}
+    <span class="callout-icon">{{ . | safeHTML }}</span>
+    {{ end }}
+    {{ with $title }}<span class="callout-title">{{ . }}</span>{{ end }}
+  </div>
+  <div class="callout-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>

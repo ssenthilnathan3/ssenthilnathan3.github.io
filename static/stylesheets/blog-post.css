@@ -174,7 +174,7 @@
 }
 
 .post-header {
-  padding-bottom: 1.75rem;
+  padding-bottom: .75rem;
   border-bottom: 1px solid var(--color-border);
 }
 
@@ -235,7 +235,7 @@
 .post-content-wrap {
   max-width: var(--content-width);
   margin: 0 auto;
-  padding: 2.5rem 0 0;
+  padding: 0;
 }
 
 
@@ -426,48 +426,55 @@
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 .callout-info {
-  --callout-accent: #3b82f6;
-  --callout-bg: rgba(59, 130, 246, 0.08);
+  --callout-accent: #5b7c8f;
+  --callout-bg: rgba(91, 124, 143, 0.09);
 }
 .callout-warning {
-  --callout-accent: #f59e0b;
-  --callout-bg: rgba(245, 158, 11, 0.08);
+  --callout-accent: #a37a3f;
+  --callout-bg: rgba(163, 122, 63, 0.1);
 }
 .callout-success {
-  --callout-accent: #10b981;
-  --callout-bg: rgba(16, 185, 129, 0.08);
+  --callout-accent: #5c8a6e;
+  --callout-bg: rgba(92, 138, 110, 0.09);
 }
 .callout-danger {
-  --callout-accent: #ef4444;
-  --callout-bg: rgba(239, 68, 68, 0.08);
+  --callout-accent: #ad5931;
+  --callout-bg: rgba(173, 89, 49, 0.09);
 }
 .callout-note {
-  --callout-accent: #8b7355;
-  --callout-bg: rgba(139, 115, 85, 0.08);
+  --callout-accent: #675a49;
+  --callout-bg: rgba(103, 90, 73, 0.09);
 }
 .callout-gray {
-  --callout-accent: #9ca3af;
-  --callout-bg: rgba(107, 114, 128, 0.08);
+  --callout-accent: #91877d;
+  --callout-bg: rgba(145, 135, 125, 0.1);
+}
+.callout-example {
+  --callout-accent: #8b63b5;
+  --callout-bg: rgba(139, 99, 181, 0.09);
 }
 
 @media (prefers-color-scheme: dark) {
+  .callout-example {
+    --callout-bg: rgba(139, 99, 181, 0.16);
+  }
   .callout-info {
-    --callout-bg: rgba(59, 130, 246, 0.12);
+    --callout-bg: rgba(91, 124, 143, 0.16);
   }
   .callout-warning {
-    --callout-bg: rgba(245, 158, 11, 0.12);
+    --callout-bg: rgba(163, 122, 63, 0.16);
   }
   .callout-success {
-    --callout-bg: rgba(16, 185, 129, 0.12);
+    --callout-bg: rgba(92, 138, 110, 0.16);
   }
   .callout-danger {
-    --callout-bg: rgba(239, 68, 68, 0.12);
+    --callout-bg: rgba(173, 89, 49, 0.16);
   }
   .callout-note {
-    --callout-bg: rgba(139, 115, 85, 0.12);
+    --callout-bg: rgba(103, 90, 73, 0.16);
   }
   .callout-gray {
-    --callout-bg: rgba(107, 114, 128, 0.12);
+    --callout-bg: rgba(145, 135, 125, 0.16);
   }
   .callout:hover {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
@@ -487,10 +494,44 @@
   color: var(--callout-accent);
   letter-spacing: -0.01em;
 }
+.callout-icon {
+  display: inline-flex;
+  align-items: center;
+  color: var(--callout-accent);
+}
+.callout-lang {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--color-text-subtle);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
 .callout-content {
   color: var(--color-text-muted);
   font-size: 0.9rem;
   line-height: 1.65;
+}
+.callout-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.25rem 0;
+  border-radius: 8px;
+}
+.callout-content pre {
+  background: var(--color-accent-light);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+.callout-content pre code {
+  background: none;
+  padding: 0;
+  color: var(--color-text);
 }
 .callout-content p {
   margin: 0;
@@ -592,7 +633,7 @@
   }
 
   .post-content-wrap {
-    padding: 1.75rem 1rem 0;
+    padding: 0 1.75rem 1rem 0;
   }
 
   .post-title {

@@ -1,12 +1,8 @@
 ---
-title: "Why malloc is doing more than I asked for"
-description: "internal fragmentation in memory - explained"
-date: 2026-07-20
+title: "read Kimi K3 with me"
+description: ""
+date: 2026-08-02
 category: tech
-hero_image: /images/malloc.jpeg
-hero_image_source: "google images"
-draft: true
-hero_image_fit: fit
 ---
 
 how does kimi k3 differ from other models, what novelty is in there for all the buzz and how tf does it have 1M context length?

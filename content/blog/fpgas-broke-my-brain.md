@@ -25,7 +25,23 @@ in software, you write sequential instructions. `x = 5` means "put 5 in the box 
 
 in FPGAs, there are no variables. you don't write instructions-you describe physical geometry.
 
+{{< info title="Note" >}}
+Verilog describes **hardware**, not a sequential program. The synthesis tool turns your code into actual silicon.
+{{< /info >}}
+
 when you write Verilog, you are telling the chip to build a physical circuit. electricity flows through it based on physics, not execution order. all paths exist at once, and signals propagate constantly.
+
+{{< example title="A flip-flop" lang="verilog" >}}
+```verilog
+module dff (
+    input clk,
+    input d,
+    output reg q
+);
+    always @(posedge clk) q <= d;
+endmodule
+```
+{{< /example >}}
 
 even "state" isn't a variable changing over time. it's literally just a physical flip-flop capturing voltage on a clock edge.
 

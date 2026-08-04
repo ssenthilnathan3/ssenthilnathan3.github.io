@@ -1,0 +1,11 @@
+{{ $title := .Get "title" | default "Example" }}
+{{ $lang := .Get "lang" | default "" }}
+<div class="callout callout-example">
+  <div class="callout-header">
+    <span class="callout-title">{{ $title }}</span>
+    {{ with $lang }}<span class="callout-lang">{{ . }}</span>{{ end }}
+  </div>
+  <div class="callout-content">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
