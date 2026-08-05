@@ -1,5 +1,6 @@
 ---
 title: "read Kimi K3 with me"
+draft: true
 description: ""
 date: 2026-08-02
 category: tech
