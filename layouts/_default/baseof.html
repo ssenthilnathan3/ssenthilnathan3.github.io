@@ -92,7 +92,7 @@
     <script src="/js/theme.js"></script>
     {{ block "custom_head" . }}{{ end }}
   </head>
-  <body>
+  <body{{ if eq .Section "blog" }} class="blog-post-page"{{ end }}>
     <nav class="top-bar-nav" role="navigation" aria-label="Main navigation">
       <div class="top-bar-segments">
         <a href="/" class="top-bar-segment{{ if .IsHome }} active{{ end }}">home</a>

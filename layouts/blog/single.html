@@ -3,41 +3,38 @@
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
 {{ end }} {{ define "main" }}
 
-<!-- Reading progress bar -->
 <div id="reading-progress-bar"></div>
 
-<main class="post-main">
+<article class="post-article">
 
-  <!-- Sticky Nav -->
-  <nav class="post-nav" id="post-nav" aria-label="Post navigation">
-    <a href="/blog/" class="post-nav-btn">
-      <i class="ph ph-house"></i>
-      All posts
+  <nav class="post-breadcrumb">
+    <a href="/blog/" class="post-breadcrumb-link">
+      <i class="ph ph-arrow-left"></i> Back
     </a>
-    <div class="post-nav-center">
-      {{ if .Params.hero_image }}
-      <img
-        src="{{ .Params.hero_image | relURL }}"
-        alt=""
-        class="post-nav-thumb post-nav-fade"
-        aria-hidden="true"
-      />
-      {{ end }}
-      <span class="post-nav-title post-nav-fade">{{ .Title }}</span>
-    </div>
-    <a
-      href="https://www.github.com/ssenthilnathan3"
-      class="post-nav-btn"
-      target="_blank"
-      rel="noopener"
-    >
-      github <i class="ph ph-arrow-square-out"></i>
+    <a href="/" class="post-breadcrumb-link">
+      Home <i class="ph ph-house"></i>
     </a>
   </nav>
 
-  <!-- Hero Section -->
+  <header class="post-header">
+    {{ if .Params.category }}
+    <a href="/blog/" class="post-category">{{ .Params.category }}</a>
+    {{ end }}
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{ if .Description }}
+    <p class="post-description">{{ .Description }}</p>
+    {{ end }}
+    <div class="post-meta">
+      <time class="post-meta-item" datetime='{{ .Date.Format "2006-01-02" }}'>
+        {{ .Date.Format "Jan 2, 2006" }}
+      </time>
+      <span class="post-meta-dot">·</span>
+      <span class="post-meta-item">{{ .ReadingTime }} min read</span>
+    </div>
+  </header>
+
   {{ if .Params.hero_image }}
-  <div class="post-hero"{{ with .Params.hero_image_fit }} style="--hero-fit: {{ . }};"{{ end }}>
+  <div class="post-hero">
     <img
       src="{{ .Params.hero_image | relURL }}"
       alt="{{ .Title }}"
@@ -45,90 +42,23 @@
       loading="eager"
       decoding="async"
     />
-    <div class="post-hero-overlay"></div>
     {{ if .Params.hero_image_source }}
-    <span class="post-hero-source"
-      >source: {{ .Params.hero_image_source }}</span
-    >
+    <span class="post-hero-source">source: {{ .Params.hero_image_source }}</span>
     {{ end }}
   </div>
   {{ end }}
 
-  <!-- Article Header -->
-  <div
-    class="post-header-wrap {{ if not .Params.hero_image }}post-header-wrap--no-hero{{ end }}"
-  >
-    <div class="post-header">
-      {{ if .Params.category }}
-      <span class="post-category">{{ .Params.category }}</span>
-      {{ end }}
-      <h1 class="post-title">{{ .Title }}</h1>
-      {{ if .Description }}
-      <p class="post-description">{{ .Description }}</p>
-      {{ end }}
-      <div class="post-meta">
-        <time class="post-meta-item" datetime='{{ .Date.Format "2006-01-02" }}'>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-            <line x1="16" y1="2" x2="16" y2="6" />
-            <line x1="8" y1="2" x2="8" y2="6" />
-            <line x1="3" y1="10" x2="21" y2="10" />
-          </svg>
-          {{ .Date.Format "Jan 2, 2006" }}
-        </time>
-        <span class="post-meta-dot">·</span>
-        <span class="post-meta-item">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="13"
-            height="13"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <polyline points="12 6 12 12 16 14" />
-          </svg>
-          {{ .ReadingTime }} min read
-        </span>
-      </div>
-    </div>
+  <div class="post-content">
+    {{ .Content }}
   </div>
 
-  <!-- Article Content -->
-  <div class="post-content-wrap">
-    <aside id="toc-container" class="toc-sidebar">
-      <nav id="table-of-contents">
-        <ul></ul>
-      </nav>
-    </aside>
-    <article
-      class="post-content article-content prose prose-gray max-w-none dark:prose-invert"
-    >
-      {{ .Content }}
-    </article>
-  </div>
-
-  <div class="post-views" id="post-views">
+  <footer class="post-views" id="post-views">
     <i class="ph ph-eye"></i>
     <span id="post-views-count">...</span>
     <span>views</span>
-  </div>
+  </footer>
 
-</main>
+</article>
 
 <script>
 (function() {
@@ -138,43 +68,31 @@
   fetch('https://ssenthilnathan3.goatcounter.com/counter/' + encodeURIComponent(path) + '.json')
     .then(function(r) { return r.json(); })
     .then(function(d) { el.textContent = d.count || '0'; })
-    .catch(function() { el.textContent = '…'; });
+    .catch(function() { el.textContent = '...'; });
 })();
 </script>
 
 <script>
-  const bar = document.getElementById("reading-progress-bar");
-  const navFadeEls = document.querySelectorAll(".post-nav-fade");
-  const headerWrap = document.querySelector(".post-header-wrap");
-  const postNav = document.getElementById("post-nav");
-
-  const navHeight = postNav ? postNav.offsetHeight : 56;
-  let ticking = false;
+(function() {
+  var bar = document.getElementById("reading-progress-bar");
+  var ticking = false;
 
   function update() {
-    const scrollTop = window.scrollY;
-    const docHeight = document.body.scrollHeight - window.innerHeight;
-    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    var scrollTop = window.scrollY;
+    var docHeight = document.body.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     bar.style.width = pct + "%";
-
-    if (headerWrap) {
-      const top = headerWrap.getBoundingClientRect().top;
-      const passed = top <= navHeight;
-      navFadeEls.forEach((el) => el.classList.toggle("visible", passed));
-    }
-
     ticking = false;
   }
 
-  function onScroll() {
+  window.addEventListener("scroll", function() {
     if (!ticking) {
       window.requestAnimationFrame(update);
       ticking = true;
     }
-  }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
+  }, { passive: true });
   update();
+})();
 </script>
 
 <script src="/js/toc.js"></script>
