@@ -9,87 +9,99 @@
       <h1 class="title">Shelf</h1>
     </div>
 
-    {{ $blogPages := where .Site.RegularPages "Section" "blog" }} {{ $groups :=
-    $blogPages.GroupByParam "category" }} {{ $last5 := first 5
-    $blogPages.ByDate.Reverse }} {{ if gt (len $last5) 0 }}
-    <div class="recent-section">
-      <div class="recent-header">
-        <span class="recent-label">Latest</span>
-      </div>
-      <div class="recent-track">
-        {{ range $last5 }}
-        <a
-          href="{{ .RelPermalink }}"
-          class="recent-card{{ if .Params.hero_image }} has-image{{ end }}"
-          {{
-          if
-          .Params.hero_image
-          }}style="background-image: url({{ .Params.hero_image }})"
-          {{
-          end
-          }}
-        >
-          <div class="recent-card-content">
-            <span class="recent-card-title">{{ .Title }}</span>
-            <span class="recent-card-date">{{ .Date.Format "Jan 2" }}</span>
+    {{ $blogPages := where .Site.RegularPages "Section" "blog" }}
+    {{ $sortedPages := $blogPages.ByDate.Reverse }}
+
+    {{ $top3 := first 3 $sortedPages }}
+    {{ if gt (len $top3) 0 }}
+    <div class="magazine-hero">
+      {{ $featured := index $top3 0 }}
+      <a href="{{ $featured.RelPermalink }}" class="magazine-featured{{ if $featured.Params.hero_image }} has-image{{ end }}"
+        {{ if $featured.Params.hero_image }}style="background-image: url({{ $featured.Params.hero_image }})"{{ end }}>
+        <div class="magazine-featured-content">
+          <span class="magazine-featured-tag">Featured</span>
+          <span class="magazine-featured-title">{{ $featured.Title }}</span>
+          <span class="magazine-featured-date">{{ $featured.Date.Format "Jan 2, 2006" }}</span>
+          <p class="magazine-featured-desc">{{ $featured.Description }}</p>
+        </div>
+      </a>
+      {{ if gt (len $top3) 1 }}
+      <div class="magazine-side">
+        {{ range after 1 $top3 }}
+        <a href="{{ .RelPermalink }}" class="magazine-side-card{{ if .Params.hero_image }} has-image{{ end }}"
+          {{ if .Params.hero_image }}style="background-image: url({{ .Params.hero_image }})"{{ end }}>
+          <div class="magazine-side-content">
+            <span class="magazine-side-title">{{ .Title }}</span>
+            <span class="magazine-side-date">{{ .Date.Format "Jan 2, 2006" }}</span>
           </div>
         </a>
         {{ end }}
       </div>
-    </div>
-    {{ end }} {{ if eq (len $groups) 0 }}
-    <div class="empty-state">No posts yet.</div>
-    {{ else }}
-    <div class="cabinets-stack">
-      {{ range $groups }} {{ $group := . }} {{ $count := len .Pages }} {{ $limit
-      := 4 }}
-      <div class="folder-cabinet" data-category="{{ .Key }}">
-        <div class="cabinet-header">
-          <span class="cabinet-label">{{ .Key }}</span>
-          <span class="cabinet-count">{{ $count }}</span>
-        </div>
-        <div class="cabinet-interior">
-          {{ range first $limit .Pages }}
-          <a href="{{ .RelPermalink }}" class="folder-card group">
-            <div class="folder-tab">
-              <span class="folder-tab-text">{{ .Title }}</span>
-            </div>
-            <div class="folder-body">
-              <div class="folder-meta">
-                <span class="folder-date"
-                  >{{ .Date.Format "Jan 2, 2006" }}</span
-                >
-              </div>
-              <p class="folder-desc">{{ .Description }}</p>
-            </div>
-          </a>
-          {{ end }} {{ if gt $count $limit }}
-          <div class="cabinet-more">+{{ sub $count $limit }} more</div>
-          {{ end }}
-        </div>
-        <div class="cabinet-drawer">
-          <div class="drawer-bar"></div>
-          <div class="drawer-face">
-            <div class="drawer-handle"></div>
-            <div class="drawer-modal">
-              <div class="drawer-modal-head">{{ .Key }}</div>
-              <div class="drawer-modal-body">
-                {{ range $group.Pages }}
-                <a href="{{ .RelPermalink }}" class="drawer-modal-item">
-                  <span class="drawer-modal-item-title">{{ .Title }}</span>
-                  <span class="drawer-modal-item-date"
-                    >{{ .Date.Format "Jan 2, 2006" }}</span
-                  >
-                </a>
-                {{ end }}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       {{ end }}
     </div>
     {{ end }}
+
+    {{ $rest := after 3 $sortedPages }}
+    {{ if gt (len $rest) 0 }}
+    {{ $categories := slice }}
+    {{ range $rest }}
+      {{ $categories = $categories | append .Params.category }}
+    {{ end }}
+    {{ $categories = $categories | uniq | sort }}
+
+    <div class="list-toolbar">
+      <select class="filter-select" id="category-filter">
+        <option value="all">All</option>
+        {{ range $categories }}
+        <option value="{{ . }}">{{ . }}</option>
+        {{ end }}
+      </select>
+    </div>
+
+    <div class="posts-list">
+      {{ range $rest }}
+      <a href="{{ .RelPermalink }}" class="post-row" data-category="{{ .Params.category }}">
+        {{ if .Params.hero_image }}
+        <div class="post-row-img" style="background-image: url({{ .Params.hero_image }})"></div>
+        {{ else }}
+        <div class="post-row-img placeholder"></div>
+        {{ end }}
+        <div class="post-row-content">
+          <span class="post-row-title">{{ .Title }}</span>
+          <span class="post-row-meta">
+            <span class="post-row-date">{{ .Date.Format "Jan 2, 2006" }}</span>
+            {{ if .Params.category }}
+            <span class="post-row-category">{{ .Params.category }}</span>
+            {{ end }}
+            {{ if .Description }}
+            <span class="post-row-desc">{{ .Description }}</span>
+            {{ end }}
+          </span>
+        </div>
+      </a>
+      {{ end }}
+    </div>
+    {{ else }}
+    <div class="empty-state">No posts yet.</div>
+    {{ end }}
   </div>
 </main>
+
+<script>
+(function() {
+  var sel = document.getElementById('category-filter');
+  if (!sel) return;
+  sel.addEventListener('change', function() {
+    var val = this.value;
+    var rows = document.querySelectorAll('.post-row');
+    rows.forEach(function(r) {
+      if (val === 'all' || r.getAttribute('data-category') === val) {
+        r.style.display = '';
+      } else {
+        r.style.display = 'none';
+      }
+    });
+  });
+})();
+</script>
 {{ end }}

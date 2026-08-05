@@ -433,9 +433,6 @@ body.chaos-mode .floaters-container {
   z-index: 20;
   opacity: 0.8;
 }
-body.chaos-mode .top-bar-nav {
-  display: none;
-}
 body.chaos-mode .f1 {
   color: #ff6b6b;
   filter: blur(1px);
