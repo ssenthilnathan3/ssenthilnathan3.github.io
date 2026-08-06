@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" style="background: transparent; color-scheme: light dark; font-family: Geist, system-ui, sans-serif;">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#888"/>
+    </marker>
+    <marker id="arrow-down" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#aaa"/>
+    </marker>
+  </defs>
+
+  <!-- stage 1: Tensor API -->
+  <rect x="20" y="20" width="130" height="50" rx="6" fill="#f0f0f0" stroke="#ccc"/>
+  <text x="85" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#333">Tensor API</text>
+  <text x="85" y="58" text-anchor="middle" font-size="9" fill="#888">a.matmul(b)</text>
+
+  <line x1="150" y1="45" x2="178" y2="45" stroke="#888" marker-end="url(#arrow)"/>
+
+  <!-- stage 2: UOp graph -->
+  <rect x="180" y="20" width="130" height="50" rx="6" fill="#f0f0f0" stroke="#ccc"/>
+  <text x="245" y="42" text-anchor="middle" font-size="12" font-weight="600" fill="#333">UOp graph</text>
+  <text x="245" y="58" text-anchor="middle" font-size="9" fill="#888">lazy tree, no compute</text>
+
+  <line x1="310" y1="45" x2="338" y2="45" stroke="#888" marker-end="url(#arrow)"/>
+
+  <!-- top pipeline bar -->
+  <rect x="20" y="100" width="760" height="30" rx="6" fill="#e8e8e8" stroke="#ddd"/>
+  <text x="400" y="120" text-anchor="middle" font-size="11" fill="#555">the pipeline</text>
+
+  <!-- stage 3: rangeify -->
+  <rect x="20" y="130" width="220" height="70" rx="6" fill="#fff3e0" stroke="#ffb74d" stroke-width="1.5"/>
+  <text x="130" y="152" text-anchor="middle" font-size="13" font-weight="600" fill="#e65100">rangeify</text>
+  <text x="130" y="168" text-anchor="middle" font-size="10" fill="#bf360c">views become loops</text>
+  <text x="130" y="182" text-anchor="middle" font-size="10" fill="#bf360c">split graph into kernels</text>
+  <text x="130" y="196" text-anchor="middle" font-size="9" fill="#e65100">r_4_4_4, E_8_2, ...</text>
+
+  <line x1="240" y1="165" x2="268" y2="165" stroke="#888" marker-end="url(#arrow)"/>
+
+  <!-- stage 4: scheduler -->
+  <rect x="270" y="130" width="220" height="70" rx="6" fill="#e8f5e9" stroke="#66bb6a" stroke-width="1.5"/>
+  <text x="380" y="152" text-anchor="middle" font-size="13" font-weight="600" fill="#2e7d32">scheduler</text>
+  <text x="380" y="168" text-anchor="middle" font-size="10" fill="#1b5e20">build dependency graph</text>
+  <text x="380" y="182" text-anchor="middle" font-size="10" fill="#1b5e20">topological sort → LINEAR</text>
+  <text x="380" y="196" text-anchor="middle" font-size="9" fill="#2e7d32">RAW/WAR edges</text>
+
+  <line x1="490" y1="165" x2="518" y2="165" stroke="#888" marker-end="url(#arrow)"/>
+
+  <!-- stage 5: codegen -->
+  <rect x="520" y="130" width="260" height="70" rx="6" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1.5"/>
+  <text x="650" y="152" text-anchor="middle" font-size="13" font-weight="600" fill="#1565c0">codegen</text>
+  <text x="650" y="168" text-anchor="middle" font-size="10" fill="#0d47a1">16 pattern matcher passes</text>
+  <text x="650" y="182" text-anchor="middle" font-size="10" fill="#0d47a1">UOps → source → binary</text>
+  <text x="650" y="196" text-anchor="middle" font-size="9" fill="#1565c0">BEAM, unroll, coalesce, ...</text>
+
+  <!-- arrow from codegen to runtime -->
+  <line x1="400" y1="200" x2="400" y2="240" stroke="#aaa" marker-end="url(#arrow-down)"/>
+
+  <!-- stage 6: runtime -->
+  <rect x="270" y="242" width="260" height="50" rx="6" fill="#f3e5f5" stroke="#ab47bc" stroke-width="1.5"/>
+  <text x="400" y="264" text-anchor="middle" font-size="13" font-weight="600" fill="#6a1b9a">runtime</text>
+  <text x="400" y="280" text-anchor="middle" font-size="10" fill="#4a148c">launch on CPU / CUDA / Metal / AMD / NV</text>
+
+  <!-- detail boxes below -->
+  <rect x="20" y="310" width="165" height="90" rx="4" fill="#fff8e1" stroke="#ffb74d" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="102" y="330" text-anchor="middle" font-size="10" font-weight="600" fill="#e65100">kernel graph</text>
+  <text x="102" y="346" text-anchor="middle" font-size="9" fill="#bf360c">each subgraph is</text>
+  <text x="102" y="360" text-anchor="middle" font-size="9" fill="#bf360c">one SINK ast node</text>
+  <text x="102" y="374" text-anchor="middle" font-size="9" fill="#bf360c">reading buffers,</text>
+  <text x="102" y="388" text-anchor="middle" font-size="9" fill="#bf360c">writing one buffer</text>
+
+  <rect x="200" y="310" width="175" height="90" rx="4" fill="#e8f5e9" stroke="#66bb6a" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="287" y="330" text-anchor="middle" font-size="10" font-weight="600" fill="#2e7d32">LINEAR schedule</text>
+  <text x="287" y="346" text-anchor="middle" font-size="9" fill="#1b5e20">CALL(ast, buf0, buf1)</text>
+  <text x="287" y="360" text-anchor="middle" font-size="9" fill="#1b5e20">CALL(ast, buf2, buf0)</text>
+  <text x="287" y="374" text-anchor="middle" font-size="9" fill="#1b5e20">CALL(...)</text>
+  <text x="287" y="388" text-anchor="middle" font-size="9" fill="#1b5e20">flat ordered list</text>
+
+  <rect x="390" y="310" width="390" height="90" rx="4" fill="#e3f2fd" stroke="#42a5f5" stroke-width="1" stroke-dasharray="3,2"/>
+  <text x="585" y="330" text-anchor="middle" font-size="10" font-weight="600" fill="#1565c0">codegen passes</text>
+  <text x="585" y="346" text-anchor="middle" font-size="9" fill="#0d47a1">load collapse → split ranges → symbolic → ...</text>
+  <text x="585" y="360" text-anchor="middle" font-size="9" fill="#0d47a1">apply_opts → expand → devectorize → coalesce</text>
+  <text x="585" y="374" text-anchor="middle" font-size="9" fill="#0d47a1">decomps → control flow → render → compile</text>
+  <text x="585" y="388" text-anchor="middle" font-size="9" fill="#0d47a1">SINK → PROGRAM → launchable binary</text>
+
+  <!-- laziness callout -->
+  <rect x="20" y="242" width="220" height="50" rx="4" fill="none" stroke="#ccc" stroke-dasharray="4,3"/>
+  <text x="130" y="262" text-anchor="middle" font-size="10" fill="#999" font-style="italic">everything is lazy until .realize()</text>
+  <text x="130" y="278" text-anchor="middle" font-size="9" fill="#bbb">reshape + mul + sum = 1 kernel</text>
+
+  <!-- connecting line laziness → schedule -->
+  <line x1="130" y1="242" x2="130" y2="200" stroke="#ccc" stroke-dasharray="3,3"/>
+  <line x1="130" y1="200" x2="380" y2="200" stroke="#ccc" stroke-dasharray="3,3"/>
+  <line x1="380" y1="200" x2="380" y2="242" stroke="#ccc" stroke-dasharray="3,3"/>
+</svg>

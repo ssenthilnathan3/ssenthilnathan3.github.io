@@ -108,6 +108,7 @@
       applyTheme(pct / 100);
       saveValue(pct);
       updateBtn();
+      document.dispatchEvent(new Event('themeChanged'));
     });
 
     updateBtn();

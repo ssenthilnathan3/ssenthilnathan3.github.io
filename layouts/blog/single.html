@@ -1,6 +1,52 @@
 {{ define "custom_head" }}
 <link rel="stylesheet" href="/stylesheets/blog-post.css" />
 <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<script src="https://cdn.jsdelivr.net/npm/graphre/dist/graphre.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nomnoml/dist/nomnoml.js"></script>
+<script>
+var _diagrams = [];
+
+function drawDiagram(id, source) {
+  _diagrams.push({id: id, source: source});
+  _renderDiagram(id, source);
+}
+
+function _renderDiagram(id, source) {
+  var canvas = document.getElementById(id);
+  if (!canvas) return;
+  canvas.classList.add('nomnoml-canvas');
+  canvas.style.width = '100%';
+  canvas.style.maxWidth = '720px';
+  canvas.style.height = 'auto';
+  var t = parseFloat(document.documentElement.dataset.themeValue || '0');
+  var dark = t >= 50;
+  var stroke = dark ? '#878078' : '#5c5046';
+  var fill   = dark ? '#1c1a18' : '#fefcf9';
+  var line   = dark ? '#f0ece8' : '#0f0d0b';
+  var font   = 'Geist, system-ui, sans-serif';
+  var defaults =
+    '#direction: right\n' +
+    '#background: transparent\n' +
+    '#lineColor: ' + line + '\n' +
+    '#stroke: ' + stroke + '\n' +
+    '#fill: ' + fill + '\n' +
+    '#arrowSize: 0.8\n' +
+    '#fontSize: 14\n' +
+    '#font: ' + font + '\n' +
+    '#padding: 16\n' +
+    '#spacing: 40\n' +
+    '#gutter: 8\n' +
+    '#edgeMargin: 6\n' +
+    '#ranker: network-simplex\n' +
+    '#bendSize: 0.3\n';
+  nomnoml.draw(canvas, defaults + source);
+}
+
+document.addEventListener('themeChanged', function() {
+  for (var i = 0; i < _diagrams.length; i++)
+    _renderDiagram(_diagrams[i].id, _diagrams[i].source);
+});
+</script>
 {{ end }} {{ define "main" }}
 
 <div id="reading-progress-bar"></div>
@@ -48,7 +94,7 @@
   </div>
   {{ end }}
 
-  <div class="post-content">
+  <div class="post-content mt-3">
     {{ .Content }}
   </div>
 
