@@ -41,6 +41,7 @@
         var remaining = [
           "/js/chaos-rings.js",
           "/js/chaos-pong.js",
+          "/js/chaos-touch.js",
           // "/js/chaos-p5.js",
           "/js/chaos-music.js",
           // "/js/chaos-vhs.js",
@@ -114,12 +115,14 @@
     localStorage.setItem("chaosMode", String(enabled));
     if (enabled) {
       document.body.classList.add("chaos-mode");
+      if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
       startChaosFavicon();
       loadChaosScripts(function () {
         if (!isChaos) return;
         if (window.triggerChaosAnimation) window.triggerChaosAnimation();
         if (window.startChaosMusic) window.startChaosMusic();
         if (window.startChaosPong) window.startChaosPong();
+        if (window.startChaosTouch) window.startChaosTouch();
         if (window.startChaosP5) window.startChaosP5();
         if (window.startChaosVHS) window.startChaosVHS();
         if (window.startChaosBongo) window.startChaosBongo();
@@ -130,6 +133,7 @@
       if (svg) svg.innerHTML = "";
       if (window.stopChaosMusic) window.stopChaosMusic();
       if (window.stopChaosPong) window.stopChaosPong();
+      if (window.stopChaosTouch) window.stopChaosTouch();
       if (window.stopChaosP5) window.stopChaosP5();
       if (window.stopChaosVHS) window.stopChaosVHS();
       if (window.stopChaosBongo) window.stopChaosBongo();

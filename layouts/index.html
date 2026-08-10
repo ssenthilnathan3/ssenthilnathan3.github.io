@@ -168,8 +168,6 @@
   </section>
 </main>
 
-<div class="ascii-art" id="ascii-art" aria-hidden="true"></div>
-
 <div class="skyline">
   <img src="/images/skyline.gif" alt="" />
   <div class="skyline-stack">
@@ -178,11 +176,74 @@
   </div>
 </div>
 
+{{ with .Params.carousel }}
+<section class="home-carousel" aria-label="Featured photos">
+  <div class="carousel-stage" id="home-carousel-stage">
+    {{ range $i, $src := . }}
+    <div class="carousel-frame{{ if eq $i 0 }} active{{ end }}">
+      <img src="{{ $src }}" alt="" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" />
+    </div>
+    {{ end }}
+  </div>
+  <div class="carousel-pips" id="home-carousel-pips">
+    {{ range $i, $_ := . }}
+    <span class="carousel-pip{{ if eq $i 0 }} on{{ end }}" data-index="{{ $i }}"></span>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
 <footer class="footer">
   <p>&copy; {{ now.Format "2006" }} {{ .Site.Params.author_name }}</p>
 </footer>
 {{ end }}
 
 {{ define "custom_foot" }}
-<script src="/js/ascii-art.js"></script>
+{{ with .Params.carousel }}
+<script>
+(function () {
+  var stage = document.getElementById("home-carousel-stage");
+  var pips = document.querySelectorAll("#home-carousel-pips .carousel-pip");
+  if (!stage || pips.length < 2) return;
+
+  var frames = stage.children;
+  var current = 0;
+  var interval = 5000;
+  var timer;
+
+  function show(i) {
+    frames[current].classList.remove("active");
+    pips[current].classList.remove("on");
+    current = i;
+    frames[current].classList.add("active");
+    pips[current].classList.add("on");
+  }
+
+  function next() {
+    show((current + 1) % frames.length);
+  }
+
+  pips.forEach(function (pip) {
+    pip.addEventListener("click", function () {
+      show(parseInt(pip.dataset.index));
+      clearTimeout(timer);
+      timer = setTimeout(rotate, interval);
+    });
+  });
+
+  function rotate() {
+    next();
+    timer = setTimeout(rotate, interval);
+  }
+
+  // pause while tab hidden
+  document.addEventListener("visibilitychange", function () {
+    clearTimeout(timer);
+    if (!document.hidden) timer = setTimeout(rotate, interval);
+  });
+
+  timer = setTimeout(rotate, interval);
+})();
+</script>
+{{ end }}
 {{ end }}

@@ -1,0 +1,85 @@
+{{ define "custom_head" }}
+<link rel="stylesheet" href="/stylesheets/photos.css" />
+{{ end }}
+
+{{ define "main" }}
+<main class="photos-page">
+  <section class="photos-hero">
+    <h1 class="photos-title">{{ .Title }}</h1>
+    {{ if .Description }}
+    <p class="photos-desc">{{ .Description }}</p>
+    {{ end }}
+  </section>
+
+  {{ $photos := .Params.photos }}
+  {{ if $photos }}
+  <div class="carousel-wrapper">
+    <div class="carousel-track" id="carousel-track">
+      {{ range $i, $src := $photos }}
+      <figure class="carousel-slide" id="slide-{{ $i }}">
+        <img src="{{ $src }}" alt="" loading="{{ if eq $i 0 }}eager{{ else }}lazy{{ end }}" />
+      </figure>
+      {{ end }}
+    </div>
+
+    <button class="carousel-arrow carousel-prev" id="carousel-prev" aria-label="Previous">&#8592;</button>
+    <button class="carousel-arrow carousel-next" id="carousel-next" aria-label="Next">&#8594;</button>
+
+    <div class="carousel-dots" id="carousel-dots">
+      {{ range $i, $_ := $photos }}
+      <button class="carousel-dot{{ if eq $i 0 }} active{{ end }}" data-index="{{ $i }}" aria-label="Go to photo {{ add $i 1 }}"></button>
+      {{ end }}
+    </div>
+  </div>
+  {{ else }}
+  <p class="photos-empty">no photos yet. drop some into <code>/static/images/photography/</code> and list them in the frontmatter.</p>
+  {{ end }}
+</main>
+{{ end }}
+
+{{ define "custom_foot" }}
+{{ if .Params.photos }}
+<script>
+(function () {
+  var track = document.getElementById("carousel-track");
+  var dots = document.querySelectorAll(".carousel-dot");
+  var prev = document.getElementById("carousel-prev");
+  var next = document.getElementById("carousel-next");
+  var slides = track ? track.children.length : 0;
+  var current = 0;
+
+  if (!track || slides < 2) return;
+
+  function goTo(i) {
+    if (i < 0 || i >= slides) return;
+    current = i;
+    track.scrollTo({ left: track.children[i].offsetLeft, behavior: "smooth" });
+    dots.forEach(function (d, j) { d.classList.toggle("active", j === i); });
+  }
+
+  prev.addEventListener("click", function () { goTo(current - 1); });
+  next.addEventListener("click", function () { goTo(current + 1); });
+  dots.forEach(function (d) {
+    d.addEventListener("click", function () { goTo(parseInt(d.dataset.index)); });
+  });
+
+  // update active dot on scroll
+  var ticking = false;
+  track.addEventListener("scroll", function () {
+    if (!ticking) {
+      requestAnimationFrame(function () {
+        var w = track.children[0].offsetWidth + 24; // slide width + gap
+        var idx = Math.round(track.scrollLeft / w);
+        if (idx !== current && idx >= 0 && idx < slides) {
+          current = idx;
+          dots.forEach(function (d, j) { d.classList.toggle("active", j === idx); });
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+})();
+</script>
+{{ end }}
+{{ end }}

@@ -25,15 +25,34 @@
     mouseY = canvas.height / 2;
 
     if (!isInitialized) {
-      canvas.addEventListener("mousemove", function (e) {
+      function trackY(clientY) {
         var rect = canvas.getBoundingClientRect();
-        mouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
+        mouseY = (clientY - rect.top) * (canvas.height / rect.height);
         isMouseOver = true;
+      }
+
+      canvas.addEventListener("mousemove", function (e) {
+        trackY(e.clientY);
       });
+      canvas.addEventListener("touchmove", function (e) {
+        e.preventDefault();
+        trackY(e.touches[0].clientY);
+      }, { passive: false });
+      canvas.addEventListener("touchstart", function (e) {
+        e.preventDefault();
+        trackY(e.touches[0].clientY);
+      }, { passive: false });
 
       canvas.addEventListener("mouseleave", function () {
         isMouseOver = false;
       });
+      canvas.addEventListener("touchend", function () {
+        isMouseOver = false;
+      });
+      canvas.addEventListener("touchcancel", function () {
+        isMouseOver = false;
+      });
+
       isInitialized = true;
     }
     return true;

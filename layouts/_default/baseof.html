@@ -97,6 +97,7 @@
       <div class="top-bar-segments">
         <a href="/" class="top-bar-segment{{ if .IsHome }} active{{ end }}">home</a>
         <a href="/blog/" class="top-bar-segment{{ if and (not .IsHome) (or (eq .Section "blog") (in .RelPermalink "/blog/")) }} active{{ end }}">shelf</a>
+        <a href="/photos/" class="top-bar-segment{{ if eq .Section "photos" }} active{{ end }}">photos</a>
         <a href="/about/" class="top-bar-segment{{ if eq .RelPermalink "/about/" }} active{{ end }}">about</a>
         <button id="topbar-ballistic" class="top-bar-segment ballistic" onclick="window.setChaosMode&amp;&amp;window.setChaosMode(!document.body.classList.contains('chaos-mode'))">🎉</button>
       </div>

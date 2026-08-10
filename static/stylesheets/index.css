@@ -252,29 +252,115 @@ body.chaos-mode .skyline {
   display: none;
 }
 
-@media (max-width: 768px) {
-.ascii-art {
-  font-family: var(--font-mono);
-  font-size: 0.55rem;
-  line-height: 1.15;
-  color: var(--color-text-subtle);
-  text-align: center;
-  padding: var(--space-8) 0;
+/* home page carousel */
+.home-carousel {
+  width: 100%;
+  max-width: 900px;
+  margin: var(--space-10) auto var(--space-6);
+}
+
+.carousel-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 21 / 9;
   overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-border);
 }
 
-.ascii-art div {
-  white-space: pre;
+.carousel-frame {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
 
-body.chaos-mode .ascii-art {
-  display: none;
+.carousel-frame.active {
+  opacity: 1;
 }
+
+.carousel-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.carousel-pips {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: var(--space-4);
+}
+
+.carousel-pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-border);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.carousel-pip.on {
+  background: var(--color-text);
+  width: 18px;
+  border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+  /* keep intro normal on mobile even in chaos mode — widgets are hidden anyway */
+  body.chaos-mode .intro {
+    position: static;
+    width: auto;
+    max-width: 100%;
+    top: auto;
+    right: auto;
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    color: var(--color-text);
+    transform: none;
+  }
+  body.chaos-mode .greeting {
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--color-text);
+  }
+  body.chaos-mode .lead {
+    font-size: 1.2rem;
+    -webkit-line-clamp: unset;
+    color: var(--color-text-muted);
+  }
+  body.chaos-mode .nav-links {
+    gap: var(--space-6);
+  }
+  body.chaos-mode .nav-links a {
+    color: var(--color-text);
+    border-color: var(--color-border);
+  }
+
+  /* widgets still hidden on mobile */
+  .widget-pong,
+  .widget-music {
+    display: none;
+  }
 
 .skyline {
     height: 20vh;
   }
   .skyline > img {
     width: 70%;
+  }
+
+  .home-carousel {
+    margin: var(--space-8) 0 var(--space-4);
+  }
+  .carousel-stage {
+    aspect-ratio: 21/9;
+  }
+  .carousel-pips {
+    margin-top: var(--space-3);
   }
 }

@@ -864,14 +864,17 @@ body.chaos-mode .chaos-widget {
   margin-top: 2px;
 }
 @media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
   .chaos-widget {
     display: none;
   }
-}
 
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2rem;
+  /* thin out rings on small screens */
+  #chaos-svg circle {
+    stroke-width: 2vmin !important;
   }
 }
 
